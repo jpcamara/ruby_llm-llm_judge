@@ -120,7 +120,10 @@ On September 23, 2026, we tested GPT-6 Luna (OpenRouter), DeepSeek V4.1 Flash (F
 | DeepSeek | One call | 59 | 64 | 0.1453 | 1,001 / 2,197 ms |
 | DeepSeek | Parallel ratings | 56 | 64 | 0.1513 | 2,577 / 3,531 ms |
 | Celeris | Plain one call | 54 | 58 | 0.1284 | 428 / 744 ms |
-| Celeris | Parallel ratings | 42 | 54 | 0.1998 | 505 / 861 ms |
+| Celeris | Original ratings | 42 | 54 | 0.1998 | 505 / 861 ms |
+| Celeris | Original ratings, rerun | 47 | 58 | 0.1754 | 537 / 889 ms |
+| Celeris | Ratings + retry/tie-break, run 1 | 57 | 61 | 0.1284 | 545 / 1,137 ms |
+| Celeris | Ratings + retry/tie-break, run 2 | 56 | 59 | 0.1153 | 545 / 1,009 ms |
 | Celeris | JSON one call + retry, run 1 | 60 | 63 | 0.0958 | 453 / 852 ms |
 | Celeris | JSON one call + retry, run 2 | 59 | 62 | 0.1107 | 401 / 776 ms |
 | Jev | Luna paired run | 59 | 64 | 0.1032 | 365 / 586 ms |
@@ -133,13 +136,14 @@ On September 23, 2026, we tested GPT-6 Luna (OpenRouter), DeepSeek V4.1 Flash (F
 | DeepSeek | One call | 29 | 29 | 29 | 32 | 1,443 ms |
 | DeepSeek | Parallel ratings | 30 | 26 | 28 | 32 | 3,009 ms |
 | Celeris | Plain one call | 29 | 29 | 29 | 32 | 282 ms |
-| Celeris | Parallel ratings | 28 | 24 | 26 | 30 | 530 ms |
+| Celeris | Original ratings | 28 | 24 | 26 | 30 | 530 ms |
+| Celeris | Ratings + retry/tie-break, run 1 | 28 | 24 | 28 | 32 | 577 ms |
 | Celeris | JSON one call + retry, run 1 | 28 | 28 | 28 | 32 | 248 ms |
 | Celeris | JSON one call + retry, run 2 | 28 | 28 | 28 | 32 | 264 ms |
 | Jev | Luna paired run | 30 | 30 | 30 | 32 | 522 ms |
 | Jev | DeepSeek paired run | 30 | 29 | 30 | 32 | 308 ms |
 
-The parallel-rating rows are saved runs of the original implementation, before malformed-digit retries and Choice tie resolution were added. Celeris's 42 correct news decisions comprise 42 correct and 12 incorrect among 54 usable results; 10 cases returned no usable judgment. Nine of the 12 incorrect decisions had tied top ratings. The Jev rows come from earlier paired runs on the same cases; Celeris was measured later against the saved DeepSeek-run baseline. The revised ratings path needs a new benchmark before assigning it performance numbers.
+The original 42/64 Celeris ratings result was not a one-off: the same behavior scored 47/64 in a fresh control run. In the original run, 10 cases returned no usable judgment and nine of the 12 incorrect usable choices had tied top ratings. With malformed-digit retry and Choice tie resolution, two runs scored 57/64 and 56/64. Those runs resolved nine of ten and seven of seven top ties to the reference label. Their observed median and p90 latencies were higher; tie-break calls add work. The control and revised run 2 covered only the 64 news cases; revised run 1 covered all 112 requests. Jev rows are saved earlier paired runs on the same cases, while Celeris was measured later.
 
 ## Development
 
