@@ -218,4 +218,116 @@ class LLMJudgeTest < Minitest::Test
       engine_class.define_singleton_method(:new, original_new)
     end
   end
+
+  def test_single_request_answers_all_judge_types_in_one_call
+    prompts = []
+    responder = lambda do |prompt|
+      prompts << prompt
+      { content: JSON.generate(answers: {
+          'urgent' => { 'true' => 0.9, 'false' => 0.1 },
+          'department' => { 'billing' => 0.8, 'technical' => 0.2 },
+          'frustration' => { '0' => 0.1, '1' => 0.2, '2' => 0.7 }
+        }), tokens: RubyLLM::Tokens.new(input: 50, output: 42) }
+    end
+    engine = RubyLLM::LLMJudge::Engine.new(
+      config: RubyLLM.config, provider_options: { strategy: :single_request }, responder:
+    )
+    definitions = {
+      urgent: { type: :probability, instructions: 'Urgent?' },
+      department: { type: :choice, instructions: 'Team?', options: { billing: 'Payments', technical: 'Bugs' } },
+      frustration: { type: :score, instructions: 'Mood?', levels: %w[Calm Frustrated Angry] }
+    }
+    questions = definitions.to_h do |name, definition|
+      [name.to_s, RubyLLM::Judge::Question.from_h(name, definition).resolve(nil)]
+    end
+    result = engine.judge('Duplicate charge today', questions:,
+                         model: RubyLLM::Model.default('gpt-6-luna', 'llm_judge'))
+
+    assert_equal 1, prompts.size
+    request = JSON.parse(prompts.first.split("\n", 2).last)
+    assert_equal 'Duplicate charge today', request['state']
+    assert_equal %w[urgent department frustration], request['questions'].map { |question| question['id'] }
+    assert_in_delta 0.9, result.urgent.probability
+    assert_equal :billing, result.department.choice
+    assert_in_delta 1.6, result.frustration.score
+    assert_equal 42, result.tokens.output
+    assert_equal 'single_request_probabilities', result.raw[:method]
+  end
+
+  def test_single_request_normalizes_reported_probabilities_and_rejects_missing_options
+    question = RubyLLM::Judge::Question.from_h(:team, type: :choice,
+                                                      options: { billing: nil, technical: nil }).resolve(nil)
+    options = { strategy: :single_request }
+    model = RubyLLM::Model.default('gpt-6-luna', 'llm_judge')
+    tokens = RubyLLM::Tokens.new(input: 10, output: 5)
+    responder = ->(_prompt) { { content: '{"answers":{"team":{"billing":0.4,"technical":0.4}}}', tokens: } }
+    engine = RubyLLM::LLMJudge::Engine.new(config: RubyLLM.config, provider_options: options, responder:)
+    result = engine.judge('Refund', questions: { 'team' => question }, model:)
+
+    assert_in_delta 0.5, result.team.probabilities[:billing]
+    assert_in_delta 0.8, result.raw[:reported_totals]['team']
+
+    responder = ->(_prompt) { { content: '{"answers":{"team":{"billing":1.0}}}', tokens: } }
+    engine = RubyLLM::LLMJudge::Engine.new(config: RubyLLM.config, provider_options: options, responder:)
+    assert_raises(RubyLLM::Error) { engine.judge('Refund', questions: { 'team' => question }, model:) }
+  end
+
+  def test_single_request_budget_is_checked_before_model_call
+    responder = ->(_prompt) { flunk 'model should not be called' }
+    engine = RubyLLM::LLMJudge::Engine.new(
+      config: RubyLLM.config, provider_options: { strategy: :single_request, max_arms: 2 }, responder:
+    )
+    question = RubyLLM::Judge::Question.from_h(:team, type: :choice,
+                                                      options: { a: nil, b: nil, c: nil }).resolve(nil)
+    assert_raises(ArgumentError) do
+      engine.judge('state', questions: { 'team' => question },
+                   model: RubyLLM::Model.default('gpt-6-luna', 'llm_judge'))
+    end
+  end
+
+  def test_single_request_repairs_a_missing_question_and_counts_both_calls
+    responses = [
+      '{"answers":{"wrong":{"true":1}}}',
+      '{"answers":{"urgent":{"true":0.8,"false":0.2}}}'
+    ]
+    prompts = []
+    responder = lambda do |prompt|
+      prompts << prompt
+      { content: responses.shift, tokens: RubyLLM::Tokens.new(input: 10, output: 5) }
+    end
+    engine = RubyLLM::LLMJudge::Engine.new(
+      config: RubyLLM.config, provider_options: { strategy: :single_request }, responder:
+    )
+    question = RubyLLM::Judge::Question.from_h(:urgent, type: :probability).resolve(nil)
+    result = engine.judge('state', questions: { 'urgent' => question },
+                          model: RubyLLM::Model.default('gpt-6-luna', 'llm_judge'))
+
+    assert_equal 2, prompts.size
+    assert_match(/previous answer was invalid/i, prompts.last)
+    assert_in_delta 0.8, result.urgent.probability
+    assert_equal 20, result.tokens.input
+    assert_equal 10, result.tokens.output
+    assert_equal 2, result.raw[:attempts]
+  end
+
+  def test_single_request_preserves_all_255_choice_options
+    options = 255.times.to_h { |index| ["option#{index}", "Description #{index}"] }
+    responder = lambda do |prompt|
+      request = JSON.parse(prompt.split("\n", 2).last)
+      ids = request.fetch('questions').first.fetch('options').map { |option| option.fetch('id') }
+      assert_equal 255, ids.size
+      distribution = ids.to_h { |id| [id, id == 'option254' ? 1 : 0] }
+      { content: JSON.generate(answers: { 'route' => distribution }),
+        tokens: RubyLLM::Tokens.new(input: 100, output: 100) }
+    end
+    engine = RubyLLM::LLMJudge::Engine.new(
+      config: RubyLLM.config, provider_options: { strategy: :single_request }, responder:
+    )
+    question = RubyLLM::Judge::Question.from_h(:route, type: :choice, options:).resolve(nil)
+    result = engine.judge('state', questions: { 'route' => question },
+                          model: RubyLLM::Model.default('gpt-6-luna', 'llm_judge'))
+
+    assert_equal 'option254', result.route.choice
+    assert_equal 255, result.route.probabilities.size
+  end
 end
