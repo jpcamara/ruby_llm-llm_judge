@@ -88,16 +88,16 @@ result = RubyLLM::LLMJudge.judge(
       options: { billing: 'Payments and refunds', technical: 'Bugs and integrations' }
     }
   },
-  provider_options: { strategy: :single_request }
+  provider_options: { strategy: :single_request, max_output_tokens: 1024 }
 )
 
 result.urgent.probability
 result.department.probabilities
 ```
 
-The model returns one JSON object containing a distribution for each question. The gem checks that every question and option is present, validates each probability, normalizes each distribution, and builds RubyLLM's typed answers. `result.raw[:reported_probabilities]` and `result.raw[:reported_totals]` preserve the model's original numbers for inspection. This strategy defaults to an 8192-token output limit to accommodate large Judge requests; set `max_output_tokens` for a smaller known workload. It makes one corrective retry for malformed JSON or missing fields, counting both calls in `result.tokens` and `result.raw[:attempts]`. Set `malformed_retries: 0` to disable that retry. An invalid response after retries raises an error.
+The model returns one JSON object containing a distribution for each question. The gem checks that every question and option is present, validates each probability, normalizes each distribution, and builds RubyLLM's typed answers. `result.raw[:reported_probabilities]` and `result.raw[:reported_totals]` preserve the model's original numbers for inspection. With an OpenAI key configured, this example calls Luna directly through Chat Completions with reasoning disabled, temperature zero, and `store: false`. The 1024-token limit suits small judgments; omit it for large question sets to use the 8192-token default. It makes one corrective retry for malformed JSON or missing fields, counting both calls in `result.tokens` and `result.raw[:attempts]`. Set `malformed_retries: 0` to disable that retry. An invalid response after retries raises an error.
 
-For faster Luna judgments through OpenRouter, prioritize the provider with the lowest observed latency:
+If you use OpenRouter for Luna, prioritize the provider with the lowest observed latency:
 
 ```ruby
 result = RubyLLM::LLMJudge.judge(
@@ -123,7 +123,7 @@ result = RubyLLM::LLMJudge.judge(
 )
 ```
 
-This example uses a 1024-token output limit for a small judgment. Omit that option for large question sets. OpenRouter's [latency sorting](https://openrouter.ai/docs/guides/routing/provider-selection) chooses among its available providers using their observed response times. The measured speed and answer-quality tradeoff is below.
+OpenRouter's [latency sorting](https://openrouter.ai/docs/guides/routing/provider-selection) chooses among its available providers using their observed response times. It sped up OpenRouter in our test, while direct OpenAI was faster still. The measured speed and answer-quality tradeoffs are below.
 
 ## How scoring works
 
@@ -173,9 +173,20 @@ On September 23, 2026, we tested GPT-6 Luna (OpenRouter), DeepSeek V4.1 Flash (F
 
 The original 42/64 Celeris ratings result was not a one-off: the same behavior scored 47/64 in a fresh control run. In the original run, 10 cases returned no usable judgment and nine of the 12 incorrect usable choices had tied top ratings. With malformed-digit retry and Choice tie resolution, two runs scored 57/64 and 56/64. Those runs resolved nine of ten and seven of seven top ties to the reference label. Their observed median and p90 latencies were higher; tie-break calls add work. The control and revised run 2 covered only the 64 news cases; revised run 1 covered all 112 requests. Jev rows are saved earlier paired runs on the same cases, while Celeris was measured later.
 
-### Faster Luna routing
+### Luna latency paths
 
-A fresh paired run sent the same one-call Luna judgments through OpenRouter's default route and `provider: { sort: 'latency' }`, rotating request order across cases. All responses were usable. Each AG News request asked one four-choice question; each SST-2 request asked Choice, Probability, and Score together. Both routes used temperature zero, reasoning disabled, and a 1024-token output limit. These results are separate from the runs above.
+In a paired API-level run using the gem's one-call prompt, direct OpenAI was faster than latency-sorted OpenRouter. Both used temperature zero, reasoning disabled, a 1024-token output limit, and one corrective retry for malformed JSON. Four direct cases were also verified through the gem. All final judgments were usable.
+
+| Dataset | Luna path | Correct | Median | p90 | Brier ↓ |
+| --- | --- | ---: | ---: | ---: | ---: |
+| AG News (64) | Direct OpenAI | 58/64 | 823 ms | 1,241 ms | 0.1405 |
+| AG News (64) | OpenRouter latency sort | 59/64 | 1,379 ms | 1,938 ms | 0.1265 |
+| SST-2 (32) | Direct OpenAI | 28/32 | 843 ms | 1,745 ms | 0.1042 |
+| SST-2 (32) | OpenRouter latency sort | 29/32 | 1,423 ms | 3,829 ms | 0.0762 |
+
+Direct OpenAI cut median latency by about 40% on both datasets, but lost one correct label on each and had worse Brier scores. Its SST-2 calls needed five corrective retries versus one through OpenRouter. [Direct comparison methods and results](benchmarks/luna-direct.md).
+
+A separate paired gem run sent the same one-call Luna judgments through OpenRouter's default route and `provider: { sort: 'latency' }`, rotating request order across cases. All responses were usable. Each AG News request asked one four-choice question; each SST-2 request asked Choice, Probability, and Score together. Both routes used temperature zero, reasoning disabled, and a 1024-token output limit. These results are separate from the runs above.
 
 | Dataset | OpenRouter route | Correct | Median | p90 | Brier ↓ |
 | --- | --- | ---: | ---: | ---: | ---: |

@@ -1,0 +1,5253 @@
+{
+  "model": "gpt-6-luna",
+  "records": [
+    {
+      "id": "agnews:3460",
+      "expected": "sci_tech",
+      "routes": {
+        "openai_direct": {
+          "ms": 2220.2,
+          "choice": "sci_tech",
+          "probabilities": {
+            "world": 0,
+            "sports": 0,
+            "business": 0.35,
+            "sci_tech": 0.65
+          },
+          "usage": {
+            "prompt_tokens": 235,
+            "completion_tokens": 32,
+            "total_tokens": 267,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "cache_write_tokens": 0,
+              "audio_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "audio_tokens": 0,
+              "accepted_prediction_tokens": 0,
+              "rejected_prediction_tokens": 0
+            }
+          }
+        },
+        "openrouter_latency": {
+          "ms": 5076.4,
+          "choice": "sci_tech",
+          "probabilities": {
+            "world": 0,
+            "sports": 0,
+            "business": 0.35,
+            "sci_tech": 0.65
+          },
+          "usage": {
+            "prompt_tokens": 235,
+            "completion_tokens": 33,
+            "total_tokens": 268,
+            "cost": 4e-05,
+            "is_byok": false,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "cache_write_tokens": 0,
+              "audio_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost_details": {
+              "upstream_inference_cost": 4e-05,
+              "upstream_inference_prompt_cost": 2.35e-05,
+              "upstream_inference_completions_cost": 1.65e-05
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "image_tokens": 0,
+              "audio_tokens": 0
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "agnews:3406",
+      "expected": "business",
+      "routes": {
+        "openrouter_latency": {
+          "ms": 1460.9,
+          "choice": "business",
+          "probabilities": {
+            "world": 0,
+            "sports": 0,
+            "business": 1,
+            "sci_tech": 0
+          },
+          "usage": {
+            "prompt_tokens": 252,
+            "completion_tokens": 29,
+            "total_tokens": 281,
+            "cost": 3.97e-05,
+            "is_byok": false,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "cache_write_tokens": 0,
+              "audio_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost_details": {
+              "upstream_inference_cost": 3.97e-05,
+              "upstream_inference_prompt_cost": 2.52e-05,
+              "upstream_inference_completions_cost": 1.45e-05
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "image_tokens": 0,
+              "audio_tokens": 0
+            }
+          }
+        },
+        "openai_direct": {
+          "ms": 800.2,
+          "choice": "business",
+          "probabilities": {
+            "world": 0,
+            "sports": 0,
+            "business": 1,
+            "sci_tech": 0
+          },
+          "usage": {
+            "prompt_tokens": 252,
+            "completion_tokens": 28,
+            "total_tokens": 280,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "cache_write_tokens": 0,
+              "audio_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "audio_tokens": 0,
+              "accepted_prediction_tokens": 0,
+              "rejected_prediction_tokens": 0
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "agnews:3457",
+      "expected": "sports",
+      "routes": {
+        "openai_direct": {
+          "ms": 1147.8,
+          "choice": "sports",
+          "probabilities": {
+            "world": 0,
+            "sports": 1,
+            "business": 0,
+            "sci_tech": 0
+          },
+          "usage": {
+            "prompt_tokens": 260,
+            "completion_tokens": 28,
+            "total_tokens": 288,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "cache_write_tokens": 0,
+              "audio_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "audio_tokens": 0,
+              "accepted_prediction_tokens": 0,
+              "rejected_prediction_tokens": 0
+            }
+          }
+        },
+        "openrouter_latency": {
+          "ms": 1217.3,
+          "choice": "sports",
+          "probabilities": {
+            "world": 0,
+            "sports": 1,
+            "business": 0,
+            "sci_tech": 0
+          },
+          "usage": {
+            "prompt_tokens": 260,
+            "completion_tokens": 29,
+            "total_tokens": 289,
+            "cost": 4.05e-05,
+            "is_byok": false,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "cache_write_tokens": 0,
+              "audio_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost_details": {
+              "upstream_inference_cost": 4.05e-05,
+              "upstream_inference_prompt_cost": 2.6e-05,
+              "upstream_inference_completions_cost": 1.45e-05
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "image_tokens": 0,
+              "audio_tokens": 0
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "agnews:3464",
+      "expected": "sports",
+      "routes": {
+        "openrouter_latency": {
+          "ms": 1157.8,
+          "choice": "sports",
+          "probabilities": {
+            "world": 0,
+            "sports": 1,
+            "business": 0,
+            "sci_tech": 0
+          },
+          "usage": {
+            "prompt_tokens": 244,
+            "completion_tokens": 29,
+            "total_tokens": 273,
+            "cost": 3.89e-05,
+            "is_byok": false,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "cache_write_tokens": 0,
+              "audio_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost_details": {
+              "upstream_inference_cost": 3.89e-05,
+              "upstream_inference_prompt_cost": 2.44e-05,
+              "upstream_inference_completions_cost": 1.45e-05
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "image_tokens": 0,
+              "audio_tokens": 0
+            }
+          }
+        },
+        "openai_direct": {
+          "ms": 789.6,
+          "choice": "sports",
+          "probabilities": {
+            "world": 0,
+            "sports": 1,
+            "business": 0,
+            "sci_tech": 0
+          },
+          "usage": {
+            "prompt_tokens": 244,
+            "completion_tokens": 28,
+            "total_tokens": 272,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "cache_write_tokens": 0,
+              "audio_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "audio_tokens": 0,
+              "accepted_prediction_tokens": 0,
+              "rejected_prediction_tokens": 0
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "agnews:3491",
+      "expected": "world",
+      "routes": {
+        "openai_direct": {
+          "ms": 1187.3,
+          "choice": "world",
+          "probabilities": {
+            "world": 1,
+            "sports": 0,
+            "business": 0,
+            "sci_tech": 0
+          },
+          "usage": {
+            "prompt_tokens": 265,
+            "completion_tokens": 28,
+            "total_tokens": 293,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "cache_write_tokens": 0,
+              "audio_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "audio_tokens": 0,
+              "accepted_prediction_tokens": 0,
+              "rejected_prediction_tokens": 0
+            }
+          }
+        },
+        "openrouter_latency": {
+          "ms": 1262.3,
+          "choice": "world",
+          "probabilities": {
+            "world": 1,
+            "sports": 0,
+            "business": 0,
+            "sci_tech": 0
+          },
+          "usage": {
+            "prompt_tokens": 265,
+            "completion_tokens": 29,
+            "total_tokens": 294,
+            "cost": 4.1e-05,
+            "is_byok": false,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "cache_write_tokens": 0,
+              "audio_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost_details": {
+              "upstream_inference_cost": 4.1e-05,
+              "upstream_inference_prompt_cost": 2.65e-05,
+              "upstream_inference_completions_cost": 1.45e-05
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "image_tokens": 0,
+              "audio_tokens": 0
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "agnews:3420",
+      "expected": "sci_tech",
+      "routes": {
+        "openrouter_latency": {
+          "ms": 1309.6,
+          "choice": "sci_tech",
+          "probabilities": {
+            "world": 0,
+            "sports": 0,
+            "business": 0.35,
+            "sci_tech": 0.65
+          },
+          "usage": {
+            "prompt_tokens": 240,
+            "completion_tokens": 33,
+            "total_tokens": 273,
+            "cost": 4.05e-05,
+            "is_byok": false,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "cache_write_tokens": 0,
+              "audio_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost_details": {
+              "upstream_inference_cost": 4.05e-05,
+              "upstream_inference_prompt_cost": 2.4e-05,
+              "upstream_inference_completions_cost": 1.65e-05
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "image_tokens": 0,
+              "audio_tokens": 0
+            }
+          }
+        },
+        "openai_direct": {
+          "ms": 1303.2,
+          "choice": "sci_tech",
+          "probabilities": {
+            "world": 0,
+            "sports": 0,
+            "business": 0.15,
+            "sci_tech": 0.85
+          },
+          "usage": {
+            "prompt_tokens": 240,
+            "completion_tokens": 32,
+            "total_tokens": 272,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "cache_write_tokens": 0,
+              "audio_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "audio_tokens": 0,
+              "accepted_prediction_tokens": 0,
+              "rejected_prediction_tokens": 0
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "agnews:3425",
+      "expected": "sports",
+      "routes": {
+        "openai_direct": {
+          "ms": 1237.1,
+          "choice": "sports",
+          "probabilities": {
+            "world": 0,
+            "sports": 1,
+            "business": 0,
+            "sci_tech": 0
+          },
+          "usage": {
+            "prompt_tokens": 227,
+            "completion_tokens": 28,
+            "total_tokens": 255,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "cache_write_tokens": 0,
+              "audio_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "audio_tokens": 0,
+              "accepted_prediction_tokens": 0,
+              "rejected_prediction_tokens": 0
+            }
+          }
+        },
+        "openrouter_latency": {
+          "ms": 1912.5,
+          "choice": "sports",
+          "probabilities": {
+            "world": 0,
+            "sports": 1,
+            "business": 0,
+            "sci_tech": 0
+          },
+          "usage": {
+            "prompt_tokens": 227,
+            "completion_tokens": 29,
+            "total_tokens": 256,
+            "cost": 3.72e-05,
+            "is_byok": false,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "cache_write_tokens": 0,
+              "audio_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost_details": {
+              "upstream_inference_cost": 3.72e-05,
+              "upstream_inference_prompt_cost": 2.27e-05,
+              "upstream_inference_completions_cost": 1.45e-05
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "image_tokens": 0,
+              "audio_tokens": 0
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "agnews:3410",
+      "expected": "business",
+      "routes": {
+        "openrouter_latency": {
+          "ms": 1604.5,
+          "choice": "business",
+          "probabilities": {
+            "world": 0,
+            "sports": 0,
+            "business": 1,
+            "sci_tech": 0
+          },
+          "usage": {
+            "prompt_tokens": 262,
+            "completion_tokens": 29,
+            "total_tokens": 291,
+            "cost": 4.07e-05,
+            "is_byok": false,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "cache_write_tokens": 0,
+              "audio_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost_details": {
+              "upstream_inference_cost": 4.07e-05,
+              "upstream_inference_prompt_cost": 2.62e-05,
+              "upstream_inference_completions_cost": 1.45e-05
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "image_tokens": 0,
+              "audio_tokens": 0
+            }
+          }
+        },
+        "openai_direct": {
+          "ms": 632.7,
+          "choice": "business",
+          "probabilities": {
+            "world": 0,
+            "sports": 0,
+            "business": 1,
+            "sci_tech": 0
+          },
+          "usage": {
+            "prompt_tokens": 262,
+            "completion_tokens": 28,
+            "total_tokens": 290,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "cache_write_tokens": 0,
+              "audio_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "audio_tokens": 0,
+              "accepted_prediction_tokens": 0,
+              "rejected_prediction_tokens": 0
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "agnews:3486",
+      "expected": "sci_tech",
+      "routes": {
+        "openai_direct": {
+          "ms": 780.9,
+          "choice": "sci_tech",
+          "probabilities": {
+            "world": 0,
+            "sports": 0,
+            "business": 0,
+            "sci_tech": 1
+          },
+          "usage": {
+            "prompt_tokens": 250,
+            "completion_tokens": 28,
+            "total_tokens": 278,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "cache_write_tokens": 0,
+              "audio_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "audio_tokens": 0,
+              "accepted_prediction_tokens": 0,
+              "rejected_prediction_tokens": 0
+            }
+          }
+        },
+        "openrouter_latency": {
+          "ms": 1181.1,
+          "choice": "sci_tech",
+          "probabilities": {
+            "world": 0,
+            "sports": 0,
+            "business": 0,
+            "sci_tech": 1
+          },
+          "usage": {
+            "prompt_tokens": 250,
+            "completion_tokens": 29,
+            "total_tokens": 279,
+            "cost": 3.95e-05,
+            "is_byok": false,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "cache_write_tokens": 0,
+              "audio_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost_details": {
+              "upstream_inference_cost": 3.95e-05,
+              "upstream_inference_prompt_cost": 2.5e-05,
+              "upstream_inference_completions_cost": 1.45e-05
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "image_tokens": 0,
+              "audio_tokens": 0
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "agnews:3477",
+      "expected": "world",
+      "routes": {
+        "openrouter_latency": {
+          "ms": 1217.4,
+          "choice": "world",
+          "probabilities": {
+            "world": 1,
+            "sports": 0,
+            "business": 0,
+            "sci_tech": 0
+          },
+          "usage": {
+            "prompt_tokens": 240,
+            "completion_tokens": 29,
+            "total_tokens": 269,
+            "cost": 3.85e-05,
+            "is_byok": false,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "cache_write_tokens": 0,
+              "audio_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost_details": {
+              "upstream_inference_cost": 3.85e-05,
+              "upstream_inference_prompt_cost": 2.4e-05,
+              "upstream_inference_completions_cost": 1.45e-05
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "image_tokens": 0,
+              "audio_tokens": 0
+            }
+          }
+        },
+        "openai_direct": {
+          "ms": 1298.5,
+          "choice": "world",
+          "probabilities": {
+            "world": 1,
+            "sports": 0,
+            "business": 0,
+            "sci_tech": 0
+          },
+          "usage": {
+            "prompt_tokens": 240,
+            "completion_tokens": 28,
+            "total_tokens": 268,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "cache_write_tokens": 0,
+              "audio_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "audio_tokens": 0,
+              "accepted_prediction_tokens": 0,
+              "rejected_prediction_tokens": 0
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "agnews:3452",
+      "expected": "world",
+      "routes": {
+        "openai_direct": {
+          "ms": 691.9,
+          "choice": "world",
+          "probabilities": {
+            "world": 1,
+            "sports": 0,
+            "business": 0,
+            "sci_tech": 0
+          },
+          "usage": {
+            "prompt_tokens": 224,
+            "completion_tokens": 28,
+            "total_tokens": 252,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "cache_write_tokens": 0,
+              "audio_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "audio_tokens": 0,
+              "accepted_prediction_tokens": 0,
+              "rejected_prediction_tokens": 0
+            }
+          }
+        },
+        "openrouter_latency": {
+          "ms": 5141.6,
+          "choice": "world",
+          "probabilities": {
+            "world": 1,
+            "sports": 0,
+            "business": 0,
+            "sci_tech": 0
+          },
+          "usage": {
+            "prompt_tokens": 224,
+            "completion_tokens": 29,
+            "total_tokens": 253,
+            "cost": 3.69e-05,
+            "is_byok": false,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "cache_write_tokens": 0,
+              "audio_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost_details": {
+              "upstream_inference_cost": 3.69e-05,
+              "upstream_inference_prompt_cost": 2.24e-05,
+              "upstream_inference_completions_cost": 1.45e-05
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "image_tokens": 0,
+              "audio_tokens": 0
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "agnews:3413",
+      "expected": "sports",
+      "routes": {
+        "openrouter_latency": {
+          "ms": 1327.7,
+          "choice": "sports",
+          "probabilities": {
+            "world": 0.02,
+            "sports": 0.96,
+            "business": 0.01,
+            "sci_tech": 0.01
+          },
+          "usage": {
+            "prompt_tokens": 260,
+            "completion_tokens": 37,
+            "total_tokens": 297,
+            "cost": 4.45e-05,
+            "is_byok": false,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "cache_write_tokens": 0,
+              "audio_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost_details": {
+              "upstream_inference_cost": 4.45e-05,
+              "upstream_inference_prompt_cost": 2.6e-05,
+              "upstream_inference_completions_cost": 1.85e-05
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "image_tokens": 0,
+              "audio_tokens": 0
+            }
+          }
+        },
+        "openai_direct": {
+          "ms": 1256.7,
+          "choice": "sports",
+          "probabilities": {
+            "world": 0.02,
+            "sports": 0.96,
+            "business": 0.01,
+            "sci_tech": 0.01
+          },
+          "usage": {
+            "prompt_tokens": 260,
+            "completion_tokens": 36,
+            "total_tokens": 296,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "cache_write_tokens": 0,
+              "audio_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "audio_tokens": 0,
+              "accepted_prediction_tokens": 0,
+              "rejected_prediction_tokens": 0
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "agnews:3498",
+      "expected": "sports",
+      "routes": {
+        "openai_direct": {
+          "ms": 521.2,
+          "choice": "sports",
+          "probabilities": {
+            "world": 0,
+            "sports": 1,
+            "business": 0,
+            "sci_tech": 0
+          },
+          "usage": {
+            "prompt_tokens": 250,
+            "completion_tokens": 28,
+            "total_tokens": 278,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "cache_write_tokens": 0,
+              "audio_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "audio_tokens": 0,
+              "accepted_prediction_tokens": 0,
+              "rejected_prediction_tokens": 0
+            }
+          }
+        },
+        "openrouter_latency": {
+          "ms": 1072.4,
+          "choice": "sports",
+          "probabilities": {
+            "world": 0,
+            "sports": 1,
+            "business": 0,
+            "sci_tech": 0
+          },
+          "usage": {
+            "prompt_tokens": 250,
+            "completion_tokens": 29,
+            "total_tokens": 279,
+            "cost": 3.95e-05,
+            "is_byok": false,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "cache_write_tokens": 0,
+              "audio_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost_details": {
+              "upstream_inference_cost": 3.95e-05,
+              "upstream_inference_prompt_cost": 2.5e-05,
+              "upstream_inference_completions_cost": 1.45e-05
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "image_tokens": 0,
+              "audio_tokens": 0
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "agnews:3431",
+      "expected": "world",
+      "routes": {
+        "openrouter_latency": {
+          "ms": 1121.4,
+          "choice": "world",
+          "probabilities": {
+            "world": 1,
+            "sports": 0,
+            "business": 0,
+            "sci_tech": 0
+          },
+          "usage": {
+            "prompt_tokens": 256,
+            "completion_tokens": 29,
+            "total_tokens": 285,
+            "cost": 4.01e-05,
+            "is_byok": false,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "cache_write_tokens": 0,
+              "audio_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost_details": {
+              "upstream_inference_cost": 4.01e-05,
+              "upstream_inference_prompt_cost": 2.56e-05,
+              "upstream_inference_completions_cost": 1.45e-05
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "image_tokens": 0,
+              "audio_tokens": 0
+            }
+          }
+        },
+        "openai_direct": {
+          "ms": 1124.9,
+          "choice": "world",
+          "probabilities": {
+            "world": 1,
+            "sports": 0,
+            "business": 0,
+            "sci_tech": 0
+          },
+          "usage": {
+            "prompt_tokens": 256,
+            "completion_tokens": 28,
+            "total_tokens": 284,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "cache_write_tokens": 0,
+              "audio_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "audio_tokens": 0,
+              "accepted_prediction_tokens": 0,
+              "rejected_prediction_tokens": 0
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "agnews:3492",
+      "expected": "business",
+      "routes": {
+        "openai_direct": {
+          "ms": 923.9,
+          "choice": "business",
+          "probabilities": {
+            "world": 0.05,
+            "sports": 0.01,
+            "business": 0.93,
+            "sci_tech": 0.01
+          },
+          "usage": {
+            "prompt_tokens": 242,
+            "completion_tokens": 36,
+            "total_tokens": 278,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "cache_write_tokens": 0,
+              "audio_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "audio_tokens": 0,
+              "accepted_prediction_tokens": 0,
+              "rejected_prediction_tokens": 0
+            }
+          }
+        },
+        "openrouter_latency": {
+          "ms": 1855.6,
+          "choice": "business",
+          "probabilities": {
+            "world": 0,
+            "sports": 0,
+            "business": 1,
+            "sci_tech": 0
+          },
+          "usage": {
+            "prompt_tokens": 242,
+            "completion_tokens": 29,
+            "total_tokens": 271,
+            "cost": 3.87e-05,
+            "is_byok": false,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "cache_write_tokens": 0,
+              "audio_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost_details": {
+              "upstream_inference_cost": 3.87e-05,
+              "upstream_inference_prompt_cost": 2.42e-05,
+              "upstream_inference_completions_cost": 1.45e-05
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "image_tokens": 0,
+              "audio_tokens": 0
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "agnews:3463",
+      "expected": "sports",
+      "routes": {
+        "openrouter_latency": {
+          "ms": 1327.8,
+          "choice": "sports",
+          "probabilities": {
+            "world": 0,
+            "sports": 1,
+            "business": 0,
+            "sci_tech": 0
+          },
+          "usage": {
+            "prompt_tokens": 256,
+            "completion_tokens": 29,
+            "total_tokens": 285,
+            "cost": 4.01e-05,
+            "is_byok": false,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "cache_write_tokens": 0,
+              "audio_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost_details": {
+              "upstream_inference_cost": 4.01e-05,
+              "upstream_inference_prompt_cost": 2.56e-05,
+              "upstream_inference_completions_cost": 1.45e-05
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "image_tokens": 0,
+              "audio_tokens": 0
+            }
+          }
+        },
+        "openai_direct": {
+          "ms": 811.3,
+          "choice": "sports",
+          "probabilities": {
+            "world": 0,
+            "sports": 1,
+            "business": 0,
+            "sci_tech": 0
+          },
+          "usage": {
+            "prompt_tokens": 256,
+            "completion_tokens": 28,
+            "total_tokens": 284,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "cache_write_tokens": 0,
+              "audio_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "audio_tokens": 0,
+              "accepted_prediction_tokens": 0,
+              "rejected_prediction_tokens": 0
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "agnews:3434",
+      "expected": "world",
+      "routes": {
+        "openai_direct": {
+          "ms": 732.9,
+          "choice": "world",
+          "probabilities": {
+            "world": 1,
+            "sports": 0,
+            "business": 0,
+            "sci_tech": 0
+          },
+          "usage": {
+            "prompt_tokens": 240,
+            "completion_tokens": 28,
+            "total_tokens": 268,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "cache_write_tokens": 0,
+              "audio_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "audio_tokens": 0,
+              "accepted_prediction_tokens": 0,
+              "rejected_prediction_tokens": 0
+            }
+          }
+        },
+        "openrouter_latency": {
+          "ms": 1420.2,
+          "choice": "world",
+          "probabilities": {
+            "world": 1,
+            "sports": 0,
+            "business": 0,
+            "sci_tech": 0
+          },
+          "usage": {
+            "prompt_tokens": 240,
+            "completion_tokens": 29,
+            "total_tokens": 269,
+            "cost": 3.85e-05,
+            "is_byok": false,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "cache_write_tokens": 0,
+              "audio_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost_details": {
+              "upstream_inference_cost": 3.85e-05,
+              "upstream_inference_prompt_cost": 2.4e-05,
+              "upstream_inference_completions_cost": 1.45e-05
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "image_tokens": 0,
+              "audio_tokens": 0
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "agnews:3488",
+      "expected": "business",
+      "routes": {
+        "openrouter_latency": {
+          "ms": 1346.3,
+          "choice": "business",
+          "probabilities": {
+            "world": 0.25,
+            "sports": 0.05,
+            "business": 0.65,
+            "sci_tech": 0.05
+          },
+          "usage": {
+            "prompt_tokens": 227,
+            "completion_tokens": 37,
+            "total_tokens": 264,
+            "cost": 4.12e-05,
+            "is_byok": false,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "cache_write_tokens": 0,
+              "audio_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost_details": {
+              "upstream_inference_cost": 4.12e-05,
+              "upstream_inference_prompt_cost": 2.27e-05,
+              "upstream_inference_completions_cost": 1.85e-05
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "image_tokens": 0,
+              "audio_tokens": 0
+            }
+          }
+        },
+        "openai_direct": {
+          "ms": 957.7,
+          "choice": "business",
+          "probabilities": {
+            "world": 0.05,
+            "sports": 0.01,
+            "business": 0.93,
+            "sci_tech": 0.01
+          },
+          "usage": {
+            "prompt_tokens": 227,
+            "completion_tokens": 36,
+            "total_tokens": 263,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "cache_write_tokens": 0,
+              "audio_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "audio_tokens": 0,
+              "accepted_prediction_tokens": 0,
+              "rejected_prediction_tokens": 0
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "agnews:3476",
+      "expected": "sci_tech",
+      "routes": {
+        "openai_direct": {
+          "ms": 658.8,
+          "choice": "sci_tech",
+          "probabilities": {
+            "world": 0,
+            "sports": 0,
+            "business": 0.15,
+            "sci_tech": 0.85
+          },
+          "usage": {
+            "prompt_tokens": 229,
+            "completion_tokens": 32,
+            "total_tokens": 261,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "cache_write_tokens": 0,
+              "audio_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "audio_tokens": 0,
+              "accepted_prediction_tokens": 0,
+              "rejected_prediction_tokens": 0
+            }
+          }
+        },
+        "openrouter_latency": {
+          "ms": 1282.8,
+          "choice": "sci_tech",
+          "probabilities": {
+            "world": 0,
+            "sports": 0,
+            "business": 0.15,
+            "sci_tech": 0.85
+          },
+          "usage": {
+            "prompt_tokens": 229,
+            "completion_tokens": 33,
+            "total_tokens": 262,
+            "cost": 3.94e-05,
+            "is_byok": false,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "cache_write_tokens": 0,
+              "audio_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost_details": {
+              "upstream_inference_cost": 3.94e-05,
+              "upstream_inference_prompt_cost": 2.29e-05,
+              "upstream_inference_completions_cost": 1.65e-05
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "image_tokens": 0,
+              "audio_tokens": 0
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "agnews:3496",
+      "expected": "sci_tech",
+      "routes": {
+        "openrouter_latency": {
+          "ms": 1323.3,
+          "choice": "sci_tech",
+          "probabilities": {
+            "world": 0,
+            "sports": 0,
+            "business": 0.15,
+            "sci_tech": 0.85
+          },
+          "usage": {
+            "prompt_tokens": 247,
+            "completion_tokens": 33,
+            "total_tokens": 280,
+            "cost": 4.12e-05,
+            "is_byok": false,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "cache_write_tokens": 0,
+              "audio_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost_details": {
+              "upstream_inference_cost": 4.12e-05,
+              "upstream_inference_prompt_cost": 2.47e-05,
+              "upstream_inference_completions_cost": 1.65e-05
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "image_tokens": 0,
+              "audio_tokens": 0
+            }
+          }
+        },
+        "openai_direct": {
+          "ms": 876.9,
+          "choice": "sci_tech",
+          "probabilities": {
+            "world": 0,
+            "sports": 0,
+            "business": 0.2,
+            "sci_tech": 0.8
+          },
+          "usage": {
+            "prompt_tokens": 247,
+            "completion_tokens": 32,
+            "total_tokens": 279,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "cache_write_tokens": 0,
+              "audio_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "audio_tokens": 0,
+              "accepted_prediction_tokens": 0,
+              "rejected_prediction_tokens": 0
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "agnews:3412",
+      "expected": "sci_tech",
+      "routes": {
+        "openai_direct": {
+          "ms": 947.4,
+          "choice": "business",
+          "probabilities": {
+            "world": 0,
+            "sports": 0,
+            "business": 0.85,
+            "sci_tech": 0.15
+          },
+          "usage": {
+            "prompt_tokens": 258,
+            "completion_tokens": 32,
+            "total_tokens": 290,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "cache_write_tokens": 0,
+              "audio_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "audio_tokens": 0,
+              "accepted_prediction_tokens": 0,
+              "rejected_prediction_tokens": 0
+            }
+          }
+        },
+        "openrouter_latency": {
+          "ms": 1495.6,
+          "choice": "business",
+          "probabilities": {
+            "world": 0,
+            "sports": 0,
+            "business": 0.55,
+            "sci_tech": 0.45
+          },
+          "usage": {
+            "prompt_tokens": 258,
+            "completion_tokens": 33,
+            "total_tokens": 291,
+            "cost": 4.23e-05,
+            "is_byok": false,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "cache_write_tokens": 0,
+              "audio_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost_details": {
+              "upstream_inference_cost": 4.23e-05,
+              "upstream_inference_prompt_cost": 2.58e-05,
+              "upstream_inference_completions_cost": 1.65e-05
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "image_tokens": 0,
+              "audio_tokens": 0
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "agnews:3468",
+      "expected": "sports",
+      "routes": {
+        "openrouter_latency": {
+          "ms": 1023.6,
+          "choice": "sports",
+          "probabilities": {
+            "world": 0,
+            "sports": 1,
+            "business": 0,
+            "sci_tech": 0
+          },
+          "usage": {
+            "prompt_tokens": 249,
+            "completion_tokens": 29,
+            "total_tokens": 278,
+            "cost": 3.94e-05,
+            "is_byok": false,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "cache_write_tokens": 0,
+              "audio_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost_details": {
+              "upstream_inference_cost": 3.94e-05,
+              "upstream_inference_prompt_cost": 2.49e-05,
+              "upstream_inference_completions_cost": 1.45e-05
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "image_tokens": 0,
+              "audio_tokens": 0
+            }
+          }
+        },
+        "openai_direct": {
+          "ms": 739.5,
+          "choice": "sports",
+          "probabilities": {
+            "world": 0,
+            "sports": 1,
+            "business": 0,
+            "sci_tech": 0
+          },
+          "usage": {
+            "prompt_tokens": 249,
+            "completion_tokens": 28,
+            "total_tokens": 277,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "cache_write_tokens": 0,
+              "audio_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "audio_tokens": 0,
+              "accepted_prediction_tokens": 0,
+              "rejected_prediction_tokens": 0
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "agnews:3472",
+      "expected": "sci_tech",
+      "routes": {
+        "openai_direct": {
+          "ms": 899.4,
+          "choice": "sci_tech",
+          "probabilities": {
+            "world": 0,
+            "sports": 0,
+            "business": 0,
+            "sci_tech": 1
+          },
+          "usage": {
+            "prompt_tokens": 257,
+            "completion_tokens": 28,
+            "total_tokens": 285,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "cache_write_tokens": 0,
+              "audio_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "audio_tokens": 0,
+              "accepted_prediction_tokens": 0,
+              "rejected_prediction_tokens": 0
+            }
+          }
+        },
+        "openrouter_latency": {
+          "ms": 1161.3,
+          "choice": "sci_tech",
+          "probabilities": {
+            "world": 0.01,
+            "sports": 0.0,
+            "business": 0.0,
+            "sci_tech": 0.99
+          },
+          "usage": {
+            "prompt_tokens": 257,
+            "completion_tokens": 37,
+            "total_tokens": 294,
+            "cost": 4.42e-05,
+            "is_byok": false,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "cache_write_tokens": 0,
+              "audio_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost_details": {
+              "upstream_inference_cost": 4.42e-05,
+              "upstream_inference_prompt_cost": 2.57e-05,
+              "upstream_inference_completions_cost": 1.85e-05
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "image_tokens": 0,
+              "audio_tokens": 0
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "agnews:3448",
+      "expected": "business",
+      "routes": {
+        "openrouter_latency": {
+          "ms": 1197.6,
+          "choice": "business",
+          "probabilities": {
+            "world": 0,
+            "sports": 0,
+            "business": 1,
+            "sci_tech": 0
+          },
+          "usage": {
+            "prompt_tokens": 260,
+            "completion_tokens": 29,
+            "total_tokens": 289,
+            "cost": 4.05e-05,
+            "is_byok": false,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "cache_write_tokens": 0,
+              "audio_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost_details": {
+              "upstream_inference_cost": 4.05e-05,
+              "upstream_inference_prompt_cost": 2.6e-05,
+              "upstream_inference_completions_cost": 1.45e-05
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "image_tokens": 0,
+              "audio_tokens": 0
+            }
+          }
+        },
+        "openai_direct": {
+          "ms": 910.0,
+          "choice": "business",
+          "probabilities": {
+            "world": 0,
+            "sports": 0,
+            "business": 1,
+            "sci_tech": 0
+          },
+          "usage": {
+            "prompt_tokens": 260,
+            "completion_tokens": 28,
+            "total_tokens": 288,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "cache_write_tokens": 0,
+              "audio_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "audio_tokens": 0,
+              "accepted_prediction_tokens": 0,
+              "rejected_prediction_tokens": 0
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "agnews:3482",
+      "expected": "business",
+      "routes": {
+        "openai_direct": {
+          "ms": 1023.3,
+          "choice": "business",
+          "probabilities": {
+            "world": 0.05,
+            "sports": 0,
+            "business": 0.95,
+            "sci_tech": 0
+          },
+          "usage": {
+            "prompt_tokens": 233,
+            "completion_tokens": 32,
+            "total_tokens": 265,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "cache_write_tokens": 0,
+              "audio_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "audio_tokens": 0,
+              "accepted_prediction_tokens": 0,
+              "rejected_prediction_tokens": 0
+            }
+          }
+        },
+        "openrouter_latency": {
+          "ms": 1938.2,
+          "choice": "business",
+          "probabilities": {
+            "world": 0,
+            "sports": 0,
+            "business": 1,
+            "sci_tech": 0
+          },
+          "usage": {
+            "prompt_tokens": 233,
+            "completion_tokens": 29,
+            "total_tokens": 262,
+            "cost": 3.78e-05,
+            "is_byok": false,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "cache_write_tokens": 0,
+              "audio_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost_details": {
+              "upstream_inference_cost": 3.78e-05,
+              "upstream_inference_prompt_cost": 2.33e-05,
+              "upstream_inference_completions_cost": 1.45e-05
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "image_tokens": 0,
+              "audio_tokens": 0
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "agnews:3441",
+      "expected": "sci_tech",
+      "routes": {
+        "openrouter_latency": {
+          "ms": 1431.0,
+          "choice": "business",
+          "probabilities": {
+            "world": 0,
+            "sports": 0,
+            "business": 0.8,
+            "sci_tech": 0.2
+          },
+          "usage": {
+            "prompt_tokens": 240,
+            "completion_tokens": 33,
+            "total_tokens": 273,
+            "cost": 4.05e-05,
+            "is_byok": false,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "cache_write_tokens": 0,
+              "audio_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost_details": {
+              "upstream_inference_cost": 4.05e-05,
+              "upstream_inference_prompt_cost": 2.4e-05,
+              "upstream_inference_completions_cost": 1.65e-05
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "image_tokens": 0,
+              "audio_tokens": 0
+            }
+          }
+        },
+        "openai_direct": {
+          "ms": 718.7,
+          "choice": "business",
+          "probabilities": {
+            "world": 0,
+            "sports": 0,
+            "business": 0.85,
+            "sci_tech": 0.15
+          },
+          "usage": {
+            "prompt_tokens": 240,
+            "completion_tokens": 32,
+            "total_tokens": 272,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "cache_write_tokens": 0,
+              "audio_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "audio_tokens": 0,
+              "accepted_prediction_tokens": 0,
+              "rejected_prediction_tokens": 0
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "agnews:3499",
+      "expected": "sports",
+      "routes": {
+        "openai_direct": {
+          "ms": 792.0,
+          "choice": "sports",
+          "probabilities": {
+            "world": 0,
+            "sports": 1,
+            "business": 0,
+            "sci_tech": 0
+          },
+          "usage": {
+            "prompt_tokens": 262,
+            "completion_tokens": 28,
+            "total_tokens": 290,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "cache_write_tokens": 0,
+              "audio_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "audio_tokens": 0,
+              "accepted_prediction_tokens": 0,
+              "rejected_prediction_tokens": 0
+            }
+          }
+        },
+        "openrouter_latency": {
+          "ms": 1468.1,
+          "choice": "sports",
+          "probabilities": {
+            "world": 0,
+            "sports": 1,
+            "business": 0,
+            "sci_tech": 0
+          },
+          "usage": {
+            "prompt_tokens": 262,
+            "completion_tokens": 29,
+            "total_tokens": 291,
+            "cost": 4.07e-05,
+            "is_byok": false,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "cache_write_tokens": 0,
+              "audio_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost_details": {
+              "upstream_inference_cost": 4.07e-05,
+              "upstream_inference_prompt_cost": 2.62e-05,
+              "upstream_inference_completions_cost": 1.45e-05
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "image_tokens": 0,
+              "audio_tokens": 0
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "agnews:3430",
+      "expected": "business",
+      "routes": {
+        "openrouter_latency": {
+          "ms": 1619.3,
+          "choice": "business",
+          "probabilities": {
+            "world": 0,
+            "sports": 0,
+            "business": 1,
+            "sci_tech": 0
+          },
+          "usage": {
+            "prompt_tokens": 261,
+            "completion_tokens": 29,
+            "total_tokens": 290,
+            "cost": 4.06e-05,
+            "is_byok": false,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "cache_write_tokens": 0,
+              "audio_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost_details": {
+              "upstream_inference_cost": 4.06e-05,
+              "upstream_inference_prompt_cost": 2.61e-05,
+              "upstream_inference_completions_cost": 1.45e-05
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "image_tokens": 0,
+              "audio_tokens": 0
+            }
+          }
+        },
+        "openai_direct": {
+          "ms": 619.9,
+          "choice": "business",
+          "probabilities": {
+            "world": 0,
+            "sports": 0,
+            "business": 1,
+            "sci_tech": 0
+          },
+          "usage": {
+            "prompt_tokens": 261,
+            "completion_tokens": 28,
+            "total_tokens": 289,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "cache_write_tokens": 0,
+              "audio_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "audio_tokens": 0,
+              "accepted_prediction_tokens": 0,
+              "rejected_prediction_tokens": 0
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "agnews:3454",
+      "expected": "world",
+      "routes": {
+        "openai_direct": {
+          "ms": 685.4,
+          "choice": "world",
+          "probabilities": {
+            "world": 1,
+            "sports": 0,
+            "business": 0,
+            "sci_tech": 0
+          },
+          "usage": {
+            "prompt_tokens": 242,
+            "completion_tokens": 28,
+            "total_tokens": 270,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "cache_write_tokens": 0,
+              "audio_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "audio_tokens": 0,
+              "accepted_prediction_tokens": 0,
+              "rejected_prediction_tokens": 0
+            }
+          }
+        },
+        "openrouter_latency": {
+          "ms": 892.4,
+          "choice": "world",
+          "probabilities": {
+            "world": 1,
+            "sports": 0,
+            "business": 0,
+            "sci_tech": 0
+          },
+          "usage": {
+            "prompt_tokens": 242,
+            "completion_tokens": 29,
+            "total_tokens": 271,
+            "cost": 3.87e-05,
+            "is_byok": false,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "cache_write_tokens": 0,
+              "audio_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost_details": {
+              "upstream_inference_cost": 3.87e-05,
+              "upstream_inference_prompt_cost": 2.42e-05,
+              "upstream_inference_completions_cost": 1.45e-05
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "image_tokens": 0,
+              "audio_tokens": 0
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "agnews:3444",
+      "expected": "world",
+      "routes": {
+        "openrouter_latency": {
+          "ms": 968.8,
+          "choice": "world",
+          "probabilities": {
+            "world": 1,
+            "sports": 0,
+            "business": 0,
+            "sci_tech": 0
+          },
+          "usage": {
+            "prompt_tokens": 256,
+            "completion_tokens": 29,
+            "total_tokens": 285,
+            "cost": 4.01e-05,
+            "is_byok": false,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "cache_write_tokens": 0,
+              "audio_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost_details": {
+              "upstream_inference_cost": 4.01e-05,
+              "upstream_inference_prompt_cost": 2.56e-05,
+              "upstream_inference_completions_cost": 1.45e-05
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "image_tokens": 0,
+              "audio_tokens": 0
+            }
+          }
+        },
+        "openai_direct": {
+          "ms": 814.7,
+          "choice": "world",
+          "probabilities": {
+            "world": 1,
+            "sports": 0,
+            "business": 0,
+            "sci_tech": 0
+          },
+          "usage": {
+            "prompt_tokens": 256,
+            "completion_tokens": 28,
+            "total_tokens": 284,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "cache_write_tokens": 0,
+              "audio_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "audio_tokens": 0,
+              "accepted_prediction_tokens": 0,
+              "rejected_prediction_tokens": 0
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "agnews:3466",
+      "expected": "business",
+      "routes": {
+        "openai_direct": {
+          "ms": 887.9,
+          "choice": "sci_tech",
+          "probabilities": {
+            "world": 0.15,
+            "sports": 0,
+            "business": 0.35,
+            "sci_tech": 0.5
+          },
+          "usage": {
+            "prompt_tokens": 258,
+            "completion_tokens": 34,
+            "total_tokens": 292,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "cache_write_tokens": 0,
+              "audio_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "audio_tokens": 0,
+              "accepted_prediction_tokens": 0,
+              "rejected_prediction_tokens": 0
+            }
+          }
+        },
+        "openrouter_latency": {
+          "ms": 1152.0,
+          "choice": "business",
+          "probabilities": {
+            "world": 0.05,
+            "sports": 0,
+            "business": 0.65,
+            "sci_tech": 0.3
+          },
+          "usage": {
+            "prompt_tokens": 258,
+            "completion_tokens": 35,
+            "total_tokens": 293,
+            "cost": 4.33e-05,
+            "is_byok": false,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "cache_write_tokens": 0,
+              "audio_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost_details": {
+              "upstream_inference_cost": 4.33e-05,
+              "upstream_inference_prompt_cost": 2.58e-05,
+              "upstream_inference_completions_cost": 1.75e-05
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "image_tokens": 0,
+              "audio_tokens": 0
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "agnews:3461",
+      "expected": "world",
+      "routes": {
+        "openrouter_latency": {
+          "ms": 1107.6,
+          "choice": "world",
+          "probabilities": {
+            "world": 1,
+            "sports": 0,
+            "business": 0,
+            "sci_tech": 0
+          },
+          "usage": {
+            "prompt_tokens": 248,
+            "completion_tokens": 29,
+            "total_tokens": 277,
+            "cost": 3.93e-05,
+            "is_byok": false,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "cache_write_tokens": 0,
+              "audio_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost_details": {
+              "upstream_inference_cost": 3.93e-05,
+              "upstream_inference_prompt_cost": 2.48e-05,
+              "upstream_inference_completions_cost": 1.45e-05
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "image_tokens": 0,
+              "audio_tokens": 0
+            }
+          }
+        },
+        "openai_direct": {
+          "ms": 701.1,
+          "choice": "world",
+          "probabilities": {
+            "world": 1,
+            "sports": 0,
+            "business": 0,
+            "sci_tech": 0
+          },
+          "usage": {
+            "prompt_tokens": 248,
+            "completion_tokens": 28,
+            "total_tokens": 276,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "cache_write_tokens": 0,
+              "audio_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "audio_tokens": 0,
+              "accepted_prediction_tokens": 0,
+              "rejected_prediction_tokens": 0
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "agnews:3587",
+      "expected": "world",
+      "routes": {
+        "openai_direct": {
+          "ms": 604.4,
+          "choice": "world",
+          "probabilities": {
+            "world": 1,
+            "sports": 0,
+            "business": 0,
+            "sci_tech": 0
+          },
+          "usage": {
+            "prompt_tokens": 242,
+            "completion_tokens": 28,
+            "total_tokens": 270,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "cache_write_tokens": 0,
+              "audio_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "audio_tokens": 0,
+              "accepted_prediction_tokens": 0,
+              "rejected_prediction_tokens": 0
+            }
+          }
+        },
+        "openrouter_latency": {
+          "ms": 1147.4,
+          "choice": "world",
+          "probabilities": {
+            "world": 1,
+            "sports": 0,
+            "business": 0,
+            "sci_tech": 0
+          },
+          "usage": {
+            "prompt_tokens": 242,
+            "completion_tokens": 29,
+            "total_tokens": 271,
+            "cost": 3.87e-05,
+            "is_byok": false,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "cache_write_tokens": 0,
+              "audio_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost_details": {
+              "upstream_inference_cost": 3.87e-05,
+              "upstream_inference_prompt_cost": 2.42e-05,
+              "upstream_inference_completions_cost": 1.45e-05
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "image_tokens": 0,
+              "audio_tokens": 0
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "agnews:3598",
+      "expected": "world",
+      "routes": {
+        "openrouter_latency": {
+          "ms": 1553.6,
+          "choice": "world",
+          "probabilities": {
+            "world": 1,
+            "sports": 0,
+            "business": 0,
+            "sci_tech": 0
+          },
+          "usage": {
+            "prompt_tokens": 240,
+            "completion_tokens": 29,
+            "total_tokens": 269,
+            "cost": 3.85e-05,
+            "is_byok": false,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "cache_write_tokens": 0,
+              "audio_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost_details": {
+              "upstream_inference_cost": 3.85e-05,
+              "upstream_inference_prompt_cost": 2.4e-05,
+              "upstream_inference_completions_cost": 1.45e-05
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "image_tokens": 0,
+              "audio_tokens": 0
+            }
+          }
+        },
+        "openai_direct": {
+          "ms": 918.4,
+          "choice": "world",
+          "probabilities": {
+            "world": 1,
+            "sports": 0,
+            "business": 0,
+            "sci_tech": 0
+          },
+          "usage": {
+            "prompt_tokens": 240,
+            "completion_tokens": 28,
+            "total_tokens": 268,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "cache_write_tokens": 0,
+              "audio_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "audio_tokens": 0,
+              "accepted_prediction_tokens": 0,
+              "rejected_prediction_tokens": 0
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "agnews:3518",
+      "expected": "world",
+      "routes": {
+        "openai_direct": {
+          "ms": 1328.8,
+          "choice": "world",
+          "probabilities": {
+            "world": 1,
+            "sports": 0,
+            "business": 0,
+            "sci_tech": 0
+          },
+          "usage": {
+            "prompt_tokens": 284,
+            "completion_tokens": 28,
+            "total_tokens": 312,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "cache_write_tokens": 0,
+              "audio_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "audio_tokens": 0,
+              "accepted_prediction_tokens": 0,
+              "rejected_prediction_tokens": 0
+            }
+          }
+        },
+        "openrouter_latency": {
+          "ms": 1941.5,
+          "choice": "world",
+          "probabilities": {
+            "world": 1,
+            "sports": 0,
+            "business": 0,
+            "sci_tech": 0
+          },
+          "usage": {
+            "prompt_tokens": 284,
+            "completion_tokens": 29,
+            "total_tokens": 313,
+            "cost": 4.29e-05,
+            "is_byok": false,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "cache_write_tokens": 0,
+              "audio_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost_details": {
+              "upstream_inference_cost": 4.29e-05,
+              "upstream_inference_prompt_cost": 2.84e-05,
+              "upstream_inference_completions_cost": 1.45e-05
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "image_tokens": 0,
+              "audio_tokens": 0
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "agnews:3516",
+      "expected": "world",
+      "routes": {
+        "openrouter_latency": {
+          "ms": 1116.9,
+          "choice": "world",
+          "probabilities": {
+            "world": 1,
+            "sports": 0,
+            "business": 0,
+            "sci_tech": 0
+          },
+          "usage": {
+            "prompt_tokens": 237,
+            "completion_tokens": 29,
+            "total_tokens": 266,
+            "cost": 3.82e-05,
+            "is_byok": false,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "cache_write_tokens": 0,
+              "audio_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost_details": {
+              "upstream_inference_cost": 3.82e-05,
+              "upstream_inference_prompt_cost": 2.37e-05,
+              "upstream_inference_completions_cost": 1.45e-05
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "image_tokens": 0,
+              "audio_tokens": 0
+            }
+          }
+        },
+        "openai_direct": {
+          "ms": 795.0,
+          "choice": "world",
+          "probabilities": {
+            "world": 1,
+            "sports": 0,
+            "business": 0,
+            "sci_tech": 0
+          },
+          "usage": {
+            "prompt_tokens": 237,
+            "completion_tokens": 28,
+            "total_tokens": 265,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "cache_write_tokens": 0,
+              "audio_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "audio_tokens": 0,
+              "accepted_prediction_tokens": 0,
+              "rejected_prediction_tokens": 0
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "agnews:3599",
+      "expected": "sports",
+      "routes": {
+        "openai_direct": {
+          "ms": 829.6,
+          "choice": "sports",
+          "probabilities": {
+            "world": 0,
+            "sports": 1,
+            "business": 0,
+            "sci_tech": 0
+          },
+          "usage": {
+            "prompt_tokens": 248,
+            "completion_tokens": 28,
+            "total_tokens": 276,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "cache_write_tokens": 0,
+              "audio_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "audio_tokens": 0,
+              "accepted_prediction_tokens": 0,
+              "rejected_prediction_tokens": 0
+            }
+          }
+        },
+        "openrouter_latency": {
+          "ms": 1033.7,
+          "choice": "sports",
+          "probabilities": {
+            "world": 0,
+            "sports": 1,
+            "business": 0,
+            "sci_tech": 0
+          },
+          "usage": {
+            "prompt_tokens": 248,
+            "completion_tokens": 29,
+            "total_tokens": 277,
+            "cost": 3.93e-05,
+            "is_byok": false,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "cache_write_tokens": 0,
+              "audio_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost_details": {
+              "upstream_inference_cost": 3.93e-05,
+              "upstream_inference_prompt_cost": 2.48e-05,
+              "upstream_inference_completions_cost": 1.45e-05
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "image_tokens": 0,
+              "audio_tokens": 0
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "agnews:3542",
+      "expected": "business",
+      "routes": {
+        "openrouter_latency": {
+          "ms": 1647.1,
+          "choice": "business",
+          "probabilities": {
+            "world": 0.05,
+            "sports": 0,
+            "business": 0.9,
+            "sci_tech": 0.05
+          },
+          "usage": {
+            "prompt_tokens": 242,
+            "completion_tokens": 35,
+            "total_tokens": 277,
+            "cost": 4.17e-05,
+            "is_byok": false,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "cache_write_tokens": 0,
+              "audio_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost_details": {
+              "upstream_inference_cost": 4.17e-05,
+              "upstream_inference_prompt_cost": 2.42e-05,
+              "upstream_inference_completions_cost": 1.75e-05
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "image_tokens": 0,
+              "audio_tokens": 0
+            }
+          }
+        },
+        "openai_direct": {
+          "ms": 934.7,
+          "choice": "business",
+          "probabilities": {
+            "world": 0.05,
+            "sports": 0,
+            "business": 0.94,
+            "sci_tech": 0.01
+          },
+          "usage": {
+            "prompt_tokens": 242,
+            "completion_tokens": 34,
+            "total_tokens": 276,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "cache_write_tokens": 0,
+              "audio_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "audio_tokens": 0,
+              "accepted_prediction_tokens": 0,
+              "rejected_prediction_tokens": 0
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "agnews:3555",
+      "expected": "world",
+      "routes": {
+        "openai_direct": {
+          "ms": 949.8,
+          "choice": "business",
+          "probabilities": {
+            "world": 0.05,
+            "sports": 0,
+            "business": 0.9,
+            "sci_tech": 0.05
+          },
+          "usage": {
+            "prompt_tokens": 264,
+            "completion_tokens": 34,
+            "total_tokens": 298,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "cache_write_tokens": 0,
+              "audio_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "audio_tokens": 0,
+              "accepted_prediction_tokens": 0,
+              "rejected_prediction_tokens": 0
+            }
+          }
+        },
+        "openrouter_latency": {
+          "ms": 2395.3,
+          "choice": "business",
+          "probabilities": {
+            "world": 0.05,
+            "sports": 0.0,
+            "business": 0.9,
+            "sci_tech": 0.05
+          },
+          "usage": {
+            "prompt_tokens": 264,
+            "completion_tokens": 37,
+            "total_tokens": 301,
+            "cost": 4.49e-05,
+            "is_byok": false,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "cache_write_tokens": 0,
+              "audio_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost_details": {
+              "upstream_inference_cost": 4.49e-05,
+              "upstream_inference_prompt_cost": 2.64e-05,
+              "upstream_inference_completions_cost": 1.85e-05
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "image_tokens": 0,
+              "audio_tokens": 0
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "agnews:3544",
+      "expected": "sports",
+      "routes": {
+        "openrouter_latency": {
+          "ms": 1318.1,
+          "choice": "sports",
+          "probabilities": {
+            "world": 0,
+            "sports": 1,
+            "business": 0,
+            "sci_tech": 0
+          },
+          "usage": {
+            "prompt_tokens": 250,
+            "completion_tokens": 29,
+            "total_tokens": 279,
+            "cost": 3.95e-05,
+            "is_byok": false,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "cache_write_tokens": 0,
+              "audio_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost_details": {
+              "upstream_inference_cost": 3.95e-05,
+              "upstream_inference_prompt_cost": 2.5e-05,
+              "upstream_inference_completions_cost": 1.45e-05
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "image_tokens": 0,
+              "audio_tokens": 0
+            }
+          }
+        },
+        "openai_direct": {
+          "ms": 962.5,
+          "choice": "sports",
+          "probabilities": {
+            "world": 0,
+            "sports": 1,
+            "business": 0,
+            "sci_tech": 0
+          },
+          "usage": {
+            "prompt_tokens": 250,
+            "completion_tokens": 28,
+            "total_tokens": 278,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "cache_write_tokens": 0,
+              "audio_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "audio_tokens": 0,
+              "accepted_prediction_tokens": 0,
+              "rejected_prediction_tokens": 0
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "agnews:3554",
+      "expected": "business",
+      "routes": {
+        "openai_direct": {
+          "ms": 1078.8,
+          "choice": "business",
+          "probabilities": {
+            "world": 0.05,
+            "sports": 0,
+            "business": 0.9,
+            "sci_tech": 0.05
+          },
+          "usage": {
+            "prompt_tokens": 270,
+            "completion_tokens": 34,
+            "total_tokens": 304,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "cache_write_tokens": 0,
+              "audio_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "audio_tokens": 0,
+              "accepted_prediction_tokens": 0,
+              "rejected_prediction_tokens": 0
+            }
+          }
+        },
+        "openrouter_latency": {
+          "ms": 1132.3,
+          "choice": "business",
+          "probabilities": {
+            "world": 0.05,
+            "sports": 0.01,
+            "business": 0.9,
+            "sci_tech": 0.04
+          },
+          "usage": {
+            "prompt_tokens": 270,
+            "completion_tokens": 37,
+            "total_tokens": 307,
+            "cost": 4.55e-05,
+            "is_byok": false,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "cache_write_tokens": 0,
+              "audio_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost_details": {
+              "upstream_inference_cost": 4.55e-05,
+              "upstream_inference_prompt_cost": 2.7e-05,
+              "upstream_inference_completions_cost": 1.85e-05
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "image_tokens": 0,
+              "audio_tokens": 0
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "agnews:3577",
+      "expected": "business",
+      "routes": {
+        "openrouter_latency": {
+          "ms": 1709.9,
+          "choice": "business",
+          "probabilities": {
+            "world": 0.05,
+            "sports": 0,
+            "business": 0.94,
+            "sci_tech": 0.01
+          },
+          "usage": {
+            "prompt_tokens": 249,
+            "completion_tokens": 35,
+            "total_tokens": 284,
+            "cost": 4.24e-05,
+            "is_byok": false,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "cache_write_tokens": 0,
+              "audio_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost_details": {
+              "upstream_inference_cost": 4.24e-05,
+              "upstream_inference_prompt_cost": 2.49e-05,
+              "upstream_inference_completions_cost": 1.75e-05
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "image_tokens": 0,
+              "audio_tokens": 0
+            }
+          }
+        },
+        "openai_direct": {
+          "ms": 1255.5,
+          "choice": "business",
+          "probabilities": {
+            "world": 0.02,
+            "sports": 0.01,
+            "business": 0.96,
+            "sci_tech": 0.01
+          },
+          "usage": {
+            "prompt_tokens": 249,
+            "completion_tokens": 36,
+            "total_tokens": 285,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "cache_write_tokens": 0,
+              "audio_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "audio_tokens": 0,
+              "accepted_prediction_tokens": 0,
+              "rejected_prediction_tokens": 0
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "agnews:3538",
+      "expected": "business",
+      "routes": {
+        "openai_direct": {
+          "ms": 1180.7,
+          "choice": "business",
+          "probabilities": {
+            "world": 0.05,
+            "sports": 0,
+            "business": 0.8,
+            "sci_tech": 0.15
+          },
+          "usage": {
+            "prompt_tokens": 237,
+            "completion_tokens": 34,
+            "total_tokens": 271,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "cache_write_tokens": 0,
+              "audio_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "audio_tokens": 0,
+              "accepted_prediction_tokens": 0,
+              "rejected_prediction_tokens": 0
+            }
+          }
+        },
+        "openrouter_latency": {
+          "ms": 1545.6,
+          "choice": "business",
+          "probabilities": {
+            "world": 0.01,
+            "sports": 0,
+            "business": 0.94,
+            "sci_tech": 0.05
+          },
+          "usage": {
+            "prompt_tokens": 237,
+            "completion_tokens": 35,
+            "total_tokens": 272,
+            "cost": 4.12e-05,
+            "is_byok": false,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "cache_write_tokens": 0,
+              "audio_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost_details": {
+              "upstream_inference_cost": 4.12e-05,
+              "upstream_inference_prompt_cost": 2.37e-05,
+              "upstream_inference_completions_cost": 1.75e-05
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "image_tokens": 0,
+              "audio_tokens": 0
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "agnews:3556",
+      "expected": "business",
+      "routes": {
+        "openrouter_latency": {
+          "ms": 1412.4,
+          "choice": "business",
+          "probabilities": {
+            "world": 0.02,
+            "sports": 0.01,
+            "business": 0.97,
+            "sci_tech": 0
+          },
+          "usage": {
+            "prompt_tokens": 259,
+            "completion_tokens": 35,
+            "total_tokens": 294,
+            "cost": 4.34e-05,
+            "is_byok": false,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "cache_write_tokens": 0,
+              "audio_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost_details": {
+              "upstream_inference_cost": 4.34e-05,
+              "upstream_inference_prompt_cost": 2.59e-05,
+              "upstream_inference_completions_cost": 1.75e-05
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "image_tokens": 0,
+              "audio_tokens": 0
+            }
+          }
+        },
+        "openai_direct": {
+          "ms": 798.7,
+          "choice": "business",
+          "probabilities": {
+            "world": 0,
+            "sports": 0,
+            "business": 1,
+            "sci_tech": 0
+          },
+          "usage": {
+            "prompt_tokens": 259,
+            "completion_tokens": 28,
+            "total_tokens": 287,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "cache_write_tokens": 0,
+              "audio_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "audio_tokens": 0,
+              "accepted_prediction_tokens": 0,
+              "rejected_prediction_tokens": 0
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "agnews:3512",
+      "expected": "sci_tech",
+      "routes": {
+        "openai_direct": {
+          "ms": 867.6,
+          "choice": "sci_tech",
+          "probabilities": {
+            "world": 0.05,
+            "sports": 0,
+            "business": 0.05,
+            "sci_tech": 0.9
+          },
+          "usage": {
+            "prompt_tokens": 236,
+            "completion_tokens": 34,
+            "total_tokens": 270,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "cache_write_tokens": 0,
+              "audio_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "audio_tokens": 0,
+              "accepted_prediction_tokens": 0,
+              "rejected_prediction_tokens": 0
+            }
+          }
+        },
+        "openrouter_latency": {
+          "ms": 1854.2,
+          "choice": "sci_tech",
+          "probabilities": {
+            "world": 0.1,
+            "sports": 0,
+            "business": 0.05,
+            "sci_tech": 0.85
+          },
+          "usage": {
+            "prompt_tokens": 236,
+            "completion_tokens": 35,
+            "total_tokens": 271,
+            "cost": 4.11e-05,
+            "is_byok": false,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "cache_write_tokens": 0,
+              "audio_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost_details": {
+              "upstream_inference_cost": 4.11e-05,
+              "upstream_inference_prompt_cost": 2.36e-05,
+              "upstream_inference_completions_cost": 1.75e-05
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "image_tokens": 0,
+              "audio_tokens": 0
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "agnews:3580",
+      "expected": "business",
+      "routes": {
+        "openrouter_latency": {
+          "ms": 1428.4,
+          "choice": "business",
+          "probabilities": {
+            "world": 0,
+            "sports": 0,
+            "business": 1,
+            "sci_tech": 0
+          },
+          "usage": {
+            "prompt_tokens": 238,
+            "completion_tokens": 29,
+            "total_tokens": 267,
+            "cost": 3.83e-05,
+            "is_byok": false,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "cache_write_tokens": 0,
+              "audio_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost_details": {
+              "upstream_inference_cost": 3.83e-05,
+              "upstream_inference_prompt_cost": 2.38e-05,
+              "upstream_inference_completions_cost": 1.45e-05
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "image_tokens": 0,
+              "audio_tokens": 0
+            }
+          }
+        },
+        "openai_direct": {
+          "ms": 1006.8,
+          "choice": "business",
+          "probabilities": {
+            "world": 0,
+            "sports": 0,
+            "business": 0.98,
+            "sci_tech": 0.02
+          },
+          "usage": {
+            "prompt_tokens": 238,
+            "completion_tokens": 32,
+            "total_tokens": 270,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "cache_write_tokens": 0,
+              "audio_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "audio_tokens": 0,
+              "accepted_prediction_tokens": 0,
+              "rejected_prediction_tokens": 0
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "agnews:3507",
+      "expected": "sports",
+      "routes": {
+        "openai_direct": {
+          "ms": 730.5,
+          "choice": "sports",
+          "probabilities": {
+            "world": 0,
+            "sports": 1,
+            "business": 0,
+            "sci_tech": 0
+          },
+          "usage": {
+            "prompt_tokens": 239,
+            "completion_tokens": 28,
+            "total_tokens": 267,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "cache_write_tokens": 0,
+              "audio_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "audio_tokens": 0,
+              "accepted_prediction_tokens": 0,
+              "rejected_prediction_tokens": 0
+            }
+          }
+        },
+        "openrouter_latency": {
+          "ms": 2043.4,
+          "choice": "sports",
+          "probabilities": {
+            "world": 0,
+            "sports": 1,
+            "business": 0,
+            "sci_tech": 0
+          },
+          "usage": {
+            "prompt_tokens": 239,
+            "completion_tokens": 29,
+            "total_tokens": 268,
+            "cost": 3.84e-05,
+            "is_byok": false,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "cache_write_tokens": 0,
+              "audio_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost_details": {
+              "upstream_inference_cost": 3.84e-05,
+              "upstream_inference_prompt_cost": 2.39e-05,
+              "upstream_inference_completions_cost": 1.45e-05
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "image_tokens": 0,
+              "audio_tokens": 0
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "agnews:3588",
+      "expected": "sci_tech",
+      "routes": {
+        "openrouter_latency": {
+          "ms": 1534.8,
+          "choice": "sci_tech",
+          "probabilities": {
+            "world": 0,
+            "sports": 0,
+            "business": 0.15,
+            "sci_tech": 0.85
+          },
+          "usage": {
+            "prompt_tokens": 240,
+            "completion_tokens": 33,
+            "total_tokens": 273,
+            "cost": 4.05e-05,
+            "is_byok": false,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "cache_write_tokens": 0,
+              "audio_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost_details": {
+              "upstream_inference_cost": 4.05e-05,
+              "upstream_inference_prompt_cost": 2.4e-05,
+              "upstream_inference_completions_cost": 1.65e-05
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "image_tokens": 0,
+              "audio_tokens": 0
+            }
+          }
+        },
+        "openai_direct": {
+          "ms": 815.6,
+          "choice": "sci_tech",
+          "probabilities": {
+            "world": 0,
+            "sports": 0,
+            "business": 0.15,
+            "sci_tech": 0.85
+          },
+          "usage": {
+            "prompt_tokens": 240,
+            "completion_tokens": 32,
+            "total_tokens": 272,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "cache_write_tokens": 0,
+              "audio_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "audio_tokens": 0,
+              "accepted_prediction_tokens": 0,
+              "rejected_prediction_tokens": 0
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "agnews:3595",
+      "expected": "business",
+      "routes": {
+        "openai_direct": {
+          "ms": 629.9,
+          "choice": "business",
+          "probabilities": {
+            "world": 0.05,
+            "sports": 0,
+            "business": 0.95,
+            "sci_tech": 0
+          },
+          "usage": {
+            "prompt_tokens": 260,
+            "completion_tokens": 32,
+            "total_tokens": 292,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "cache_write_tokens": 0,
+              "audio_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "audio_tokens": 0,
+              "accepted_prediction_tokens": 0,
+              "rejected_prediction_tokens": 0
+            }
+          }
+        },
+        "openrouter_latency": {
+          "ms": 2078.7,
+          "choice": "business",
+          "probabilities": {
+            "world": 0.03,
+            "sports": 0,
+            "business": 0.96,
+            "sci_tech": 0.01
+          },
+          "usage": {
+            "prompt_tokens": 260,
+            "completion_tokens": 35,
+            "total_tokens": 295,
+            "cost": 4.35e-05,
+            "is_byok": false,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "cache_write_tokens": 0,
+              "audio_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost_details": {
+              "upstream_inference_cost": 4.35e-05,
+              "upstream_inference_prompt_cost": 2.6e-05,
+              "upstream_inference_completions_cost": 1.75e-05
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "image_tokens": 0,
+              "audio_tokens": 0
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "agnews:3537",
+      "expected": "sci_tech",
+      "routes": {
+        "openrouter_latency": {
+          "ms": 1786.2,
+          "choice": "business",
+          "probabilities": {
+            "world": 0,
+            "sports": 0,
+            "business": 1,
+            "sci_tech": 0
+          },
+          "usage": {
+            "prompt_tokens": 257,
+            "completion_tokens": 29,
+            "total_tokens": 286,
+            "cost": 4.02e-05,
+            "is_byok": false,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "cache_write_tokens": 0,
+              "audio_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost_details": {
+              "upstream_inference_cost": 4.02e-05,
+              "upstream_inference_prompt_cost": 2.57e-05,
+              "upstream_inference_completions_cost": 1.45e-05
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "image_tokens": 0,
+              "audio_tokens": 0
+            }
+          }
+        },
+        "openai_direct": {
+          "ms": 766.2,
+          "choice": "business",
+          "probabilities": {
+            "world": 0,
+            "sports": 0,
+            "business": 1,
+            "sci_tech": 0
+          },
+          "usage": {
+            "prompt_tokens": 257,
+            "completion_tokens": 28,
+            "total_tokens": 285,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "cache_write_tokens": 0,
+              "audio_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "audio_tokens": 0,
+              "accepted_prediction_tokens": 0,
+              "rejected_prediction_tokens": 0
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "agnews:3551",
+      "expected": "sports",
+      "routes": {
+        "openai_direct": {
+          "ms": 709.8,
+          "choice": "sports",
+          "probabilities": {
+            "world": 0,
+            "sports": 1,
+            "business": 0,
+            "sci_tech": 0
+          },
+          "usage": {
+            "prompt_tokens": 241,
+            "completion_tokens": 28,
+            "total_tokens": 269,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "cache_write_tokens": 0,
+              "audio_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "audio_tokens": 0,
+              "accepted_prediction_tokens": 0,
+              "rejected_prediction_tokens": 0
+            }
+          }
+        },
+        "openrouter_latency": {
+          "ms": 1207.3,
+          "choice": "sports",
+          "probabilities": {
+            "world": 0,
+            "sports": 1,
+            "business": 0,
+            "sci_tech": 0
+          },
+          "usage": {
+            "prompt_tokens": 241,
+            "completion_tokens": 29,
+            "total_tokens": 270,
+            "cost": 3.86e-05,
+            "is_byok": false,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "cache_write_tokens": 0,
+              "audio_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost_details": {
+              "upstream_inference_cost": 3.86e-05,
+              "upstream_inference_prompt_cost": 2.41e-05,
+              "upstream_inference_completions_cost": 1.45e-05
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "image_tokens": 0,
+              "audio_tokens": 0
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "agnews:3509",
+      "expected": "world",
+      "routes": {
+        "openrouter_latency": {
+          "ms": 1833.4,
+          "choice": "world",
+          "probabilities": {
+            "world": 1,
+            "sports": 0,
+            "business": 0,
+            "sci_tech": 0
+          },
+          "usage": {
+            "prompt_tokens": 242,
+            "completion_tokens": 29,
+            "total_tokens": 271,
+            "cost": 3.87e-05,
+            "is_byok": false,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "cache_write_tokens": 0,
+              "audio_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost_details": {
+              "upstream_inference_cost": 3.87e-05,
+              "upstream_inference_prompt_cost": 2.42e-05,
+              "upstream_inference_completions_cost": 1.45e-05
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "image_tokens": 0,
+              "audio_tokens": 0
+            }
+          }
+        },
+        "openai_direct": {
+          "ms": 673.5,
+          "choice": "world",
+          "probabilities": {
+            "world": 1,
+            "sports": 0,
+            "business": 0,
+            "sci_tech": 0
+          },
+          "usage": {
+            "prompt_tokens": 242,
+            "completion_tokens": 28,
+            "total_tokens": 270,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "cache_write_tokens": 0,
+              "audio_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "audio_tokens": 0,
+              "accepted_prediction_tokens": 0,
+              "rejected_prediction_tokens": 0
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "agnews:3506",
+      "expected": "sci_tech",
+      "routes": {
+        "openai_direct": {
+          "ms": 1241.2,
+          "choice": "business",
+          "probabilities": {
+            "world": 0,
+            "sports": 0,
+            "business": 0.65,
+            "sci_tech": 0.35
+          },
+          "usage": {
+            "prompt_tokens": 243,
+            "completion_tokens": 32,
+            "total_tokens": 275,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "cache_write_tokens": 0,
+              "audio_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "audio_tokens": 0,
+              "accepted_prediction_tokens": 0,
+              "rejected_prediction_tokens": 0
+            }
+          }
+        },
+        "openrouter_latency": {
+          "ms": 1196.8,
+          "choice": "business",
+          "probabilities": {
+            "world": 0,
+            "sports": 0,
+            "business": 0.8,
+            "sci_tech": 0.2
+          },
+          "usage": {
+            "prompt_tokens": 243,
+            "completion_tokens": 33,
+            "total_tokens": 276,
+            "cost": 4.08e-05,
+            "is_byok": false,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "cache_write_tokens": 0,
+              "audio_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost_details": {
+              "upstream_inference_cost": 4.08e-05,
+              "upstream_inference_prompt_cost": 2.43e-05,
+              "upstream_inference_completions_cost": 1.65e-05
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "image_tokens": 0,
+              "audio_tokens": 0
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "agnews:3501",
+      "expected": "sci_tech",
+      "routes": {
+        "openrouter_latency": {
+          "ms": 1412.6,
+          "choice": "sci_tech",
+          "probabilities": {
+            "world": 0,
+            "sports": 0,
+            "business": 0,
+            "sci_tech": 1
+          },
+          "usage": {
+            "prompt_tokens": 255,
+            "completion_tokens": 29,
+            "total_tokens": 284,
+            "cost": 4e-05,
+            "is_byok": false,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "cache_write_tokens": 0,
+              "audio_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost_details": {
+              "upstream_inference_cost": 4e-05,
+              "upstream_inference_prompt_cost": 2.55e-05,
+              "upstream_inference_completions_cost": 1.45e-05
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "image_tokens": 0,
+              "audio_tokens": 0
+            }
+          }
+        },
+        "openai_direct": {
+          "ms": 704.7,
+          "choice": "sci_tech",
+          "probabilities": {
+            "world": 0,
+            "sports": 0,
+            "business": 0,
+            "sci_tech": 1
+          },
+          "usage": {
+            "prompt_tokens": 255,
+            "completion_tokens": 28,
+            "total_tokens": 283,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "cache_write_tokens": 0,
+              "audio_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "audio_tokens": 0,
+              "accepted_prediction_tokens": 0,
+              "rejected_prediction_tokens": 0
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "agnews:3564",
+      "expected": "sci_tech",
+      "routes": {
+        "openai_direct": {
+          "ms": 871.8,
+          "choice": "sci_tech",
+          "probabilities": {
+            "world": 0.05,
+            "sports": 0,
+            "business": 0,
+            "sci_tech": 0.95
+          },
+          "usage": {
+            "prompt_tokens": 257,
+            "completion_tokens": 32,
+            "total_tokens": 289,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "cache_write_tokens": 0,
+              "audio_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "audio_tokens": 0,
+              "accepted_prediction_tokens": 0,
+              "rejected_prediction_tokens": 0
+            }
+          }
+        },
+        "openrouter_latency": {
+          "ms": 1257.0,
+          "choice": "sci_tech",
+          "probabilities": {
+            "world": 0.08,
+            "sports": 0.01,
+            "business": 0.01,
+            "sci_tech": 0.9
+          },
+          "usage": {
+            "prompt_tokens": 257,
+            "completion_tokens": 37,
+            "total_tokens": 294,
+            "cost": 4.42e-05,
+            "is_byok": false,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "cache_write_tokens": 0,
+              "audio_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost_details": {
+              "upstream_inference_cost": 4.42e-05,
+              "upstream_inference_prompt_cost": 2.57e-05,
+              "upstream_inference_completions_cost": 1.85e-05
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "image_tokens": 0,
+              "audio_tokens": 0
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "agnews:3545",
+      "expected": "world",
+      "routes": {
+        "openrouter_latency": {
+          "ms": 998.4,
+          "choice": "world",
+          "probabilities": {
+            "world": 1,
+            "sports": 0,
+            "business": 0,
+            "sci_tech": 0
+          },
+          "usage": {
+            "prompt_tokens": 248,
+            "completion_tokens": 29,
+            "total_tokens": 277,
+            "cost": 3.93e-05,
+            "is_byok": false,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "cache_write_tokens": 0,
+              "audio_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost_details": {
+              "upstream_inference_cost": 3.93e-05,
+              "upstream_inference_prompt_cost": 2.48e-05,
+              "upstream_inference_completions_cost": 1.45e-05
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "image_tokens": 0,
+              "audio_tokens": 0
+            }
+          }
+        },
+        "openai_direct": {
+          "ms": 690.3,
+          "choice": "world",
+          "probabilities": {
+            "world": 1,
+            "sports": 0,
+            "business": 0,
+            "sci_tech": 0
+          },
+          "usage": {
+            "prompt_tokens": 248,
+            "completion_tokens": 28,
+            "total_tokens": 276,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "cache_write_tokens": 0,
+              "audio_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "audio_tokens": 0,
+              "accepted_prediction_tokens": 0,
+              "rejected_prediction_tokens": 0
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "agnews:3562",
+      "expected": "sports",
+      "routes": {
+        "openai_direct": {
+          "ms": 681.9,
+          "choice": "sports",
+          "probabilities": {
+            "world": 0,
+            "sports": 1,
+            "business": 0,
+            "sci_tech": 0
+          },
+          "usage": {
+            "prompt_tokens": 236,
+            "completion_tokens": 28,
+            "total_tokens": 264,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "cache_write_tokens": 0,
+              "audio_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "audio_tokens": 0,
+              "accepted_prediction_tokens": 0,
+              "rejected_prediction_tokens": 0
+            }
+          }
+        },
+        "openrouter_latency": {
+          "ms": 1104.0,
+          "choice": "sports",
+          "probabilities": {
+            "world": 0,
+            "sports": 1,
+            "business": 0,
+            "sci_tech": 0
+          },
+          "usage": {
+            "prompt_tokens": 236,
+            "completion_tokens": 29,
+            "total_tokens": 265,
+            "cost": 3.81e-05,
+            "is_byok": false,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "cache_write_tokens": 0,
+              "audio_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost_details": {
+              "upstream_inference_cost": 3.81e-05,
+              "upstream_inference_prompt_cost": 2.36e-05,
+              "upstream_inference_completions_cost": 1.45e-05
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "image_tokens": 0,
+              "audio_tokens": 0
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "agnews:3532",
+      "expected": "sci_tech",
+      "routes": {
+        "openrouter_latency": {
+          "ms": 698.2,
+          "choice": "sci_tech",
+          "probabilities": {
+            "world": 0,
+            "sports": 0,
+            "business": 0.2,
+            "sci_tech": 0.8
+          },
+          "usage": {
+            "prompt_tokens": 234,
+            "completion_tokens": 33,
+            "total_tokens": 267,
+            "cost": 3.99e-05,
+            "is_byok": false,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "cache_write_tokens": 0,
+              "audio_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost_details": {
+              "upstream_inference_cost": 3.99e-05,
+              "upstream_inference_prompt_cost": 2.34e-05,
+              "upstream_inference_completions_cost": 1.65e-05
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "image_tokens": 0,
+              "audio_tokens": 0
+            }
+          }
+        },
+        "openai_direct": {
+          "ms": 723.4,
+          "choice": "sci_tech",
+          "probabilities": {
+            "world": 0,
+            "sports": 0,
+            "business": 0.35,
+            "sci_tech": 0.65
+          },
+          "usage": {
+            "prompt_tokens": 234,
+            "completion_tokens": 32,
+            "total_tokens": 266,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "cache_write_tokens": 0,
+              "audio_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "audio_tokens": 0,
+              "accepted_prediction_tokens": 0,
+              "rejected_prediction_tokens": 0
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "agnews:3525",
+      "expected": "sports",
+      "routes": {
+        "openai_direct": {
+          "ms": 738.1,
+          "choice": "sports",
+          "probabilities": {
+            "world": 0,
+            "sports": 1,
+            "business": 0,
+            "sci_tech": 0
+          },
+          "usage": {
+            "prompt_tokens": 250,
+            "completion_tokens": 28,
+            "total_tokens": 278,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "cache_write_tokens": 0,
+              "audio_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "audio_tokens": 0,
+              "accepted_prediction_tokens": 0,
+              "rejected_prediction_tokens": 0
+            }
+          }
+        },
+        "openrouter_latency": {
+          "ms": 1609.2,
+          "choice": "sports",
+          "probabilities": {
+            "world": 0,
+            "sports": 1,
+            "business": 0,
+            "sci_tech": 0
+          },
+          "usage": {
+            "prompt_tokens": 250,
+            "completion_tokens": 29,
+            "total_tokens": 279,
+            "cost": 3.95e-05,
+            "is_byok": false,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "cache_write_tokens": 0,
+              "audio_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost_details": {
+              "upstream_inference_cost": 3.95e-05,
+              "upstream_inference_prompt_cost": 2.5e-05,
+              "upstream_inference_completions_cost": 1.45e-05
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "image_tokens": 0,
+              "audio_tokens": 0
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "agnews:3559",
+      "expected": "sports",
+      "routes": {
+        "openrouter_latency": {
+          "ms": 1718.4,
+          "choice": "sports",
+          "probabilities": {
+            "world": 0,
+            "sports": 1,
+            "business": 0,
+            "sci_tech": 0
+          },
+          "usage": {
+            "prompt_tokens": 237,
+            "completion_tokens": 29,
+            "total_tokens": 266,
+            "cost": 3.82e-05,
+            "is_byok": false,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "cache_write_tokens": 0,
+              "audio_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost_details": {
+              "upstream_inference_cost": 3.82e-05,
+              "upstream_inference_prompt_cost": 2.37e-05,
+              "upstream_inference_completions_cost": 1.45e-05
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "image_tokens": 0,
+              "audio_tokens": 0
+            }
+          }
+        },
+        "openai_direct": {
+          "ms": 593.0,
+          "choice": "sports",
+          "probabilities": {
+            "world": 0,
+            "sports": 1,
+            "business": 0,
+            "sci_tech": 0
+          },
+          "usage": {
+            "prompt_tokens": 237,
+            "completion_tokens": 28,
+            "total_tokens": 265,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "cache_write_tokens": 0,
+              "audio_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "audio_tokens": 0,
+              "accepted_prediction_tokens": 0,
+              "rejected_prediction_tokens": 0
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "agnews:3535",
+      "expected": "sci_tech",
+      "routes": {
+        "openai_direct": {
+          "ms": 1026.3,
+          "choice": "sci_tech",
+          "probabilities": {
+            "world": 0,
+            "sports": 0,
+            "business": 0.05,
+            "sci_tech": 0.95
+          },
+          "usage": {
+            "prompt_tokens": 235,
+            "completion_tokens": 32,
+            "total_tokens": 267,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "cache_write_tokens": 0,
+              "audio_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "audio_tokens": 0,
+              "accepted_prediction_tokens": 0,
+              "rejected_prediction_tokens": 0
+            }
+          }
+        },
+        "openrouter_latency": {
+          "ms": 1596.1,
+          "choice": "sci_tech",
+          "probabilities": {
+            "world": 0,
+            "sports": 0,
+            "business": 0.05,
+            "sci_tech": 0.95
+          },
+          "usage": {
+            "prompt_tokens": 235,
+            "completion_tokens": 33,
+            "total_tokens": 268,
+            "cost": 4e-05,
+            "is_byok": false,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "cache_write_tokens": 0,
+              "audio_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost_details": {
+              "upstream_inference_cost": 4e-05,
+              "upstream_inference_prompt_cost": 2.35e-05,
+              "upstream_inference_completions_cost": 1.65e-05
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "image_tokens": 0,
+              "audio_tokens": 0
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "agnews:3568",
+      "expected": "sports",
+      "routes": {
+        "openrouter_latency": {
+          "ms": 1514.8,
+          "choice": "sports",
+          "probabilities": {
+            "world": 0,
+            "sports": 1,
+            "business": 0,
+            "sci_tech": 0
+          },
+          "usage": {
+            "prompt_tokens": 237,
+            "completion_tokens": 29,
+            "total_tokens": 266,
+            "cost": 3.82e-05,
+            "is_byok": false,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "cache_write_tokens": 0,
+              "audio_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost_details": {
+              "upstream_inference_cost": 3.82e-05,
+              "upstream_inference_prompt_cost": 2.37e-05,
+              "upstream_inference_completions_cost": 1.45e-05
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "image_tokens": 0,
+              "audio_tokens": 0
+            }
+          }
+        },
+        "openai_direct": {
+          "ms": 682.4,
+          "choice": "sports",
+          "probabilities": {
+            "world": 0,
+            "sports": 1,
+            "business": 0,
+            "sci_tech": 0
+          },
+          "usage": {
+            "prompt_tokens": 237,
+            "completion_tokens": 28,
+            "total_tokens": 265,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "cache_write_tokens": 0,
+              "audio_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "audio_tokens": 0,
+              "accepted_prediction_tokens": 0,
+              "rejected_prediction_tokens": 0
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "agnews:3536",
+      "expected": "world",
+      "routes": {
+        "openai_direct": {
+          "ms": 840.5,
+          "choice": "world",
+          "probabilities": {
+            "world": 1,
+            "sports": 0,
+            "business": 0,
+            "sci_tech": 0
+          },
+          "usage": {
+            "prompt_tokens": 265,
+            "completion_tokens": 28,
+            "total_tokens": 293,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "cache_write_tokens": 0,
+              "audio_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "audio_tokens": 0,
+              "accepted_prediction_tokens": 0,
+              "rejected_prediction_tokens": 0
+            }
+          }
+        },
+        "openrouter_latency": {
+          "ms": 1694.8,
+          "choice": "world",
+          "probabilities": {
+            "world": 1,
+            "sports": 0,
+            "business": 0,
+            "sci_tech": 0
+          },
+          "usage": {
+            "prompt_tokens": 265,
+            "completion_tokens": 29,
+            "total_tokens": 294,
+            "cost": 4.1e-05,
+            "is_byok": false,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "cache_write_tokens": 0,
+              "audio_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost_details": {
+              "upstream_inference_cost": 4.1e-05,
+              "upstream_inference_prompt_cost": 2.65e-05,
+              "upstream_inference_completions_cost": 1.45e-05
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "image_tokens": 0,
+              "audio_tokens": 0
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "agnews:3553",
+      "expected": "business",
+      "routes": {
+        "openrouter_latency": {
+          "ms": 1229.7,
+          "choice": "business",
+          "probabilities": {
+            "world": 0,
+            "sports": 0,
+            "business": 1,
+            "sci_tech": 0
+          },
+          "usage": {
+            "prompt_tokens": 245,
+            "completion_tokens": 29,
+            "total_tokens": 274,
+            "cost": 3.9e-05,
+            "is_byok": false,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "cache_write_tokens": 0,
+              "audio_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost_details": {
+              "upstream_inference_cost": 3.9e-05,
+              "upstream_inference_prompt_cost": 2.45e-05,
+              "upstream_inference_completions_cost": 1.45e-05
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "image_tokens": 0,
+              "audio_tokens": 0
+            }
+          }
+        },
+        "openai_direct": {
+          "ms": 834.1,
+          "choice": "business",
+          "probabilities": {
+            "world": 0,
+            "sports": 0,
+            "business": 1,
+            "sci_tech": 0
+          },
+          "usage": {
+            "prompt_tokens": 245,
+            "completion_tokens": 28,
+            "total_tokens": 273,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "cache_write_tokens": 0,
+              "audio_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "audio_tokens": 0,
+              "accepted_prediction_tokens": 0,
+              "rejected_prediction_tokens": 0
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "sst2:292",
+      "expected": "negative",
+      "routes": {
+        "openai_direct": {
+          "ms": 1832.1,
+          "choice": "negative",
+          "probabilities": {
+            "negative": 0.99,
+            "positive": 0.01
+          },
+          "usage": {
+            "prompt_tokens": 611,
+            "completion_tokens": 101,
+            "total_tokens": 712
+          },
+          "attempts": 2
+        },
+        "openrouter_latency": {
+          "ms": 4101.6,
+          "choice": "negative",
+          "probabilities": {
+            "negative": 0.99,
+            "positive": 0.01
+          },
+          "usage": {
+            "prompt_tokens": 269,
+            "completion_tokens": 52,
+            "total_tokens": 321
+          },
+          "attempts": 1
+        }
+      }
+    },
+    {
+      "id": "sst2:247",
+      "expected": "negative",
+      "routes": {
+        "openrouter_latency": {
+          "ms": 2259.3,
+          "choice": "negative",
+          "probabilities": {
+            "negative": 0.99,
+            "positive": 0.01
+          },
+          "usage": {
+            "prompt_tokens": 278,
+            "completion_tokens": 52,
+            "total_tokens": 330
+          },
+          "attempts": 1
+        },
+        "openai_direct": {
+          "ms": 804.5,
+          "choice": "negative",
+          "probabilities": {
+            "negative": 1,
+            "positive": 0
+          },
+          "usage": {
+            "prompt_tokens": 278,
+            "completion_tokens": 39,
+            "total_tokens": 317
+          },
+          "attempts": 1
+        }
+      }
+    },
+    {
+      "id": "sst2:212",
+      "expected": "negative",
+      "routes": {
+        "openai_direct": {
+          "ms": 831.1,
+          "choice": "negative",
+          "probabilities": {
+            "negative": 0.99,
+            "positive": 0.01
+          },
+          "usage": {
+            "prompt_tokens": 251,
+            "completion_tokens": 51,
+            "total_tokens": 302
+          },
+          "attempts": 1
+        },
+        "openrouter_latency": {
+          "ms": 1925.3,
+          "choice": "negative",
+          "probabilities": {
+            "negative": 1,
+            "positive": 0
+          },
+          "usage": {
+            "prompt_tokens": 251,
+            "completion_tokens": 40,
+            "total_tokens": 291
+          },
+          "attempts": 1
+        }
+      }
+    },
+    {
+      "id": "sst2:238",
+      "expected": "negative",
+      "routes": {
+        "openrouter_latency": {
+          "ms": 1073.4,
+          "choice": "negative",
+          "probabilities": {
+            "negative": 0.98,
+            "positive": 0.02
+          },
+          "usage": {
+            "prompt_tokens": 250,
+            "completion_tokens": 52,
+            "total_tokens": 302
+          },
+          "attempts": 1
+        },
+        "openai_direct": {
+          "ms": 768.9,
+          "choice": "negative",
+          "probabilities": {
+            "negative": 1,
+            "positive": 0
+          },
+          "usage": {
+            "prompt_tokens": 250,
+            "completion_tokens": 39,
+            "total_tokens": 289
+          },
+          "attempts": 1
+        }
+      }
+    },
+    {
+      "id": "sst2:273",
+      "expected": "positive",
+      "routes": {
+        "openai_direct": {
+          "ms": 841.8,
+          "choice": "negative",
+          "probabilities": {
+            "negative": 0.95,
+            "positive": 0.05
+          },
+          "usage": {
+            "prompt_tokens": 249,
+            "completion_tokens": 51,
+            "total_tokens": 300
+          },
+          "attempts": 1
+        },
+        "openrouter_latency": {
+          "ms": 966.3,
+          "choice": "negative",
+          "probabilities": {
+            "negative": 0.95,
+            "positive": 0.05
+          },
+          "usage": {
+            "prompt_tokens": 249,
+            "completion_tokens": 52,
+            "total_tokens": 301
+          },
+          "attempts": 1
+        }
+      }
+    },
+    {
+      "id": "sst2:270",
+      "expected": "positive",
+      "routes": {
+        "openrouter_latency": {
+          "ms": 1107.9,
+          "choice": "positive",
+          "probabilities": {
+            "negative": 0.25,
+            "positive": 0.75
+          },
+          "usage": {
+            "prompt_tokens": 245,
+            "completion_tokens": 52,
+            "total_tokens": 297
+          },
+          "attempts": 1
+        },
+        "openai_direct": {
+          "ms": 1105.8,
+          "choice": "positive",
+          "probabilities": {
+            "negative": 0.25,
+            "positive": 0.75
+          },
+          "usage": {
+            "prompt_tokens": 245,
+            "completion_tokens": 51,
+            "total_tokens": 296
+          },
+          "attempts": 1
+        }
+      }
+    },
+    {
+      "id": "sst2:284",
+      "expected": "negative",
+      "routes": {
+        "openai_direct": {
+          "ms": 838.1,
+          "choice": "negative",
+          "probabilities": {
+            "negative": 0.98,
+            "positive": 0.02
+          },
+          "usage": {
+            "prompt_tokens": 246,
+            "completion_tokens": 51,
+            "total_tokens": 297
+          },
+          "attempts": 1
+        },
+        "openrouter_latency": {
+          "ms": 1558.7,
+          "choice": "negative",
+          "probabilities": {
+            "negative": 0.98,
+            "positive": 0.02
+          },
+          "usage": {
+            "prompt_tokens": 246,
+            "completion_tokens": 52,
+            "total_tokens": 298
+          },
+          "attempts": 1
+        }
+      }
+    },
+    {
+      "id": "sst2:217",
+      "expected": "negative",
+      "routes": {
+        "openrouter_latency": {
+          "ms": 1270.9,
+          "choice": "negative",
+          "probabilities": {
+            "negative": 0.98,
+            "positive": 0.02
+          },
+          "usage": {
+            "prompt_tokens": 273,
+            "completion_tokens": 52,
+            "total_tokens": 325
+          },
+          "attempts": 1
+        },
+        "openai_direct": {
+          "ms": 1184.9,
+          "choice": "negative",
+          "probabilities": {
+            "negative": 0.95,
+            "positive": 0.05
+          },
+          "usage": {
+            "prompt_tokens": 273,
+            "completion_tokens": 51,
+            "total_tokens": 324
+          },
+          "attempts": 1
+        }
+      }
+    },
+    {
+      "id": "sst2:236",
+      "expected": "positive",
+      "routes": {
+        "openai_direct": {
+          "ms": 764.7,
+          "choice": "positive",
+          "probabilities": {
+            "negative": 0.02,
+            "positive": 0.98
+          },
+          "usage": {
+            "prompt_tokens": 270,
+            "completion_tokens": 51,
+            "total_tokens": 321
+          },
+          "attempts": 1
+        },
+        "openrouter_latency": {
+          "ms": 1345.2,
+          "choice": "positive",
+          "probabilities": {
+            "negative": 0.01,
+            "positive": 0.99
+          },
+          "usage": {
+            "prompt_tokens": 270,
+            "completion_tokens": 52,
+            "total_tokens": 322
+          },
+          "attempts": 1
+        }
+      }
+    },
+    {
+      "id": "sst2:295",
+      "expected": "positive",
+      "routes": {
+        "openrouter_latency": {
+          "ms": 1180.9,
+          "choice": "positive",
+          "probabilities": {
+            "negative": 0.3,
+            "positive": 0.7
+          },
+          "usage": {
+            "prompt_tokens": 247,
+            "completion_tokens": 52,
+            "total_tokens": 299
+          },
+          "attempts": 1
+        },
+        "openai_direct": {
+          "ms": 2010.5,
+          "choice": "positive",
+          "probabilities": {
+            "negative": 0.15,
+            "positive": 0.85
+          },
+          "usage": {
+            "prompt_tokens": 567,
+            "completion_tokens": 101,
+            "total_tokens": 668
+          },
+          "attempts": 2
+        }
+      }
+    },
+    {
+      "id": "sst2:234",
+      "expected": "positive",
+      "routes": {
+        "openai_direct": {
+          "ms": 843.3,
+          "choice": "positive",
+          "probabilities": {
+            "negative": 0.02,
+            "positive": 0.98
+          },
+          "usage": {
+            "prompt_tokens": 246,
+            "completion_tokens": 51,
+            "total_tokens": 297
+          },
+          "attempts": 1
+        },
+        "openrouter_latency": {
+          "ms": 1246.6,
+          "choice": "positive",
+          "probabilities": {
+            "negative": 0.01,
+            "positive": 0.99
+          },
+          "usage": {
+            "prompt_tokens": 246,
+            "completion_tokens": 52,
+            "total_tokens": 298
+          },
+          "attempts": 1
+        }
+      }
+    },
+    {
+      "id": "sst2:239",
+      "expected": "positive",
+      "routes": {
+        "openrouter_latency": {
+          "ms": 1270.4,
+          "choice": "positive",
+          "probabilities": {
+            "negative": 0.01,
+            "positive": 0.99
+          },
+          "usage": {
+            "prompt_tokens": 255,
+            "completion_tokens": 52,
+            "total_tokens": 307
+          },
+          "attempts": 1
+        },
+        "openai_direct": {
+          "ms": 844.3,
+          "choice": "positive",
+          "probabilities": {
+            "negative": 0.01,
+            "positive": 0.99
+          },
+          "usage": {
+            "prompt_tokens": 255,
+            "completion_tokens": 51,
+            "total_tokens": 306
+          },
+          "attempts": 1
+        }
+      }
+    },
+    {
+      "id": "sst2:222",
+      "expected": "positive",
+      "routes": {
+        "openai_direct": {
+          "ms": 762.8,
+          "choice": "positive",
+          "probabilities": {
+            "negative": 0.1,
+            "positive": 0.9
+          },
+          "usage": {
+            "prompt_tokens": 267,
+            "completion_tokens": 51,
+            "total_tokens": 318
+          },
+          "attempts": 1
+        },
+        "openrouter_latency": {
+          "ms": 1317.0,
+          "choice": "positive",
+          "probabilities": {
+            "negative": 0.09,
+            "positive": 0.91
+          },
+          "usage": {
+            "prompt_tokens": 267,
+            "completion_tokens": 52,
+            "total_tokens": 319
+          },
+          "attempts": 1
+        }
+      }
+    },
+    {
+      "id": "sst2:211",
+      "expected": "negative",
+      "routes": {
+        "openrouter_latency": {
+          "ms": 785.8,
+          "choice": "negative",
+          "probabilities": {
+            "negative": 0.95,
+            "positive": 0.05
+          },
+          "usage": {
+            "prompt_tokens": 261,
+            "completion_tokens": 52,
+            "total_tokens": 313
+          },
+          "attempts": 1
+        },
+        "openai_direct": {
+          "ms": 791.3,
+          "choice": "positive",
+          "probabilities": {
+            "negative": 0.01,
+            "positive": 0.99
+          },
+          "usage": {
+            "prompt_tokens": 261,
+            "completion_tokens": 51,
+            "total_tokens": 312
+          },
+          "attempts": 1
+        }
+      }
+    },
+    {
+      "id": "sst2:287",
+      "expected": "positive",
+      "routes": {
+        "openai_direct": {
+          "ms": 1053.2,
+          "choice": "positive",
+          "probabilities": {
+            "negative": 0.01,
+            "positive": 0.99
+          },
+          "usage": {
+            "prompt_tokens": 281,
+            "completion_tokens": 51,
+            "total_tokens": 332
+          },
+          "attempts": 1
+        },
+        "openrouter_latency": {
+          "ms": 2390.8,
+          "choice": "positive",
+          "probabilities": {
+            "negative": 0.01,
+            "positive": 0.99
+          },
+          "usage": {
+            "prompt_tokens": 281,
+            "completion_tokens": 52,
+            "total_tokens": 333
+          },
+          "attempts": 1
+        }
+      }
+    },
+    {
+      "id": "sst2:262",
+      "expected": "negative",
+      "routes": {
+        "openrouter_latency": {
+          "ms": 1767.7,
+          "choice": "negative",
+          "probabilities": {
+            "negative": 0.99,
+            "positive": 0.01
+          },
+          "usage": {
+            "prompt_tokens": 278,
+            "completion_tokens": 52,
+            "total_tokens": 330
+          },
+          "attempts": 1
+        },
+        "openai_direct": {
+          "ms": 1822.7,
+          "choice": "negative",
+          "probabilities": {
+            "negative": 0.99,
+            "positive": 0.01
+          },
+          "usage": {
+            "prompt_tokens": 629,
+            "completion_tokens": 101,
+            "total_tokens": 730
+          },
+          "attempts": 2
+        }
+      }
+    },
+    {
+      "id": "sst2:204",
+      "expected": "positive",
+      "routes": {
+        "openai_direct": {
+          "ms": 888.8,
+          "choice": "positive",
+          "probabilities": {
+            "negative": 0.15,
+            "positive": 0.85
+          },
+          "usage": {
+            "prompt_tokens": 268,
+            "completion_tokens": 51,
+            "total_tokens": 319
+          },
+          "attempts": 1
+        },
+        "openrouter_latency": {
+          "ms": 1092.1,
+          "choice": "positive",
+          "probabilities": {
+            "negative": 0.05,
+            "positive": 0.95
+          },
+          "usage": {
+            "prompt_tokens": 268,
+            "completion_tokens": 52,
+            "total_tokens": 320
+          },
+          "attempts": 1
+        }
+      }
+    },
+    {
+      "id": "sst2:230",
+      "expected": "positive",
+      "routes": {
+        "openrouter_latency": {
+          "ms": 1416.1,
+          "choice": "negative",
+          "probabilities": {
+            "negative": 0.98,
+            "positive": 0.02
+          },
+          "usage": {
+            "prompt_tokens": 257,
+            "completion_tokens": 52,
+            "total_tokens": 309
+          },
+          "attempts": 1
+        },
+        "openai_direct": {
+          "ms": 808.6,
+          "choice": "negative",
+          "probabilities": {
+            "negative": 0.99,
+            "positive": 0.01
+          },
+          "usage": {
+            "prompt_tokens": 257,
+            "completion_tokens": 51,
+            "total_tokens": 308
+          },
+          "attempts": 1
+        }
+      }
+    },
+    {
+      "id": "sst2:205",
+      "expected": "positive",
+      "routes": {
+        "openai_direct": {
+          "ms": 909.1,
+          "choice": "positive",
+          "probabilities": {
+            "negative": 0.01,
+            "positive": 0.99
+          },
+          "usage": {
+            "prompt_tokens": 246,
+            "completion_tokens": 51,
+            "total_tokens": 297
+          },
+          "attempts": 1
+        },
+        "openrouter_latency": {
+          "ms": 2253.1,
+          "choice": "positive",
+          "probabilities": {
+            "negative": 0.02,
+            "positive": 0.98
+          },
+          "usage": {
+            "prompt_tokens": 246,
+            "completion_tokens": 52,
+            "total_tokens": 298
+          },
+          "attempts": 1
+        }
+      }
+    },
+    {
+      "id": "sst2:224",
+      "expected": "positive",
+      "routes": {
+        "openrouter_latency": {
+          "ms": 1427.4,
+          "choice": "positive",
+          "probabilities": {
+            "negative": 0.25,
+            "positive": 0.75
+          },
+          "usage": {
+            "prompt_tokens": 266,
+            "completion_tokens": 52,
+            "total_tokens": 318
+          },
+          "attempts": 1
+        },
+        "openai_direct": {
+          "ms": 798.9,
+          "choice": "positive",
+          "probabilities": {
+            "negative": 0.15,
+            "positive": 0.85
+          },
+          "usage": {
+            "prompt_tokens": 266,
+            "completion_tokens": 51,
+            "total_tokens": 317
+          },
+          "attempts": 1
+        }
+      }
+    },
+    {
+      "id": "sst2:251",
+      "expected": "negative",
+      "routes": {
+        "openai_direct": {
+          "ms": 807.5,
+          "choice": "negative",
+          "probabilities": {
+            "negative": 1,
+            "positive": 0
+          },
+          "usage": {
+            "prompt_tokens": 252,
+            "completion_tokens": 39,
+            "total_tokens": 291
+          },
+          "attempts": 1
+        },
+        "openrouter_latency": {
+          "ms": 5938.6,
+          "choice": "negative",
+          "probabilities": {
+            "negative": 1,
+            "positive": 0
+          },
+          "usage": {
+            "prompt_tokens": 252,
+            "completion_tokens": 40,
+            "total_tokens": 292
+          },
+          "attempts": 1
+        }
+      }
+    },
+    {
+      "id": "sst2:268",
+      "expected": "negative",
+      "routes": {
+        "openrouter_latency": {
+          "ms": 1418.6,
+          "choice": "negative",
+          "probabilities": {
+            "negative": 1,
+            "positive": 0
+          },
+          "usage": {
+            "prompt_tokens": 260,
+            "completion_tokens": 40,
+            "total_tokens": 300
+          },
+          "attempts": 1
+        },
+        "openai_direct": {
+          "ms": 670.6,
+          "choice": "negative",
+          "probabilities": {
+            "negative": 1,
+            "positive": 0
+          },
+          "usage": {
+            "prompt_tokens": 260,
+            "completion_tokens": 39,
+            "total_tokens": 299
+          },
+          "attempts": 1
+        }
+      }
+    },
+    {
+      "id": "sst2:250",
+      "expected": "positive",
+      "routes": {
+        "openai_direct": {
+          "ms": 747.3,
+          "choice": "positive",
+          "probabilities": {
+            "negative": 0,
+            "positive": 1
+          },
+          "usage": {
+            "prompt_tokens": 251,
+            "completion_tokens": 39,
+            "total_tokens": 290
+          },
+          "attempts": 1
+        },
+        "openrouter_latency": {
+          "ms": 1471.3,
+          "choice": "positive",
+          "probabilities": {
+            "negative": 0.01,
+            "positive": 0.99
+          },
+          "usage": {
+            "prompt_tokens": 251,
+            "completion_tokens": 52,
+            "total_tokens": 303
+          },
+          "attempts": 1
+        }
+      }
+    },
+    {
+      "id": "sst2:215",
+      "expected": "positive",
+      "routes": {
+        "openrouter_latency": {
+          "ms": 1386.7,
+          "choice": "positive",
+          "probabilities": {
+            "negative": 0.05,
+            "positive": 0.95
+          },
+          "usage": {
+            "prompt_tokens": 268,
+            "completion_tokens": 52,
+            "total_tokens": 320
+          },
+          "attempts": 1
+        },
+        "openai_direct": {
+          "ms": 968.7,
+          "choice": "positive",
+          "probabilities": {
+            "negative": 0.02,
+            "positive": 0.98
+          },
+          "usage": {
+            "prompt_tokens": 268,
+            "completion_tokens": 51,
+            "total_tokens": 319
+          },
+          "attempts": 1
+        }
+      }
+    },
+    {
+      "id": "sst2:225",
+      "expected": "positive",
+      "routes": {
+        "openai_direct": {
+          "ms": 1728.2,
+          "choice": "positive",
+          "probabilities": {
+            "negative": 0.01,
+            "positive": 0.99
+          },
+          "usage": {
+            "prompt_tokens": 593,
+            "completion_tokens": 101,
+            "total_tokens": 694
+          },
+          "attempts": 2
+        },
+        "openrouter_latency": {
+          "ms": 1706.0,
+          "choice": "positive",
+          "probabilities": {
+            "negative": 0.01,
+            "positive": 0.99
+          },
+          "usage": {
+            "prompt_tokens": 260,
+            "completion_tokens": 52,
+            "total_tokens": 312
+          },
+          "attempts": 1
+        }
+      }
+    },
+    {
+      "id": "sst2:256",
+      "expected": "negative",
+      "routes": {
+        "openrouter_latency": {
+          "ms": 5758.6,
+          "choice": "negative",
+          "probabilities": {
+            "negative": 0.99,
+            "positive": 0.01
+          },
+          "usage": {
+            "prompt_tokens": 567,
+            "completion_tokens": 103,
+            "total_tokens": 670
+          },
+          "attempts": 2
+        },
+        "openai_direct": {
+          "ms": 1153.6,
+          "choice": "negative",
+          "probabilities": {
+            "negative": 1,
+            "positive": 0
+          },
+          "usage": {
+            "prompt_tokens": 247,
+            "completion_tokens": 43,
+            "total_tokens": 290
+          },
+          "attempts": 1
+        }
+      }
+    },
+    {
+      "id": "sst2:265",
+      "expected": "negative",
+      "routes": {
+        "openai_direct": {
+          "ms": 1047.4,
+          "choice": "negative",
+          "probabilities": {
+            "negative": 0.99,
+            "positive": 0.01
+          },
+          "usage": {
+            "prompt_tokens": 265,
+            "completion_tokens": 51,
+            "total_tokens": 316
+          },
+          "attempts": 1
+        },
+        "openrouter_latency": {
+          "ms": 1134.3,
+          "choice": "negative",
+          "probabilities": {
+            "negative": 0.98,
+            "positive": 0.02
+          },
+          "usage": {
+            "prompt_tokens": 265,
+            "completion_tokens": 52,
+            "total_tokens": 317
+          },
+          "attempts": 1
+        }
+      }
+    },
+    {
+      "id": "sst2:281",
+      "expected": "negative",
+      "routes": {
+        "openrouter_latency": {
+          "ms": 1128.7,
+          "choice": "negative",
+          "probabilities": {
+            "negative": 1,
+            "positive": 0
+          },
+          "usage": {
+            "prompt_tokens": 249,
+            "completion_tokens": 40,
+            "total_tokens": 289
+          },
+          "attempts": 1
+        },
+        "openai_direct": {
+          "ms": 1744.8,
+          "choice": "negative",
+          "probabilities": {
+            "negative": 0.99,
+            "positive": 0.01
+          },
+          "usage": {
+            "prompt_tokens": 571,
+            "completion_tokens": 101,
+            "total_tokens": 672
+          },
+          "attempts": 2
+        }
+      }
+    },
+    {
+      "id": "sst2:233",
+      "expected": "negative",
+      "routes": {
+        "openai_direct": {
+          "ms": 786.4,
+          "choice": "negative",
+          "probabilities": {
+            "negative": 1,
+            "positive": 0
+          },
+          "usage": {
+            "prompt_tokens": 252,
+            "completion_tokens": 39,
+            "total_tokens": 291
+          },
+          "attempts": 1
+        },
+        "openrouter_latency": {
+          "ms": 3829.1,
+          "choice": "negative",
+          "probabilities": {
+            "negative": 1,
+            "positive": 0
+          },
+          "usage": {
+            "prompt_tokens": 252,
+            "completion_tokens": 40,
+            "total_tokens": 292
+          },
+          "attempts": 1
+        }
+      }
+    },
+    {
+      "id": "sst2:260",
+      "expected": "negative",
+      "routes": {
+        "openrouter_latency": {
+          "ms": 1846.6,
+          "choice": "positive",
+          "probabilities": {
+            "negative": 0.45,
+            "positive": 0.55
+          },
+          "usage": {
+            "prompt_tokens": 266,
+            "completion_tokens": 52,
+            "total_tokens": 318
+          },
+          "attempts": 1
+        },
+        "openai_direct": {
+          "ms": 694.3,
+          "choice": "positive",
+          "probabilities": {
+            "negative": 0.45,
+            "positive": 0.55
+          },
+          "usage": {
+            "prompt_tokens": 266,
+            "completion_tokens": 51,
+            "total_tokens": 317
+          },
+          "attempts": 1
+        }
+      }
+    },
+    {
+      "id": "sst2:218",
+      "expected": "negative",
+      "routes": {
+        "openai_direct": {
+          "ms": 733.3,
+          "choice": "negative",
+          "probabilities": {
+            "negative": 0.95,
+            "positive": 0.05
+          },
+          "usage": {
+            "prompt_tokens": 250,
+            "completion_tokens": 51,
+            "total_tokens": 301
+          },
+          "attempts": 1
+        },
+        "openrouter_latency": {
+          "ms": 1443.8,
+          "choice": "negative",
+          "probabilities": {
+            "negative": 0.97,
+            "positive": 0.03
+          },
+          "usage": {
+            "prompt_tokens": 250,
+            "completion_tokens": 52,
+            "total_tokens": 302
+          },
+          "attempts": 1
+        }
+      }
+    },
+    {
+      "id": "sst2:299",
+      "expected": "positive",
+      "routes": {
+        "openrouter_latency": {
+          "ms": 1821.9,
+          "choice": "positive",
+          "probabilities": {
+            "negative": 0.2,
+            "positive": 0.8
+          },
+          "usage": {
+            "prompt_tokens": 261,
+            "completion_tokens": 52,
+            "total_tokens": 313
+          },
+          "attempts": 1
+        },
+        "openai_direct": {
+          "ms": 850.0,
+          "choice": "positive",
+          "probabilities": {
+            "negative": 0.15,
+            "positive": 0.85
+          },
+          "usage": {
+            "prompt_tokens": 261,
+            "completion_tokens": 51,
+            "total_tokens": 312
+          },
+          "attempts": 1
+        }
+      }
+    }
+  ]
+}
