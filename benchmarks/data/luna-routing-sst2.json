@@ -1,0 +1,1221 @@
+{
+  "model": "openai/gpt-6-luna",
+  "records": [
+    {
+      "id": "sst2:292",
+      "expected": "negative",
+      "routes": {
+        "default": {
+          "ms": 2141.5,
+          "choice": "negative",
+          "probabilities": {
+            "negative": 0.98,
+            "positive": 0.02
+          },
+          "tokens": {
+            "input_tokens": 269,
+            "output_tokens": 52,
+            "cache_read_tokens": 0,
+            "cache_write_tokens": 0,
+            "thinking_tokens": 0
+          },
+          "attempts": 1
+        },
+        "latency_sort": {
+          "ms": 1606.2,
+          "choice": "negative",
+          "probabilities": {
+            "negative": 0.99,
+            "positive": 0.01
+          },
+          "tokens": {
+            "input_tokens": 269,
+            "output_tokens": 58,
+            "cache_read_tokens": 0,
+            "cache_write_tokens": 0,
+            "thinking_tokens": 0
+          },
+          "attempts": 1
+        }
+      }
+    },
+    {
+      "id": "sst2:247",
+      "expected": "negative",
+      "routes": {
+        "latency_sort": {
+          "ms": 1943.7,
+          "choice": "negative",
+          "probabilities": {
+            "negative": 0.99,
+            "positive": 0.01
+          },
+          "tokens": {
+            "input_tokens": 278,
+            "output_tokens": 52,
+            "cache_read_tokens": 0,
+            "cache_write_tokens": 0,
+            "thinking_tokens": 0
+          },
+          "attempts": 1
+        },
+        "default": {
+          "ms": 1336.9,
+          "choice": "negative",
+          "probabilities": {
+            "negative": 1.0,
+            "positive": 0.0
+          },
+          "tokens": {
+            "input_tokens": 278,
+            "output_tokens": 40,
+            "cache_read_tokens": 0,
+            "cache_write_tokens": 0,
+            "thinking_tokens": 0
+          },
+          "attempts": 1
+        }
+      }
+    },
+    {
+      "id": "sst2:212",
+      "expected": "negative",
+      "routes": {
+        "default": {
+          "ms": 5067.3,
+          "choice": "negative",
+          "probabilities": {
+            "negative": 1.0,
+            "positive": 0.0
+          },
+          "tokens": {
+            "input_tokens": 251,
+            "output_tokens": 40,
+            "cache_read_tokens": 0,
+            "cache_write_tokens": 0,
+            "thinking_tokens": 0
+          },
+          "attempts": 1
+        },
+        "latency_sort": {
+          "ms": 1596.9,
+          "choice": "negative",
+          "probabilities": {
+            "negative": 1.0,
+            "positive": 0.0
+          },
+          "tokens": {
+            "input_tokens": 251,
+            "output_tokens": 40,
+            "cache_read_tokens": 0,
+            "cache_write_tokens": 0,
+            "thinking_tokens": 0
+          },
+          "attempts": 1
+        }
+      }
+    },
+    {
+      "id": "sst2:238",
+      "expected": "negative",
+      "routes": {
+        "latency_sort": {
+          "ms": 845.8,
+          "choice": "negative",
+          "probabilities": {
+            "negative": 0.98,
+            "positive": 0.02
+          },
+          "tokens": {
+            "input_tokens": 250,
+            "output_tokens": 52,
+            "cache_read_tokens": 0,
+            "cache_write_tokens": 0,
+            "thinking_tokens": 0
+          },
+          "attempts": 1
+        },
+        "default": {
+          "ms": 1615.8,
+          "choice": "negative",
+          "probabilities": {
+            "negative": 0.97,
+            "positive": 0.03
+          },
+          "tokens": {
+            "input_tokens": 250,
+            "output_tokens": 52,
+            "cache_read_tokens": 0,
+            "cache_write_tokens": 0,
+            "thinking_tokens": 0
+          },
+          "attempts": 1
+        }
+      }
+    },
+    {
+      "id": "sst2:273",
+      "expected": "positive",
+      "routes": {
+        "default": {
+          "ms": 1217.5,
+          "choice": "negative",
+          "probabilities": {
+            "negative": 0.95,
+            "positive": 0.05
+          },
+          "tokens": {
+            "input_tokens": 249,
+            "output_tokens": 52,
+            "cache_read_tokens": 0,
+            "cache_write_tokens": 0,
+            "thinking_tokens": 0
+          },
+          "attempts": 1
+        },
+        "latency_sort": {
+          "ms": 1747.0,
+          "choice": "negative",
+          "probabilities": {
+            "negative": 0.95,
+            "positive": 0.05
+          },
+          "tokens": {
+            "input_tokens": 249,
+            "output_tokens": 52,
+            "cache_read_tokens": 0,
+            "cache_write_tokens": 0,
+            "thinking_tokens": 0
+          },
+          "attempts": 1
+        }
+      }
+    },
+    {
+      "id": "sst2:270",
+      "expected": "positive",
+      "routes": {
+        "latency_sort": {
+          "ms": 1814.6,
+          "choice": "positive",
+          "probabilities": {
+            "negative": 0.18,
+            "positive": 0.82
+          },
+          "tokens": {
+            "input_tokens": 245,
+            "output_tokens": 52,
+            "cache_read_tokens": 0,
+            "cache_write_tokens": 0,
+            "thinking_tokens": 0
+          },
+          "attempts": 1
+        },
+        "default": {
+          "ms": 1722.8,
+          "choice": "positive",
+          "probabilities": {
+            "negative": 0.15,
+            "positive": 0.85
+          },
+          "tokens": {
+            "input_tokens": 245,
+            "output_tokens": 52,
+            "cache_read_tokens": 0,
+            "cache_write_tokens": 0,
+            "thinking_tokens": 0
+          },
+          "attempts": 1
+        }
+      }
+    },
+    {
+      "id": "sst2:284",
+      "expected": "negative",
+      "routes": {
+        "default": {
+          "ms": 1177.1,
+          "choice": "negative",
+          "probabilities": {
+            "negative": 0.98,
+            "positive": 0.02
+          },
+          "tokens": {
+            "input_tokens": 246,
+            "output_tokens": 52,
+            "cache_read_tokens": 0,
+            "cache_write_tokens": 0,
+            "thinking_tokens": 0
+          },
+          "attempts": 1
+        },
+        "latency_sort": {
+          "ms": 2307.7,
+          "choice": "negative",
+          "probabilities": {
+            "negative": 0.98,
+            "positive": 0.02
+          },
+          "tokens": {
+            "input_tokens": 246,
+            "output_tokens": 52,
+            "cache_read_tokens": 0,
+            "cache_write_tokens": 0,
+            "thinking_tokens": 0
+          },
+          "attempts": 1
+        }
+      }
+    },
+    {
+      "id": "sst2:217",
+      "expected": "negative",
+      "routes": {
+        "latency_sort": {
+          "ms": 1577.8,
+          "choice": "negative",
+          "probabilities": {
+            "negative": 0.95,
+            "positive": 0.05
+          },
+          "tokens": {
+            "input_tokens": 273,
+            "output_tokens": 52,
+            "cache_read_tokens": 0,
+            "cache_write_tokens": 0,
+            "thinking_tokens": 0
+          },
+          "attempts": 1
+        },
+        "default": {
+          "ms": 5070.7,
+          "choice": "negative",
+          "probabilities": {
+            "negative": 0.92,
+            "positive": 0.08
+          },
+          "tokens": {
+            "input_tokens": 273,
+            "output_tokens": 52,
+            "cache_read_tokens": 0,
+            "cache_write_tokens": 0,
+            "thinking_tokens": 0
+          },
+          "attempts": 1
+        }
+      }
+    },
+    {
+      "id": "sst2:236",
+      "expected": "positive",
+      "routes": {
+        "default": {
+          "ms": 10580.8,
+          "choice": "positive",
+          "probabilities": {
+            "negative": 0.04,
+            "positive": 0.96
+          },
+          "tokens": {
+            "input_tokens": 270,
+            "output_tokens": 52,
+            "cache_read_tokens": 0,
+            "cache_write_tokens": 0,
+            "thinking_tokens": 0
+          },
+          "attempts": 1
+        },
+        "latency_sort": {
+          "ms": 1713.3,
+          "choice": "positive",
+          "probabilities": {
+            "negative": 0.04,
+            "positive": 0.96
+          },
+          "tokens": {
+            "input_tokens": 270,
+            "output_tokens": 52,
+            "cache_read_tokens": 0,
+            "cache_write_tokens": 0,
+            "thinking_tokens": 0
+          },
+          "attempts": 1
+        }
+      }
+    },
+    {
+      "id": "sst2:295",
+      "expected": "positive",
+      "routes": {
+        "latency_sort": {
+          "ms": 1184.2,
+          "choice": "positive",
+          "probabilities": {
+            "negative": 0.43,
+            "positive": 0.57
+          },
+          "tokens": {
+            "input_tokens": 247,
+            "output_tokens": 52,
+            "cache_read_tokens": 0,
+            "cache_write_tokens": 0,
+            "thinking_tokens": 0
+          },
+          "attempts": 1
+        },
+        "default": {
+          "ms": 3573.3,
+          "choice": "negative",
+          "probabilities": {
+            "negative": 0.65,
+            "positive": 0.35
+          },
+          "tokens": {
+            "input_tokens": 247,
+            "output_tokens": 52,
+            "cache_read_tokens": 0,
+            "cache_write_tokens": 0,
+            "thinking_tokens": 0
+          },
+          "attempts": 1
+        }
+      }
+    },
+    {
+      "id": "sst2:234",
+      "expected": "positive",
+      "routes": {
+        "default": {
+          "ms": 2045.2,
+          "choice": "positive",
+          "probabilities": {
+            "negative": 0.01,
+            "positive": 0.99
+          },
+          "tokens": {
+            "input_tokens": 246,
+            "output_tokens": 52,
+            "cache_read_tokens": 0,
+            "cache_write_tokens": 0,
+            "thinking_tokens": 0
+          },
+          "attempts": 1
+        },
+        "latency_sort": {
+          "ms": 1227.8,
+          "choice": "positive",
+          "probabilities": {
+            "negative": 0.12,
+            "positive": 0.88
+          },
+          "tokens": {
+            "input_tokens": 246,
+            "output_tokens": 52,
+            "cache_read_tokens": 0,
+            "cache_write_tokens": 0,
+            "thinking_tokens": 0
+          },
+          "attempts": 1
+        }
+      }
+    },
+    {
+      "id": "sst2:239",
+      "expected": "positive",
+      "routes": {
+        "latency_sort": {
+          "ms": 1289.7,
+          "choice": "positive",
+          "probabilities": {
+            "negative": 0.02,
+            "positive": 0.98
+          },
+          "tokens": {
+            "input_tokens": 255,
+            "output_tokens": 52,
+            "cache_read_tokens": 0,
+            "cache_write_tokens": 0,
+            "thinking_tokens": 0
+          },
+          "attempts": 1
+        },
+        "default": {
+          "ms": 2626.1,
+          "choice": "positive",
+          "probabilities": {
+            "negative": 0.0,
+            "positive": 1.0
+          },
+          "tokens": {
+            "input_tokens": 255,
+            "output_tokens": 40,
+            "cache_read_tokens": 0,
+            "cache_write_tokens": 0,
+            "thinking_tokens": 0
+          },
+          "attempts": 1
+        }
+      }
+    },
+    {
+      "id": "sst2:222",
+      "expected": "positive",
+      "routes": {
+        "default": {
+          "ms": 3204.6,
+          "choice": "positive",
+          "probabilities": {
+            "negative": 0.05,
+            "positive": 0.95
+          },
+          "tokens": {
+            "input_tokens": 267,
+            "output_tokens": 52,
+            "cache_read_tokens": 0,
+            "cache_write_tokens": 0,
+            "thinking_tokens": 0
+          },
+          "attempts": 1
+        },
+        "latency_sort": {
+          "ms": 1083.3,
+          "choice": "positive",
+          "probabilities": {
+            "negative": 0.07,
+            "positive": 0.93
+          },
+          "tokens": {
+            "input_tokens": 267,
+            "output_tokens": 52,
+            "cache_read_tokens": 0,
+            "cache_write_tokens": 0,
+            "thinking_tokens": 0
+          },
+          "attempts": 1
+        }
+      }
+    },
+    {
+      "id": "sst2:211",
+      "expected": "negative",
+      "routes": {
+        "latency_sort": {
+          "ms": 1076.5,
+          "choice": "negative",
+          "probabilities": {
+            "negative": 0.95,
+            "positive": 0.05
+          },
+          "tokens": {
+            "input_tokens": 261,
+            "output_tokens": 52,
+            "cache_read_tokens": 0,
+            "cache_write_tokens": 0,
+            "thinking_tokens": 0
+          },
+          "attempts": 1
+        },
+        "default": {
+          "ms": 4576.0,
+          "choice": "negative",
+          "probabilities": {
+            "negative": 0.99,
+            "positive": 0.01
+          },
+          "tokens": {
+            "input_tokens": 611,
+            "output_tokens": 103,
+            "cache_read_tokens": 0,
+            "cache_write_tokens": 0,
+            "thinking_tokens": 0
+          },
+          "attempts": 2
+        }
+      }
+    },
+    {
+      "id": "sst2:287",
+      "expected": "positive",
+      "routes": {
+        "default": {
+          "ms": 1722.6,
+          "choice": "positive",
+          "probabilities": {
+            "negative": 0.01,
+            "positive": 0.99
+          },
+          "tokens": {
+            "input_tokens": 281,
+            "output_tokens": 52,
+            "cache_read_tokens": 0,
+            "cache_write_tokens": 0,
+            "thinking_tokens": 0
+          },
+          "attempts": 1
+        },
+        "latency_sort": {
+          "ms": 1629.2,
+          "choice": "positive",
+          "probabilities": {
+            "negative": 0.01,
+            "positive": 0.99
+          },
+          "tokens": {
+            "input_tokens": 281,
+            "output_tokens": 52,
+            "cache_read_tokens": 0,
+            "cache_write_tokens": 0,
+            "thinking_tokens": 0
+          },
+          "attempts": 1
+        }
+      }
+    },
+    {
+      "id": "sst2:262",
+      "expected": "negative",
+      "routes": {
+        "latency_sort": {
+          "ms": 1246.6,
+          "choice": "negative",
+          "probabilities": {
+            "negative": 0.99,
+            "positive": 0.01
+          },
+          "tokens": {
+            "input_tokens": 278,
+            "output_tokens": 52,
+            "cache_read_tokens": 0,
+            "cache_write_tokens": 0,
+            "thinking_tokens": 0
+          },
+          "attempts": 1
+        },
+        "default": {
+          "ms": 1407.0,
+          "choice": "negative",
+          "probabilities": {
+            "negative": 0.99,
+            "positive": 0.01
+          },
+          "tokens": {
+            "input_tokens": 278,
+            "output_tokens": 52,
+            "cache_read_tokens": 0,
+            "cache_write_tokens": 0,
+            "thinking_tokens": 0
+          },
+          "attempts": 1
+        }
+      }
+    },
+    {
+      "id": "sst2:204",
+      "expected": "positive",
+      "routes": {
+        "default": {
+          "ms": 1254.9,
+          "choice": "positive",
+          "probabilities": {
+            "negative": 0.15,
+            "positive": 0.85
+          },
+          "tokens": {
+            "input_tokens": 268,
+            "output_tokens": 52,
+            "cache_read_tokens": 0,
+            "cache_write_tokens": 0,
+            "thinking_tokens": 0
+          },
+          "attempts": 1
+        },
+        "latency_sort": {
+          "ms": 827.3,
+          "choice": "positive",
+          "probabilities": {
+            "negative": 0.15,
+            "positive": 0.85
+          },
+          "tokens": {
+            "input_tokens": 268,
+            "output_tokens": 52,
+            "cache_read_tokens": 0,
+            "cache_write_tokens": 0,
+            "thinking_tokens": 0
+          },
+          "attempts": 1
+        }
+      }
+    },
+    {
+      "id": "sst2:230",
+      "expected": "positive",
+      "routes": {
+        "latency_sort": {
+          "ms": 1596.3,
+          "choice": "negative",
+          "probabilities": {
+            "negative": 0.98,
+            "positive": 0.02
+          },
+          "tokens": {
+            "input_tokens": 257,
+            "output_tokens": 52,
+            "cache_read_tokens": 0,
+            "cache_write_tokens": 0,
+            "thinking_tokens": 0
+          },
+          "attempts": 1
+        },
+        "default": {
+          "ms": 1532.6,
+          "choice": "negative",
+          "probabilities": {
+            "negative": 0.99,
+            "positive": 0.01
+          },
+          "tokens": {
+            "input_tokens": 257,
+            "output_tokens": 52,
+            "cache_read_tokens": 0,
+            "cache_write_tokens": 0,
+            "thinking_tokens": 0
+          },
+          "attempts": 1
+        }
+      }
+    },
+    {
+      "id": "sst2:205",
+      "expected": "positive",
+      "routes": {
+        "default": {
+          "ms": 1697.4,
+          "choice": "positive",
+          "probabilities": {
+            "negative": 0.01,
+            "positive": 0.99
+          },
+          "tokens": {
+            "input_tokens": 246,
+            "output_tokens": 52,
+            "cache_read_tokens": 0,
+            "cache_write_tokens": 0,
+            "thinking_tokens": 0
+          },
+          "attempts": 1
+        },
+        "latency_sort": {
+          "ms": 1185.6,
+          "choice": "positive",
+          "probabilities": {
+            "negative": 0.0,
+            "positive": 1.0
+          },
+          "tokens": {
+            "input_tokens": 246,
+            "output_tokens": 40,
+            "cache_read_tokens": 0,
+            "cache_write_tokens": 0,
+            "thinking_tokens": 0
+          },
+          "attempts": 1
+        }
+      }
+    },
+    {
+      "id": "sst2:224",
+      "expected": "positive",
+      "routes": {
+        "latency_sort": {
+          "ms": 1686.5,
+          "choice": "positive",
+          "probabilities": {
+            "negative": 0.22,
+            "positive": 0.78
+          },
+          "tokens": {
+            "input_tokens": 266,
+            "output_tokens": 52,
+            "cache_read_tokens": 0,
+            "cache_write_tokens": 0,
+            "thinking_tokens": 0
+          },
+          "attempts": 1
+        },
+        "default": {
+          "ms": 7431.3,
+          "choice": "positive",
+          "probabilities": {
+            "negative": 0.3,
+            "positive": 0.7
+          },
+          "tokens": {
+            "input_tokens": 266,
+            "output_tokens": 52,
+            "cache_read_tokens": 0,
+            "cache_write_tokens": 0,
+            "thinking_tokens": 0
+          },
+          "attempts": 1
+        }
+      }
+    },
+    {
+      "id": "sst2:251",
+      "expected": "negative",
+      "routes": {
+        "default": {
+          "ms": 1315.4,
+          "choice": "negative",
+          "probabilities": {
+            "negative": 0.99,
+            "positive": 0.01
+          },
+          "tokens": {
+            "input_tokens": 252,
+            "output_tokens": 52,
+            "cache_read_tokens": 0,
+            "cache_write_tokens": 0,
+            "thinking_tokens": 0
+          },
+          "attempts": 1
+        },
+        "latency_sort": {
+          "ms": 1431.2,
+          "choice": "negative",
+          "probabilities": {
+            "negative": 1.0,
+            "positive": 0.0
+          },
+          "tokens": {
+            "input_tokens": 252,
+            "output_tokens": 40,
+            "cache_read_tokens": 0,
+            "cache_write_tokens": 0,
+            "thinking_tokens": 0
+          },
+          "attempts": 1
+        }
+      }
+    },
+    {
+      "id": "sst2:268",
+      "expected": "negative",
+      "routes": {
+        "latency_sort": {
+          "ms": 1386.0,
+          "choice": "negative",
+          "probabilities": {
+            "negative": 1.0,
+            "positive": 0.0
+          },
+          "tokens": {
+            "input_tokens": 260,
+            "output_tokens": 40,
+            "cache_read_tokens": 0,
+            "cache_write_tokens": 0,
+            "thinking_tokens": 0
+          },
+          "attempts": 1
+        },
+        "default": {
+          "ms": 8693.2,
+          "choice": "negative",
+          "probabilities": {
+            "negative": 0.99,
+            "positive": 0.01
+          },
+          "tokens": {
+            "input_tokens": 609,
+            "output_tokens": 103,
+            "cache_read_tokens": 0,
+            "cache_write_tokens": 0,
+            "thinking_tokens": 0
+          },
+          "attempts": 2
+        }
+      }
+    },
+    {
+      "id": "sst2:250",
+      "expected": "positive",
+      "routes": {
+        "default": {
+          "ms": 9427.1,
+          "choice": "positive",
+          "probabilities": {
+            "negative": 0.01,
+            "positive": 0.99
+          },
+          "tokens": {
+            "input_tokens": 251,
+            "output_tokens": 52,
+            "cache_read_tokens": 0,
+            "cache_write_tokens": 0,
+            "thinking_tokens": 0
+          },
+          "attempts": 1
+        },
+        "latency_sort": {
+          "ms": 1172.8,
+          "choice": "positive",
+          "probabilities": {
+            "negative": 0.0,
+            "positive": 1.0
+          },
+          "tokens": {
+            "input_tokens": 251,
+            "output_tokens": 40,
+            "cache_read_tokens": 0,
+            "cache_write_tokens": 0,
+            "thinking_tokens": 0
+          },
+          "attempts": 1
+        }
+      }
+    },
+    {
+      "id": "sst2:215",
+      "expected": "positive",
+      "routes": {
+        "latency_sort": {
+          "ms": 4537.3,
+          "choice": "positive",
+          "probabilities": {
+            "negative": 0.02,
+            "positive": 0.98
+          },
+          "tokens": {
+            "input_tokens": 268,
+            "output_tokens": 52,
+            "cache_read_tokens": 0,
+            "cache_write_tokens": 0,
+            "thinking_tokens": 0
+          },
+          "attempts": 1
+        },
+        "default": {
+          "ms": 2373.6,
+          "choice": "positive",
+          "probabilities": {
+            "negative": 0.01,
+            "positive": 0.99
+          },
+          "tokens": {
+            "input_tokens": 268,
+            "output_tokens": 52,
+            "cache_read_tokens": 0,
+            "cache_write_tokens": 0,
+            "thinking_tokens": 0
+          },
+          "attempts": 1
+        }
+      }
+    },
+    {
+      "id": "sst2:225",
+      "expected": "positive",
+      "routes": {
+        "default": {
+          "ms": 2268.2,
+          "choice": "positive",
+          "probabilities": {
+            "negative": 0.01,
+            "positive": 0.99
+          },
+          "tokens": {
+            "input_tokens": 260,
+            "output_tokens": 52,
+            "cache_read_tokens": 0,
+            "cache_write_tokens": 0,
+            "thinking_tokens": 0
+          },
+          "attempts": 1
+        },
+        "latency_sort": {
+          "ms": 1172.6,
+          "choice": "positive",
+          "probabilities": {
+            "negative": 0.01,
+            "positive": 0.99
+          },
+          "tokens": {
+            "input_tokens": 260,
+            "output_tokens": 52,
+            "cache_read_tokens": 0,
+            "cache_write_tokens": 0,
+            "thinking_tokens": 0
+          },
+          "attempts": 1
+        }
+      }
+    },
+    {
+      "id": "sst2:256",
+      "expected": "negative",
+      "routes": {
+        "latency_sort": {
+          "ms": 10842.7,
+          "choice": "negative",
+          "probabilities": {
+            "negative": 0.99,
+            "positive": 0.01
+          },
+          "tokens": {
+            "input_tokens": 583,
+            "output_tokens": 103,
+            "cache_read_tokens": 0,
+            "cache_write_tokens": 0,
+            "thinking_tokens": 0
+          },
+          "attempts": 2
+        },
+        "default": {
+          "ms": 1742.7,
+          "choice": "negative",
+          "probabilities": {
+            "negative": 0.99,
+            "positive": 0.01
+          },
+          "tokens": {
+            "input_tokens": 247,
+            "output_tokens": 52,
+            "cache_read_tokens": 0,
+            "cache_write_tokens": 0,
+            "thinking_tokens": 0
+          },
+          "attempts": 1
+        }
+      }
+    },
+    {
+      "id": "sst2:265",
+      "expected": "negative",
+      "routes": {
+        "default": {
+          "ms": 4705.4,
+          "choice": "negative",
+          "probabilities": {
+            "negative": 0.98,
+            "positive": 0.02
+          },
+          "tokens": {
+            "input_tokens": 265,
+            "output_tokens": 52,
+            "cache_read_tokens": 0,
+            "cache_write_tokens": 0,
+            "thinking_tokens": 0
+          },
+          "attempts": 1
+        },
+        "latency_sort": {
+          "ms": 1766.8,
+          "choice": "negative",
+          "probabilities": {
+            "negative": 0.98,
+            "positive": 0.02
+          },
+          "tokens": {
+            "input_tokens": 265,
+            "output_tokens": 52,
+            "cache_read_tokens": 0,
+            "cache_write_tokens": 0,
+            "thinking_tokens": 0
+          },
+          "attempts": 1
+        }
+      }
+    },
+    {
+      "id": "sst2:281",
+      "expected": "negative",
+      "routes": {
+        "latency_sort": {
+          "ms": 1461.0,
+          "choice": "negative",
+          "probabilities": {
+            "negative": 1.0,
+            "positive": 0.0
+          },
+          "tokens": {
+            "input_tokens": 249,
+            "output_tokens": 40,
+            "cache_read_tokens": 0,
+            "cache_write_tokens": 0,
+            "thinking_tokens": 0
+          },
+          "attempts": 1
+        },
+        "default": {
+          "ms": 3118.4,
+          "choice": "negative",
+          "probabilities": {
+            "negative": 0.99,
+            "positive": 0.01
+          },
+          "tokens": {
+            "input_tokens": 587,
+            "output_tokens": 103,
+            "cache_read_tokens": 0,
+            "cache_write_tokens": 0,
+            "thinking_tokens": 0
+          },
+          "attempts": 2
+        }
+      }
+    },
+    {
+      "id": "sst2:233",
+      "expected": "negative",
+      "routes": {
+        "default": {
+          "ms": 1537.0,
+          "choice": "negative",
+          "probabilities": {
+            "negative": 1.0,
+            "positive": 0.0
+          },
+          "tokens": {
+            "input_tokens": 252,
+            "output_tokens": 40,
+            "cache_read_tokens": 0,
+            "cache_write_tokens": 0,
+            "thinking_tokens": 0
+          },
+          "attempts": 1
+        },
+        "latency_sort": {
+          "ms": 1553.0,
+          "choice": "negative",
+          "probabilities": {
+            "negative": 1.0,
+            "positive": 0.0
+          },
+          "tokens": {
+            "input_tokens": 252,
+            "output_tokens": 40,
+            "cache_read_tokens": 0,
+            "cache_write_tokens": 0,
+            "thinking_tokens": 0
+          },
+          "attempts": 1
+        }
+      }
+    },
+    {
+      "id": "sst2:260",
+      "expected": "negative",
+      "routes": {
+        "latency_sort": {
+          "ms": 1913.7,
+          "choice": "negative",
+          "probabilities": {
+            "negative": 0.85,
+            "positive": 0.15
+          },
+          "tokens": {
+            "input_tokens": 266,
+            "output_tokens": 52,
+            "cache_read_tokens": 0,
+            "cache_write_tokens": 0,
+            "thinking_tokens": 0
+          },
+          "attempts": 1
+        },
+        "default": {
+          "ms": 1498.9,
+          "choice": "negative",
+          "probabilities": {
+            "negative": 0.95,
+            "positive": 0.05
+          },
+          "tokens": {
+            "input_tokens": 266,
+            "output_tokens": 52,
+            "cache_read_tokens": 0,
+            "cache_write_tokens": 0,
+            "thinking_tokens": 0
+          },
+          "attempts": 1
+        }
+      }
+    },
+    {
+      "id": "sst2:218",
+      "expected": "negative",
+      "routes": {
+        "default": {
+          "ms": 1253.6,
+          "choice": "negative",
+          "probabilities": {
+            "negative": 0.98,
+            "positive": 0.02
+          },
+          "tokens": {
+            "input_tokens": 250,
+            "output_tokens": 52,
+            "cache_read_tokens": 0,
+            "cache_write_tokens": 0,
+            "thinking_tokens": 0
+          },
+          "attempts": 1
+        },
+        "latency_sort": {
+          "ms": 1317.5,
+          "choice": "negative",
+          "probabilities": {
+            "negative": 0.98,
+            "positive": 0.02
+          },
+          "tokens": {
+            "input_tokens": 250,
+            "output_tokens": 52,
+            "cache_read_tokens": 0,
+            "cache_write_tokens": 0,
+            "thinking_tokens": 0
+          },
+          "attempts": 1
+        }
+      }
+    },
+    {
+      "id": "sst2:299",
+      "expected": "positive",
+      "routes": {
+        "latency_sort": {
+          "ms": 1199.2,
+          "choice": "positive",
+          "probabilities": {
+            "negative": 0.15,
+            "positive": 0.85
+          },
+          "tokens": {
+            "input_tokens": 261,
+            "output_tokens": 52,
+            "cache_read_tokens": 0,
+            "cache_write_tokens": 0,
+            "thinking_tokens": 0
+          },
+          "attempts": 1
+        },
+        "default": {
+          "ms": 9333.3,
+          "choice": "positive",
+          "probabilities": {
+            "negative": 0.15,
+            "positive": 0.85
+          },
+          "tokens": {
+            "input_tokens": 261,
+            "output_tokens": 52,
+            "cache_read_tokens": 0,
+            "cache_write_tokens": 0,
+            "thinking_tokens": 0
+          },
+          "attempts": 1
+        }
+      }
+    }
+  ]
+}
