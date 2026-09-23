@@ -107,6 +107,32 @@ Set optional `max_arms` and `max_input_bytes` in `provider_options` to cap work 
 
 The one-digit-per-answer approach was inspired by [@burkov's post on Jev](https://x.com/burkov/status/2102438687392797045). The one-call strategy follows the typed-question pattern in [TypeSafe's System One adapter](https://github.com/typesafe-ai/system-one-adapter-python).
 
+## Benchmarks
+
+On September 23, 2026, we tested both strategies with **GPT-6 Luna** (OpenRouter) and **DeepSeek V4.1 Flash** (Fireworks), alongside **Jev 1.13.0**. The test used 64 balanced [AG News](https://huggingface.co/datasets/fancyzhx/ag_news) articles with four choices and 32 balanced [SST-2](https://huggingface.co/datasets/stanfordnlp/sst2) sentences. The LLM runs used temperature zero with reasoning disabled. Latency is the median full client round trip, including any corrective retry.
+
+| AG News: 64 decisions | Correct | Brier ↓ | Median / p90 latency |
+| --- | ---: | ---: | ---: |
+| Luna, one call | 59/64 | 0.1444 | 1,320 / 1,708 ms |
+| Luna, parallel ratings | 53/64 | 0.1578 | 1,718 / 2,753 ms |
+| Jev, Luna comparison run | 59/64 | **0.1032** | **365 / 586 ms** |
+| DeepSeek, one call | 59/64 | 0.1453 | 1,001 / 2,197 ms |
+| DeepSeek, parallel ratings | 56/64 | 0.1513 | 2,577 / 3,531 ms |
+| Jev, DeepSeek comparison run | 59/64 | **0.1040** | **505 / 1,060 ms** |
+
+| SST-2: 32 judgments | Choice correct | Noul correct | Score correct | Median latency |
+| --- | ---: | ---: | ---: | ---: |
+| Luna, one call | 29/32 | 29/32 | 29/32 | 1,858 ms |
+| Luna, parallel ratings | 28/32 | 30/32 | 28/32 | 3,437 ms |
+| Jev, Luna comparison run | 30/32 | 30/32 | 30/32 | 522 ms |
+| DeepSeek, one call | 29/32 | 29/32 | 29/32 | 1,443 ms |
+| DeepSeek, parallel ratings | 30/32 | 26/32 | 28/32 | 3,009 ms |
+| Jev, DeepSeek comparison run | 30/32 | 29/32 | 30/32 | 308 ms |
+
+Each SST-2 judgment asked the same sentiment question as a Choice, a Noul, and a two-level Score. Both final one-call runs returned usable typed answers on **112/112** requests; DeepSeek needed no repair, and Luna needed two corrective retries. On these cases, one call improved AG News accuracy and median latency over parallel ratings for both LLMs. Jev matched or beat their label counts, returned better AG News Brier scores, and was faster. Brier measures the whole probability distribution against the reference label; lower is better.
+
+The Jev and parallel-rating rows come from earlier runs on the same cases, while the one-call rows were measured later. Their latency figures describe these observed runs, not a simultaneous race. These are small public-dataset samples, and the models and providers differ; the numbers are not a model-size-matched comparison. The tested cases also included eight news repeats and eight reversed-choice variants, which are excluded from the 64-case accuracy table.
+
 ## Development
 
 The gemspec requires RubyLLM 2.1 because it uses the Judge API. To develop against the unreleased local checkout, set `RUBY_LLM_PATH` to its source path when its declared version reaches 2.1. While that checkout still declares `2.0.0`, load its `lib` directory before this gem's `lib` directory and run `test/llm_judge_test.rb` directly to exercise the Judge code without Bundler's version check.
