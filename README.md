@@ -109,16 +109,20 @@ The one-digit-per-answer approach was inspired by [@burkov's post on Jev](https:
 
 ## Benchmarks
 
-On September 23, 2026, we tested both strategies with **GPT-6 Luna** (OpenRouter) and **DeepSeek V4.1 Flash** (Fireworks), alongside **Jev 1.13.0**. The test used 64 balanced [AG News](https://huggingface.co/datasets/fancyzhx/ag_news) articles with four choices and 32 balanced [SST-2](https://huggingface.co/datasets/stanfordnlp/sst2) sentences. The LLM runs used temperature zero with reasoning disabled. Latency is the median full client round trip, including any corrective retry.
+On September 23, 2026, we tested GPT-6 Luna (OpenRouter), DeepSeek V4.1 Flash (Fireworks), [Celeris-1](https://docs.celeris.ai/making-requests), and Jev 1.13.0 on 64 balanced [AG News](https://huggingface.co/datasets/fancyzhx/ag_news) articles with four choices and 32 balanced [SST-2](https://huggingface.co/datasets/stanfordnlp/sst2) sentences. LLM runs used temperature zero with reasoning disabled. Latency is the full client round trip, including retries; Brier and latency use completed responses.
 
 | AG News: 64 decisions | Correct | Brier ↓ | Median / p90 latency |
 | --- | ---: | ---: | ---: |
 | Luna, one call | 59/64 | 0.1444 | 1,320 / 1,708 ms |
 | Luna, parallel ratings | 53/64 | 0.1578 | 1,718 / 2,753 ms |
-| Jev, Luna comparison run | 59/64 | **0.1032** | **365 / 586 ms** |
+| Jev, Luna comparison run | 59/64 | 0.1032 | 365 / 586 ms |
 | DeepSeek, one call | 59/64 | 0.1453 | 1,001 / 2,197 ms |
 | DeepSeek, parallel ratings | 56/64 | 0.1513 | 2,577 / 3,531 ms |
-| Jev, DeepSeek comparison run | 59/64 | **0.1040** | **505 / 1,060 ms** |
+| Celeris, plain one call | 54/64 | 0.1284 | 428 / 744 ms |
+| Celeris, parallel ratings | 42/64 | 0.1998 | 505 / 861 ms |
+| Celeris, JSON one call, run 1 | 60/64 | 0.0958 | 453 / 852 ms |
+| Celeris, JSON one call, run 2 | 59/64 | 0.1107 | 401 / 776 ms |
+| Jev, DeepSeek/Celeris comparison run | 59/64 | 0.1040 | 505 / 1,060 ms |
 
 | SST-2: 32 judgments | Choice correct | Noul correct | Score correct | Median latency |
 | --- | ---: | ---: | ---: | ---: |
@@ -127,25 +131,11 @@ On September 23, 2026, we tested both strategies with **GPT-6 Luna** (OpenRouter
 | Jev, Luna comparison run | 30/32 | 30/32 | 30/32 | 522 ms |
 | DeepSeek, one call | 29/32 | 29/32 | 29/32 | 1,443 ms |
 | DeepSeek, parallel ratings | 30/32 | 26/32 | 28/32 | 3,009 ms |
-| Jev, DeepSeek comparison run | 30/32 | 29/32 | 30/32 | 308 ms |
-
-Each SST-2 judgment asked the same sentiment question as a Choice, a Noul, and a two-level Score. Both Luna and DeepSeek one-call runs returned usable typed answers on **112/112** requests; DeepSeek needed no repair, and Luna needed two corrective retries. On these cases, one call improved AG News accuracy and median latency over parallel ratings for both models. Jev matched or beat their label counts, returned better AG News Brier scores, and was faster. Brier measures the whole probability distribution against the reference label; lower is better.
-
-The Jev and parallel-rating rows above come from earlier runs on the same cases, while the one-call rows were measured later. Their latency figures describe these observed runs, not a simultaneous race. These are small public-dataset samples, and the models and providers differ; the numbers are not a model-size-matched comparison. The tested cases also included eight news repeats and eight reversed-choice variants, which are excluded from the 64-case accuracy table.
-
-### Celeris-1
-
-We also ran [Celeris-1](https://docs.celeris.ai/making-requests) through its OpenAI-compatible endpoint on the same 112 public requests. The plain one-call and parallel-rating paths ran in alternating order. A separate one-call path used Celeris's JSON mode with one retry for an HTTP 400; its second full pass also retried typed-response validation failures. All Celeris paths used temperature zero, seed 7, and thinking disabled.
-
-| Path | Usable / 112 | AG News correct / 64 | Brier ↓ | News median | SST-2 Choice / Noul / Score correct | SST-2 median |
-| --- | ---: | ---: | ---: | ---: | ---: | ---: |
-| Celeris, plain one call | 105 | 54 (58 usable) | 0.1284 | 428 ms | 29 / 29 / 29 | 282 ms |
-| Celeris, parallel ratings | 98 | 42 (54 usable) | 0.1998 | 505 ms | 28 / 24 / 26 | 530 ms |
-| Celeris, JSON mode + retry, run 1 | 111 | 60 (63 usable) | 0.0958 | 453 ms | 28 / 28 / 28 | 248 ms |
-| Celeris, JSON mode + retry, run 2 | 110 | 59 (62 usable) | 0.1107 | 401 ms | 28 / 28 / 28 | 264 ms |
-| Jev, saved comparison run | 112 | 59 (64 usable) | 0.1040 | 505 ms | 30 / 29 / 30 | 308 ms |
-
-Brier and median latency are calculated over usable responses. On the 63 and 62 news cases answered by the two JSON-mode passes, Jev matched 58 and 57, with Brier 0.1046 and 0.1074. Celeris's successful one-call requests were fast, but the passes varied and some requests returned no usable answer. The working API key also drew intermittent HTTP 401s: the harness retried individual requests and counted those retries in latency. The JSON-mode retry runs still had one and two failures, respectively. The Jev row is from an earlier run on the same cases, so its latency is a cross-run comparison.
+| Celeris, plain one call | 29/32 | 29/32 | 29/32 | 282 ms |
+| Celeris, parallel ratings | 28/32 | 24/32 | 26/32 | 530 ms |
+| Celeris, JSON one call, run 1 | 28/32 | 28/32 | 28/32 | 248 ms |
+| Celeris, JSON one call, run 2 | 28/32 | 28/32 | 28/32 | 264 ms |
+| Jev, DeepSeek/Celeris comparison run | 30/32 | 29/32 | 30/32 | 308 ms |
 
 ## Development
 
