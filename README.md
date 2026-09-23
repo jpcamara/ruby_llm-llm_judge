@@ -129,9 +129,23 @@ On September 23, 2026, we tested both strategies with **GPT-6 Luna** (OpenRouter
 | DeepSeek, parallel ratings | 30/32 | 26/32 | 28/32 | 3,009 ms |
 | Jev, DeepSeek comparison run | 30/32 | 29/32 | 30/32 | 308 ms |
 
-Each SST-2 judgment asked the same sentiment question as a Choice, a Noul, and a two-level Score. Both final one-call runs returned usable typed answers on **112/112** requests; DeepSeek needed no repair, and Luna needed two corrective retries. On these cases, one call improved AG News accuracy and median latency over parallel ratings for both LLMs. Jev matched or beat their label counts, returned better AG News Brier scores, and was faster. Brier measures the whole probability distribution against the reference label; lower is better.
+Each SST-2 judgment asked the same sentiment question as a Choice, a Noul, and a two-level Score. Both Luna and DeepSeek one-call runs returned usable typed answers on **112/112** requests; DeepSeek needed no repair, and Luna needed two corrective retries. On these cases, one call improved AG News accuracy and median latency over parallel ratings for both models. Jev matched or beat their label counts, returned better AG News Brier scores, and was faster. Brier measures the whole probability distribution against the reference label; lower is better.
 
-The Jev and parallel-rating rows come from earlier runs on the same cases, while the one-call rows were measured later. Their latency figures describe these observed runs, not a simultaneous race. These are small public-dataset samples, and the models and providers differ; the numbers are not a model-size-matched comparison. The tested cases also included eight news repeats and eight reversed-choice variants, which are excluded from the 64-case accuracy table.
+The Jev and parallel-rating rows above come from earlier runs on the same cases, while the one-call rows were measured later. Their latency figures describe these observed runs, not a simultaneous race. These are small public-dataset samples, and the models and providers differ; the numbers are not a model-size-matched comparison. The tested cases also included eight news repeats and eight reversed-choice variants, which are excluded from the 64-case accuracy table.
+
+### Celeris-1
+
+We also ran [Celeris-1](https://docs.celeris.ai/making-requests) through its OpenAI-compatible endpoint on the same 112 public requests. The plain one-call and parallel-rating paths ran in alternating order. A separate one-call path used Celeris's JSON mode with one retry for an HTTP 400; its second full pass also retried typed-response validation failures. All Celeris paths used temperature zero, seed 7, and thinking disabled.
+
+| Path | Usable / 112 | AG News correct / 64 | Brier ↓ | News median | SST-2 Choice / Noul / Score correct | SST-2 median |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: |
+| Celeris, plain one call | 105 | 54 (58 usable) | 0.1284 | 428 ms | 29 / 29 / 29 | 282 ms |
+| Celeris, parallel ratings | 98 | 42 (54 usable) | 0.1998 | 505 ms | 28 / 24 / 26 | 530 ms |
+| Celeris, JSON mode + retry, run 1 | 111 | 60 (63 usable) | 0.0958 | 453 ms | 28 / 28 / 28 | 248 ms |
+| Celeris, JSON mode + retry, run 2 | 110 | 59 (62 usable) | 0.1107 | 401 ms | 28 / 28 / 28 | 264 ms |
+| Jev, saved comparison run | 112 | 59 (64 usable) | 0.1040 | 505 ms | 30 / 29 / 30 | 308 ms |
+
+Brier and median latency are calculated over usable responses. On the 63 and 62 news cases answered by the two JSON-mode passes, Jev matched 58 and 57, with Brier 0.1046 and 0.1074. Celeris's successful one-call requests were fast, but the passes varied and some requests returned no usable answer. The working API key also drew intermittent HTTP 401s: the harness retried individual requests and counted those retries in latency. The JSON-mode retry runs still had one and two failures, respectively. The Jev row is from an earlier run on the same cases, so its latency is a cross-run comparison.
 
 ## Development
 
