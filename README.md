@@ -99,7 +99,9 @@ The model returns one JSON object containing a distribution for each question. T
 
 ## How scoring works
 
-The default `:ratings` strategy asks the model to rate every declared answer from 0 to 9. It makes one call per answer, with up to six calls running at once, then applies softmax to the ratings. The `:single_request` strategy asks for all distributions in one call. Both build the same RubyLLM answer types: a `choice` returns the selected answer and distribution; a `score` returns the distribution and its weighted level; a `probability` returns the positive answer's share. The gem supports Judge's 1–255 choice options, 2–10 score levels, and multiple questions in one judgment.
+The default `:ratings` strategy asks the model to rate every declared answer from 0 to 9. It makes one call per answer, with up to six calls running at once, then applies softmax to the ratings. It retries a malformed digit once. When the highest ratings tie on a Choice question, it makes a one-call JSON judgment for that question and uses its distribution. If that call also ties, it raises an error instead of choosing whichever option came first. `result.raw[:tie_breaks]` records each resolution, and token usage includes the extra call. Set `tie_breaker: :first` to use the original first-option rule, or `tie_break_max_output_tokens:` to change the tie-break response limit (default 8192).
+
+The `:single_request` strategy asks for all distributions in one call. Both strategies build the same RubyLLM answer types: a `choice` returns the selected answer and distribution; a `score` returns the distribution and its weighted level; a `probability` returns the positive answer's share. The gem supports Judge's 1–255 choice options, 2–10 score levels, and multiple questions in one judgment.
 
 These probabilities compare the answers you supplied. The `:single_request` values are reported by the chat model; the default ratings values come from softmax over its 0–9 ratings. Neither strategy establishes calibration by itself. Include an `other` or `escalate` choice when the named answers may not cover the input. `confidence` measures how concentrated the returned distribution is. Use labeled examples to set any automation thresholds.
 
@@ -109,33 +111,35 @@ The one-digit-per-answer approach was inspired by [@burkov's post on Jev](https:
 
 ## Benchmarks
 
-On September 23, 2026, we tested GPT-6 Luna (OpenRouter), DeepSeek V4.1 Flash (Fireworks), [Celeris-1](https://docs.celeris.ai/making-requests), and Jev 1.13.0 on 64 balanced [AG News](https://huggingface.co/datasets/fancyzhx/ag_news) articles with four choices and 32 balanced [SST-2](https://huggingface.co/datasets/stanfordnlp/sst2) sentences. LLM runs used temperature zero with reasoning disabled. Latency is the full client round trip, including retries; Brier and latency use completed responses.
+On September 23, 2026, we tested GPT-6 Luna (OpenRouter), DeepSeek V4.1 Flash (Fireworks), [Celeris-1](https://docs.celeris.ai/making-requests), and Jev 1.13.0 on 64 balanced [AG News](https://huggingface.co/datasets/fancyzhx/ag_news) articles with four choices and 32 balanced [SST-2](https://huggingface.co/datasets/stanfordnlp/sst2) sentences. LLM runs used temperature zero with reasoning disabled. **Correct** counts all cases; **Usable** counts cases that returned a valid judgment. Brier scores and latency use usable cases only. Latency is the full client round trip, including retries.
 
-| AG News: 64 decisions | Correct | Brier ↓ | Median / p90 latency |
-| --- | ---: | ---: | ---: |
-| Luna, one call | 59/64 | 0.1444 | 1,320 / 1,708 ms |
-| Luna, parallel ratings | 53/64 | 0.1578 | 1,718 / 2,753 ms |
-| Jev, Luna comparison run | 59/64 | 0.1032 | 365 / 586 ms |
-| DeepSeek, one call | 59/64 | 0.1453 | 1,001 / 2,197 ms |
-| DeepSeek, parallel ratings | 56/64 | 0.1513 | 2,577 / 3,531 ms |
-| Celeris, plain one call | 54/64 | 0.1284 | 428 / 744 ms |
-| Celeris, parallel ratings | 42/64 | 0.1998 | 505 / 861 ms |
-| Celeris, JSON one call, run 1 | 60/64 | 0.0958 | 453 / 852 ms |
-| Celeris, JSON one call, run 2 | 59/64 | 0.1107 | 401 / 776 ms |
-| Jev, DeepSeek/Celeris comparison run | 59/64 | 0.1040 | 505 / 1,060 ms |
+| AG News model | Method | Correct / 64 | Usable / 64 | Brier ↓ | Median / p90 latency |
+| --- | --- | ---: | ---: | ---: | ---: |
+| Luna | One call | 59 | 64 | 0.1444 | 1,320 / 1,708 ms |
+| Luna | Parallel ratings | 53 | 64 | 0.1578 | 1,718 / 2,753 ms |
+| DeepSeek | One call | 59 | 64 | 0.1453 | 1,001 / 2,197 ms |
+| DeepSeek | Parallel ratings | 56 | 64 | 0.1513 | 2,577 / 3,531 ms |
+| Celeris | Plain one call | 54 | 58 | 0.1284 | 428 / 744 ms |
+| Celeris | Parallel ratings | 42 | 54 | 0.1998 | 505 / 861 ms |
+| Celeris | JSON one call + retry, run 1 | 60 | 63 | 0.0958 | 453 / 852 ms |
+| Celeris | JSON one call + retry, run 2 | 59 | 62 | 0.1107 | 401 / 776 ms |
+| Jev | Luna paired run | 59 | 64 | 0.1032 | 365 / 586 ms |
+| Jev | DeepSeek paired run | 59 | 64 | 0.1040 | 505 / 1,060 ms |
 
-| SST-2: 32 judgments | Choice correct | Noul correct | Score correct | Median latency |
-| --- | ---: | ---: | ---: | ---: |
-| Luna, one call | 29/32 | 29/32 | 29/32 | 1,858 ms |
-| Luna, parallel ratings | 28/32 | 30/32 | 28/32 | 3,437 ms |
-| Jev, Luna comparison run | 30/32 | 30/32 | 30/32 | 522 ms |
-| DeepSeek, one call | 29/32 | 29/32 | 29/32 | 1,443 ms |
-| DeepSeek, parallel ratings | 30/32 | 26/32 | 28/32 | 3,009 ms |
-| Celeris, plain one call | 29/32 | 29/32 | 29/32 | 282 ms |
-| Celeris, parallel ratings | 28/32 | 24/32 | 26/32 | 530 ms |
-| Celeris, JSON one call, run 1 | 28/32 | 28/32 | 28/32 | 248 ms |
-| Celeris, JSON one call, run 2 | 28/32 | 28/32 | 28/32 | 264 ms |
-| Jev, DeepSeek/Celeris comparison run | 30/32 | 29/32 | 30/32 | 308 ms |
+| SST-2 model | Method | Choice / 32 | Probability / 32 | Score / 32 | Usable / 32 | Median latency |
+| --- | --- | ---: | ---: | ---: | ---: | ---: |
+| Luna | One call | 29 | 29 | 29 | 32 | 1,858 ms |
+| Luna | Parallel ratings | 28 | 30 | 28 | 32 | 3,437 ms |
+| DeepSeek | One call | 29 | 29 | 29 | 32 | 1,443 ms |
+| DeepSeek | Parallel ratings | 30 | 26 | 28 | 32 | 3,009 ms |
+| Celeris | Plain one call | 29 | 29 | 29 | 32 | 282 ms |
+| Celeris | Parallel ratings | 28 | 24 | 26 | 30 | 530 ms |
+| Celeris | JSON one call + retry, run 1 | 28 | 28 | 28 | 32 | 248 ms |
+| Celeris | JSON one call + retry, run 2 | 28 | 28 | 28 | 32 | 264 ms |
+| Jev | Luna paired run | 30 | 30 | 30 | 32 | 522 ms |
+| Jev | DeepSeek paired run | 30 | 29 | 30 | 32 | 308 ms |
+
+The parallel-rating rows are saved runs of the original implementation, before malformed-digit retries and Choice tie resolution were added. Celeris's 42 correct news decisions comprise 42 correct and 12 incorrect among 54 usable results; 10 cases returned no usable judgment. Nine of the 12 incorrect decisions had tied top ratings. The Jev rows come from earlier paired runs on the same cases; Celeris was measured later against the saved DeepSeek-run baseline. The revised ratings path needs a new benchmark before assigning it performance numbers.
 
 ## Development
 

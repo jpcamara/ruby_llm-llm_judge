@@ -76,7 +76,7 @@ class LLMJudgeTest < Minitest::Test
     begin
       judge_class = Class.new(RubyLLM::Judge) do
         model 'gpt-6-luna', provider: :llm_judge, assume_model_exists: true
-        provider_options max_arms: 4
+        provider_options max_arms: 4, tie_breaker: :first
         probability :urgent, 'Is this urgent?'
         choice :team, 'Which team?', { billing: 'Payments', other: nil }
       end
@@ -91,12 +91,56 @@ class LLMJudgeTest < Minitest::Test
   end
 
   def test_tie_reports_zero_confidence
-    engine = fake_engine([5, 5])
+    engine = fake_engine([5, 5], provider_options: { tie_breaker: :first })
     question = RubyLLM::Judge::Question.from_h(:choice, type: :choice, options: { a: 'A', b: 'B' }).resolve(nil)
     result = engine.judge('state', questions: { choice: question },
                           model: RubyLLM::Model.default('gpt-6-luna', 'llm_judge'))
     assert_equal :a, result.choice.choice
     assert_equal 0.0, result.choice.confidence
+  end
+
+  def test_tied_choice_uses_one_call_to_select_without_option_order_bias
+    responder = lambda do |prompt|
+      request = JSON.parse(prompt.split("\n", 2).last)
+      assert_equal ['team'], request.fetch('questions').map { |question| question.fetch('id') }
+      { content: '{"answers":{"team":{"billing":0.2,"technical":0.8}}}',
+        tokens: RubyLLM::Tokens.new(input: 20, output: 10) }
+    end
+    scores = { 'billing — Money' => 9, 'technical — Software' => 9 }
+    scorer = lambda do |prompt|
+      { digit: scores.fetch(scores.keys.find { |suffix| prompt.end_with?(suffix) }),
+        tokens: RubyLLM::Tokens.new(input: 10, output: 1) }
+    end
+    engine = RubyLLM::LLMJudge::Engine.new(config: RubyLLM.config, scorer:, responder:)
+    question = RubyLLM::Judge::Question.from_h(:team, type: :choice,
+                                                      options: { billing: 'Money', technical: 'Software' }).resolve(nil)
+    result = engine.judge('Refund', questions: { team: question },
+                          model: RubyLLM::Model.default('gpt-6-luna', 'llm_judge'))
+
+    assert_equal :technical, result.team.choice
+    assert_in_delta 0.8, result.team.probabilities[:technical]
+    assert_equal 40, result.tokens.input
+    assert_equal 12, result.tokens.output
+    assert_equal 1, result.raw[:tie_breaks].size
+    assert_equal [9, 9], result.raw[:tie_breaks].first[:ratings]
+  end
+
+  def test_tied_choice_raises_if_one_call_cannot_resolve_it
+    responder = ->(_prompt) { { content: '{"answers":{"team":{"billing":0.5,"technical":0.5}}}',
+                                tokens: RubyLLM::Tokens.new(input: 10, output: 5) } }
+    engine = RubyLLM::LLMJudge::Engine.new(
+      config: RubyLLM.config,
+      scorer: ->(_prompt) { { digit: 9, tokens: RubyLLM::Tokens.new(input: 10, output: 1) } },
+      responder:
+    )
+    question = RubyLLM::Judge::Question.from_h(:team, type: :choice,
+                                                      options: { billing: nil, technical: nil }).resolve(nil)
+
+    error = assert_raises(RubyLLM::Error) do
+      engine.judge('Refund', questions: { team: question },
+                   model: RubyLLM::Model.default('gpt-6-luna', 'llm_judge'))
+    end
+    assert_match(/could not resolve the tie/, error.message)
   end
 
   def test_arm_budget_is_enforced_before_scoring
@@ -122,7 +166,7 @@ class LLMJudgeTest < Minitest::Test
   end
 
   def test_judge_choice_range_including_255_options
-    engine = fake_engine(Array.new(255, 5))
+    engine = fake_engine(Array.new(255, 5), provider_options: { tie_breaker: :first })
     options = 255.times.to_h { |index| ["option#{index}", nil] }
     question = RubyLLM::Judge::Question.from_h(:route, type: :choice, options:).resolve(nil)
     result = engine.judge('state', questions: { route: question },
@@ -179,6 +223,44 @@ class LLMJudgeTest < Minitest::Test
     assert_equal 4, payload[:max_completion_tokens]
     assert_equal 'none', payload[:reasoning_effort]
     assert_equal false, payload[:store]
+  end
+
+  def test_tie_breaker_uses_a_json_sized_output_limit
+    engine = RubyLLM::LLMJudge::Engine.new(
+      config: RubyLLM.config, provider_options: { tie_break_max_output_tokens: 1024 }
+    )
+    captured = nil
+    chat = Object.new
+    chat.define_singleton_method(:ask) do |_prompt|
+      Struct.new(:content, :tokens).new('{}', RubyLLM::Tokens.new(input: 1, output: 1))
+    end
+    engine.define_singleton_method(:scoring_chat) do |**options|
+      captured = options
+      chat
+    end
+
+    engine.send(:respond_with_model, 'test')
+
+    assert_equal 1024, captured[:max_output_tokens]
+  end
+
+  def test_malformed_digit_is_retried_once_and_both_calls_count_toward_usage
+    engine = RubyLLM::LLMJudge::Engine.new(config: RubyLLM.config)
+    prompts = []
+    replies = ['nine', '9']
+    fake_chat = Object.new
+    fake_chat.define_singleton_method(:ask) do |prompt|
+      prompts << prompt
+      Struct.new(:content, :tokens).new(replies.shift, RubyLLM::Tokens.new(input: 10, output: 1))
+    end
+    engine.define_singleton_method(:scoring_chat) { |**_options| fake_chat }
+
+    result = engine.send(:score_with_model, 'Score this option')
+
+    assert_equal 9, result[:digit]
+    assert_equal 20, result[:tokens].input
+    assert_equal 2, result[:tokens].output
+    assert_match(/previous answer was invalid/, prompts.last)
   end
 
   def test_non_openai_model_uses_its_own_provider

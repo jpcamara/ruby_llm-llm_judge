@@ -17,11 +17,13 @@ module RubyLLM
         @config = config
         options = provider_options.transform_keys(&:to_sym)
         allowed = %i[scoring_provider scoring_protocol temperature max_output_tokens chat_provider_options
-                     max_arms max_input_bytes strategy malformed_retries]
+                     max_arms max_input_bytes strategy malformed_retries tie_breaker tie_break_max_output_tokens]
         raise ArgumentError, 'Unknown LLMJudge provider options' unless (options.keys - allowed).empty?
 
         @strategy = options.fetch(:strategy, :ratings).to_sym
         raise ArgumentError, 'strategy must be :ratings or :single_request' unless %i[ratings single_request].include?(@strategy)
+        @tie_breaker = options.fetch(:tie_breaker, :single_request).to_sym
+        raise ArgumentError, 'tie_breaker must be :single_request or :first' unless %i[single_request first].include?(@tie_breaker)
 
         @scoring_provider = options.fetch(:scoring_provider, :openai).to_sym
         @scoring_model = model
@@ -31,12 +33,16 @@ module RubyLLM
         @scoring_protocol = options.fetch(:scoring_protocol, luna_defaults ? :chat_completions : nil)
         @temperature = options.fetch(:temperature, luna_defaults ? 0 : nil)
         @max_output_tokens = options.fetch(:max_output_tokens, @strategy == :single_request ? 8192 : 4)
+        @tie_break_max_output_tokens = options.fetch(:tie_break_max_output_tokens, 8192)
         @chat_provider_options = options.fetch(:chat_provider_options, default_chat_options(luna_defaults))
         @max_arms = options[:max_arms]
         @max_input_bytes = options[:max_input_bytes]
         @malformed_retries = options.fetch(:malformed_retries, 1)
         raise ArgumentError, 'chat_provider_options must be a Hash' unless @chat_provider_options.is_a?(Hash)
         raise ArgumentError, 'max_output_tokens must be positive' unless @max_output_tokens.is_a?(Integer) && @max_output_tokens.positive?
+        unless @tie_break_max_output_tokens.is_a?(Integer) && @tie_break_max_output_tokens.positive?
+          raise ArgumentError, 'tie_break_max_output_tokens must be positive'
+        end
         unless [@max_arms, @max_input_bytes].all? { |limit| limit.nil? || (limit.is_a?(Integer) && limit.positive?) }
           raise ArgumentError, 'LLMJudge limits must be positive integers'
         end
@@ -53,17 +59,34 @@ module RubyLLM
 
         jobs = build_jobs(input, questions)
         results = run(jobs) { |job| @scorer.call(job[:prompt]) }
+        tie_breaks = []
         answers = questions.values.to_h do |question|
           ratings = jobs.each_index.filter_map { |index|
             results[index].fetch(:digit) if jobs[index][:question] == question
           }
-          [question.name, answer(question, softmax(ratings))]
+          chosen = answer(question, softmax(ratings))
+          if question.type == :choice && ratings.count(ratings.max) > 1 && @tie_breaker == :single_request
+            judgment = judge_single_request(input, { question.name => question }, model)
+            chosen = judgment.answers.fetch(question.name)
+            probabilities = chosen.probabilities.values
+            if probabilities.count(probabilities.max) > 1
+              raise RubyLLM::Error, "Scoring model could not resolve the tie for #{question.name}"
+            end
+            tie_breaks << { question: question.name, ratings:, judgment: }
+          end
+          [question.name, chosen]
         end
-        tokens = RubyLLM::Tokens.aggregate(results.map { |result| result.fetch(:tokens) })
+        tokens = RubyLLM::Tokens.aggregate(results.map { |result| result.fetch(:tokens) } +
+                                           tie_breaks.map { |item| item[:judgment].tokens })
         RubyLLM::Judgment.new(
           answers:, model: model.id, tokens:,
           raw: { method: 'parallel_0_to_9_softmax', scoring_provider: @scoring_provider,
                  scoring_model: @scoring_model,
+                 tie_breaks: tie_breaks.map { |item|
+                   { question: item[:question], ratings: item[:ratings],
+                     probabilities: item[:judgment].answers.fetch(item[:question]).probabilities,
+                     attempts: item[:judgment].raw[:attempts] }
+                 },
                  ratings: jobs.each_with_index.map { |job, index|
                    { question: job[:question].name, option: job[:name], digit: results[index][:digit] }
                  } }
@@ -232,26 +255,32 @@ module RubyLLM
       end
 
       def score_with_model(prompt)
-        chat = scoring_chat
-        response = chat.ask(prompt)
-        digit = response.content.to_s.strip
-        raise RubyLLM::Error, 'Scoring model returned no single digit' unless /\A[0-9]\z/.match?(digit)
-
-        { digit: digit.to_i, tokens: response.tokens }
+        attempts = []
+        loop do
+          request = attempts.empty? ? prompt : "#{prompt}\n\nYour previous answer was invalid. Return exactly one ASCII digit 0-9."
+          response = scoring_chat.ask(request)
+          attempts << response
+          digit = response.content.to_s.strip
+          if /\A[0-9]\z/.match?(digit)
+            return { digit: digit.to_i, tokens: RubyLLM::Tokens.aggregate(attempts.map(&:tokens)) }
+          end
+          raise RubyLLM::Error, 'Scoring model returned no single digit' if attempts.size > @malformed_retries
+        end
       end
 
       def respond_with_model(prompt)
-        response = scoring_chat(instructions: SINGLE_REQUEST_INSTRUCTIONS).ask(prompt)
+        limit = @strategy == :ratings ? @tie_break_max_output_tokens : @max_output_tokens
+        response = scoring_chat(instructions: SINGLE_REQUEST_INSTRUCTIONS, max_output_tokens: limit).ask(prompt)
         { content: response.content.to_s, tokens: response.tokens }
       end
 
-      def scoring_chat(instructions: SYSTEM_INSTRUCTIONS)
+      def scoring_chat(instructions: SYSTEM_INSTRUCTIONS, max_output_tokens: @max_output_tokens)
         context = RubyLLM::Context.new(@config)
         chat = context.chat(model: @scoring_model, provider: @scoring_provider,
                             protocol: @scoring_protocol, assume_model_exists: true)
         chat.with_instructions(instructions)
         chat.with_temperature(@temperature) unless @temperature.nil?
-        chat.with_max_output_tokens(@max_output_tokens)
+        chat.with_max_output_tokens(max_output_tokens)
         chat.with_provider_options(@chat_provider_options)
         chat
       end
