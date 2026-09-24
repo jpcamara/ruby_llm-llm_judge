@@ -184,7 +184,7 @@ In a paired API-level run using the gem's one-call prompt, direct OpenAI was fas
 | SST-2 (32) | Direct OpenAI | 28/32 | 843 ms | 1,745 ms | 0.1042 |
 | SST-2 (32) | OpenRouter latency sort | 29/32 | 1,423 ms | 3,829 ms | 0.0762 |
 
-Direct OpenAI cut median latency by about 40% on both datasets, but lost one correct label on each and had worse Brier scores. Its SST-2 calls needed five corrective retries versus one through OpenRouter. [Direct comparison methods and results](benchmarks/luna-direct.md).
+In that paired run, direct OpenAI cut median latency by about 40% on both datasets, but lost one correct label on each and had worse Brier scores. Its SST-2 calls needed five corrective retries versus one through OpenRouter. A later direct-only repeat scored **59/64 news at 868 ms median** and **28/32 SST-2 at 1,022 ms median**, all usable. Just one news label and two sentiment labels changed across direct runs. OpenRouter was not rerun simultaneously with the repeat. [Methods and both runs' case-level results](benchmarks/luna-direct.md).
 
 A separate paired gem run sent the same one-call Luna judgments through OpenRouter's default route and `provider: { sort: 'latency' }`, rotating request order across cases. All responses were usable. Each AG News request asked one four-choice question; each SST-2 request asked Choice, Probability, and Score together. Both routes used temperature zero, reasoning disabled, and a 1024-token output limit. These results are separate from the runs above.
 
