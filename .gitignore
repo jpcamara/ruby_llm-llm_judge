@@ -7,3 +7,4 @@ coverage/
 tmp/
 vendor/bundle/
 Gemfile.lock
+pkg/
