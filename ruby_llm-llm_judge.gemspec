@@ -14,5 +14,5 @@ Gem::Specification.new do |spec|
   spec.required_ruby_version = '>= 3.1.3'
   spec.files = Dir['lib/**/*.rb', 'README.md', 'LICENSE']
   spec.require_paths = ['lib']
-  spec.add_dependency 'ruby_llm', '>= 2.1.0', '< 3.0'
+  spec.add_dependency 'ruby_llm', '>= 1.13.0', '< 3.0'
 end

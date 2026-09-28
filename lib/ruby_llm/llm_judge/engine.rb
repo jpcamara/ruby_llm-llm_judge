@@ -31,6 +31,10 @@ module RubyLLM
 
         luna_defaults = @scoring_provider == :openai && @scoring_model == DEFAULT_MODEL
         @scoring_protocol = options.fetch(:scoring_protocol, luna_defaults ? :chat_completions : nil)
+        # Before 2.1, RubyLLM chats use each provider's one chat API (Chat Completions for OpenAI).
+        if !NATIVE && ![nil, :chat_completions].include?(@scoring_protocol&.to_sym)
+          raise ArgumentError, 'scoring_protocol requires RubyLLM 2.1'
+        end
         @temperature = options.fetch(:temperature, luna_defaults ? 0 : nil)
         @max_output_tokens = options.fetch(:max_output_tokens, @strategy == :single_request ? 8192 : 4)
         @tie_break_max_output_tokens = options.fetch(:tie_break_max_output_tokens, 8192)
@@ -76,9 +80,9 @@ module RubyLLM
           end
           [question.name, chosen]
         end
-        tokens = RubyLLM::Tokens.aggregate(results.map { |result| result.fetch(:tokens) } +
-                                           tie_breaks.map { |item| item[:judgment].tokens })
-        RubyLLM::Judgment.new(
+        tokens = aggregate_tokens(results.map { |result| result.fetch(:tokens) } +
+                                  tie_breaks.map { |item| item[:judgment].tokens })
+        Types::Judgment.new(
           answers:, model: model.id, tokens:,
           raw: { method: 'parallel_0_to_9_softmax', scoring_provider: @scoring_provider,
                  scoring_model: @scoring_model,
@@ -105,9 +109,9 @@ module RubyLLM
           attempts << result
           begin
             answers, reported, normalization = parse_single_request(result.fetch(:content), specs)
-            return RubyLLM::Judgment.new(
+            return Types::Judgment.new(
               answers:, model: model.id,
-              tokens: RubyLLM::Tokens.aggregate(attempts.map { |attempt| attempt.fetch(:tokens) }),
+              tokens: aggregate_tokens(attempts.map { |attempt| attempt.fetch(:tokens) }),
               raw: { method: 'single_request_probabilities', scoring_provider: @scoring_provider,
                      scoring_model: @scoring_model, reported_probabilities: reported,
                      reported_totals: normalization, attempts: attempts.size }
@@ -262,7 +266,7 @@ module RubyLLM
           attempts << response
           digit = response.content.to_s.strip
           if /\A[0-9]\z/.match?(digit)
-            return { digit: digit.to_i, tokens: RubyLLM::Tokens.aggregate(attempts.map(&:tokens)) }
+            return { digit: digit.to_i, tokens: aggregate_tokens(attempts.map(&:tokens)) }
           end
           raise RubyLLM::Error, 'Scoring model returned no single digit' if attempts.size > @malformed_retries
         end
@@ -276,26 +280,48 @@ module RubyLLM
 
       def scoring_chat(instructions: SYSTEM_INSTRUCTIONS, max_output_tokens: @max_output_tokens)
         context = RubyLLM::Context.new(@config)
-        chat = context.chat(model: @scoring_model, provider: @scoring_provider,
-                            protocol: @scoring_protocol, assume_model_exists: true)
+        chat = if NATIVE
+                 context.chat(model: @scoring_model, provider: @scoring_provider,
+                              protocol: @scoring_protocol, assume_model_exists: true)
+               else
+                 context.chat(model: @scoring_model, provider: @scoring_provider, assume_model_exists: true)
+               end
         chat.with_instructions(instructions)
         chat.with_temperature(@temperature) unless @temperature.nil?
-        chat.with_max_output_tokens(max_output_tokens)
-        chat.with_provider_options(@chat_provider_options)
+        if NATIVE
+          chat.with_max_output_tokens(max_output_tokens)
+          chat.with_provider_options(@chat_provider_options)
+        else
+          chat.with_params(**RubyLLM::Utils.deep_merge(max_output_tokens_param(max_output_tokens), @chat_provider_options))
+        end
         chat
+      end
+
+      # The request field each provider reads for the output limit, as RubyLLM 2.1 renders it.
+      def max_output_tokens_param(limit)
+        case @scoring_provider
+        when :openai, :azure then { max_completion_tokens: limit }
+        when :gemini, :vertexai then { generationConfig: { maxOutputTokens: limit } }
+        when :bedrock then { inferenceConfig: { maxTokens: limit } }
+        else { max_tokens: limit }
+        end
+      end
+
+      def aggregate_tokens(tokens)
+        NATIVE ? RubyLLM::Tokens.aggregate(tokens) : Legacy.aggregate_tokens(tokens)
       end
 
       def answer(question, probabilities)
         case question.type
         when :probability
-          RubyLLM::Probability.new(probability: probabilities.first)
+          Types::Probability.new(probability: probabilities.first)
         when :choice
           names = question.criteria.keys
           distribution = names.zip(probabilities).to_h
-          RubyLLM::Choice.new(choice: names[probabilities.index(probabilities.max)], probabilities: distribution,
+          Types::Choice.new(choice: names[probabilities.index(probabilities.max)], probabilities: distribution,
                               confidence: concentration(probabilities))
         when :score
-          RubyLLM::Score.new(score: probabilities.each_with_index.sum { |probability, index| probability * index },
+          Types::Score.new(score: probabilities.each_with_index.sum { |probability, index| probability * index },
                              levels: question.criteria,
                              probabilities: probabilities.each_with_index.to_h { |probability, index| [index, probability] },
                              confidence: concentration(probabilities))

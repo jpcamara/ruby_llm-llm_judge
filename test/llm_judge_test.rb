@@ -4,6 +4,10 @@ require 'minitest/autorun'
 require 'ruby_llm/llm_judge'
 
 class LLMJudgeTest < Minitest::Test
+  def setup
+    skip 'RubyLLM predates the Judge API; see legacy_test.rb' unless RubyLLM::LLMJudge::NATIVE
+  end
+
   def fake_engine(digits, provider_options: {})
     queue = Queue.new
     digits.each { |digit| queue << digit }

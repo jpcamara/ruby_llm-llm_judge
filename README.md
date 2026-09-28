@@ -11,6 +11,17 @@ gem 'ruby_llm-llm_judge', path: '/path/to/ruby_llm-llm_judge'
 
 Configure your chat provider's credentials through RubyLLM. The default scoring model is `gpt-6-luna`; you can choose another RubyLLM chat model for each judgment.
 
+### RubyLLM 1.13 to 1.16
+
+The gem also runs on RubyLLM 1.13 through 1.16, which predate the Judge API. There, `RubyLLM::LLMJudge.judge` runs the same scoring directly and accepts the same questions and `provider_options`. Answers have the same readers as RubyLLM's (`probability`, `choice`, `probabilities`, `confidence`, `score`, `levels`, and `model`, `tokens`, `raw`, `[]` and `fetch` on the judgment), so call sites keep working after you upgrade to 2.1.
+
+What differs before 2.1:
+
+- Results are `RubyLLM::LLMJudge::Legacy` objects, not `RubyLLM::Judgment`, `RubyLLM::Choice`, and so on. Avoid class checks until you upgrade.
+- There is no `RubyLLM.judge`, `RubyLLM::Judge` class DSL, `cost`, `context:` instrumentation, or `metadata:`. Passing `metadata:` raises.
+- `scoring_protocol` accepts only `:chat_completions`, the API RubyLLM 1.x uses for OpenAI.
+- The output limit and `chat_provider_options` are sent with `with_params`, using the field each provider expects (`max_completion_tokens` for OpenAI and Azure, `generationConfig.maxOutputTokens` for Gemini and Vertex AI, `inferenceConfig.maxTokens` for Bedrock, and `max_tokens` otherwise).
+
 ## Use
 
 ```ruby
@@ -199,4 +210,4 @@ Latency sorting reduced median time by 20% on AG News and 28% on SST-2. It was f
 
 ## Development
 
-The gemspec requires RubyLLM 2.1 because it uses the Judge API. To develop against the unreleased local checkout, set `RUBY_LLM_PATH` to its source path when its declared version reaches 2.1. While that checkout still declares `2.0.0`, load its `lib` directory before this gem's `lib` directory and run `test/llm_judge_test.rb` directly to exercise the Judge code without Bundler's version check.
+The gem uses RubyLLM's Judge API when it is present and the `Legacy` path otherwise. `test/llm_judge_test.rb` covers the Judge API and `test/legacy_test.rb` covers RubyLLM 1.13 through 1.16; each skips on the other side. To develop against the unreleased local checkout, set `RUBY_LLM_PATH` to its source path. While that checkout still declares `2.0.0`, load its `lib` directory before this gem's `lib` directory and run the test files directly to avoid Bundler's version check.
