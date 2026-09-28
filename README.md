@@ -220,4 +220,4 @@ RUBY_LLM_VERSION=main bundle exec rake test        # RubyLLM's main branch, with
 RUBY_LLM_PATH=../ruby_llm bundle exec rake test    # a local checkout
 ```
 
-CI runs Ruby 3.1 through 4.0 against RubyLLM 1.13.2 and 1.16.0, and Ruby 3.4 against RubyLLM main.
+CI runs Ruby 3.2 through 4.0 against RubyLLM 1.13.2 and 1.16.0, and Ruby 3.4 against RubyLLM main.

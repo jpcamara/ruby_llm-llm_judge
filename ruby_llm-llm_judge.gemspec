@@ -17,7 +17,7 @@ Gem::Specification.new do |spec|
   spec.metadata['changelog_uri'] = "#{spec.homepage}/blob/main/CHANGELOG.md"
   spec.metadata['bug_tracker_uri'] = "#{spec.homepage}/issues"
   spec.metadata['rubygems_mfa_required'] = 'true'
-  spec.required_ruby_version = '>= 3.1.3'
+  spec.required_ruby_version = '>= 3.2'
   spec.files = Dir['lib/**/*.rb', 'README.md', 'CHANGELOG.md', 'LICENSE']
   spec.require_paths = ['lib']
   spec.add_dependency 'ruby_llm', '>= 1.13.0', '< 3.0'

@@ -6,15 +6,7 @@ module RubyLLM
     # Judge API. They expose the same readers, so code written against
     # RubyLLM::LLMJudge.judge keeps working after upgrading.
     module Legacy
-      # Not Data.define, which would require Ruby 3.2; RubyLLM supports 3.1.3.
-      class Model
-        attr_reader :id
-
-        def initialize(id:)
-          @id = id
-          freeze
-        end
-      end
+      Model = Data.define(:id)
 
       class Question
         CRITERIA_KEYS = { probability: :criteria, choice: :options, score: :levels }.freeze
