@@ -196,9 +196,9 @@ class LLMJudgeTest < Minitest::Test
     assert_equal 0.0, result['only'].confidence
   end
 
-  def test_full_score_range_and_nil_level
+  def test_full_score_range
     engine = fake_engine(Array.new(10, 5))
-    levels = [nil, *Array.new(9) { |index| "level#{index + 1}" }]
+    levels = Array.new(10) { |index| "level#{index}" }
     question = RubyLLM::Judge::Question.from_h(:degree, type: :score, levels:).resolve(nil)
     result = engine.judge('state', questions: { degree: question },
                           model: RubyLLM::Model.default('gpt-6-luna', 'llm_judge'))

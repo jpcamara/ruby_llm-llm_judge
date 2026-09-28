@@ -95,6 +95,7 @@ class LegacyTest < Minitest::Test
     assert_raises(ArgumentError) { RubyLLM::LLMJudge.judge('x', questions: { a: { type: :vibes } }) }
     assert_raises(ArgumentError) { RubyLLM::LLMJudge.judge('x', questions: { a: { type: :choice, options: {} } }) }
     assert_raises(ArgumentError) { RubyLLM::LLMJudge.judge('x', questions: { a: { type: :score, levels: ['One'] } }) }
+    assert_raises(ArgumentError) { RubyLLM::LLMJudge.judge('x', questions: { a: { type: :score, levels: [nil, 'One'] } }) }
     assert_raises(ArgumentError) do
       RubyLLM::LLMJudge.judge('x', questions: { a: { type: :probability, criteria: { maybe: 'Hmm' } } })
     end

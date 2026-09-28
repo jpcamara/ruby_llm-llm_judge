@@ -5,9 +5,10 @@ Use a RubyLLM chat model to answer [RubyLLM Judge](https://rubyllm.com/next/judg
 ## Install
 
 ```ruby
-gem 'ruby_llm', '>= 2.1.0', '< 3.0'
-gem 'ruby_llm-llm_judge', path: '/path/to/ruby_llm-llm_judge'
+gem 'ruby_llm-llm_judge'
 ```
+
+The gem works with RubyLLM 1.13 and later. On RubyLLM 2.1 it plugs into the Judge API; on earlier versions see [RubyLLM 1.13 to 1.16](#rubyllm-113-to-116).
 
 Configure your chat provider's credentials through RubyLLM. The default scoring model is `gpt-6-luna`; you can choose another RubyLLM chat model for each judgment.
 
@@ -210,4 +211,13 @@ Latency sorting reduced median time by 20% on AG News and 28% on SST-2. It was f
 
 ## Development
 
-The gem uses RubyLLM's Judge API when it is present and the `Legacy` path otherwise. `test/llm_judge_test.rb` covers the Judge API and `test/legacy_test.rb` covers RubyLLM 1.13 through 1.16; each skips on the other side. To develop against the unreleased local checkout, set `RUBY_LLM_PATH` to its source path. While that checkout still declares `2.0.0`, load its `lib` directory before this gem's `lib` directory and run the test files directly to avoid Bundler's version check.
+The gem uses RubyLLM's Judge API when it is present and the `Legacy` path otherwise. `test/llm_judge_test.rb` covers the Judge API and `test/legacy_test.rb` covers RubyLLM 1.13 through 1.16; each skips on the other side.
+
+```bash
+bundle exec rake test                              # the latest released RubyLLM
+RUBY_LLM_VERSION=1.13.2 bundle exec rake test      # a specific release
+RUBY_LLM_VERSION=main bundle exec rake test        # RubyLLM's main branch, with the Judge API
+RUBY_LLM_PATH=../ruby_llm bundle exec rake test    # a local checkout
+```
+
+CI runs Ruby 3.1 through 4.0 against RubyLLM 1.13.2 and 1.16.0, and Ruby 3.4 against RubyLLM main.

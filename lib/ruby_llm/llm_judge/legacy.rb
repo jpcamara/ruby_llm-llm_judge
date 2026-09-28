@@ -6,7 +6,15 @@ module RubyLLM
     # Judge API. They expose the same readers, so code written against
     # RubyLLM::LLMJudge.judge keeps working after upgrading.
     module Legacy
-      Model = Data.define(:id)
+      # Not Data.define, which would require Ruby 3.2; RubyLLM supports 3.1.3.
+      class Model
+        attr_reader :id
+
+        def initialize(id:)
+          @id = id
+          freeze
+        end
+      end
 
       class Question
         CRITERIA_KEYS = { probability: :criteria, choice: :options, score: :levels }.freeze
@@ -48,7 +56,9 @@ module RubyLLM
           when :choice
             raise ArgumentError, 'A choice needs a nonempty Hash of options' unless criteria.is_a?(Hash) && !criteria.empty?
           when :score
-            raise ArgumentError, 'A score needs at least two levels' unless criteria.is_a?(Array) && criteria.size >= 2
+            unless criteria.is_a?(Array) && criteria.size >= 2 && criteria.none?(&:nil?)
+              raise ArgumentError, 'A score needs at least two non-nil levels'
+            end
           end
         end
       end
