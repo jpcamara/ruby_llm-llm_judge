@@ -1,6 +1,6 @@
 # Changelog
 
-## 0.1.2 (unreleased)
+## 0.1.2 (2026-09-28)
 
 - When a rating call fails, no new calls start and the error is raised once calls in flight finish. Previously the remaining calls kept running, and were billed, after `judge` raised.
 - `chat_provider_options` is merged over the defaults instead of replacing them. Setting one option no longer re-enables reasoning or drops `store: false` for Luna.
