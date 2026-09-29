@@ -107,6 +107,30 @@ class EngineTest < Minitest::Test
     end
   end
 
+  def test_single_request_accepts_answers_as_a_list_of_questions
+    content = '{"answers":[{"team":{"billing":0.2,"technical":0.8}},{"urgent":{"true":0.9,"false":0.1}}]}'
+    responder = ->(_prompt) { { content:, tokens: tokens } }
+    result = with_engine(responder:) do
+      RubyLLM::LLMJudge.judge('x', questions: TEAM.merge(urgent: { type: :probability }),
+                                   provider_options: { strategy: :single_request })
+    end
+
+    assert_equal :technical, result.team.choice
+    assert_in_delta 0.9, result.urgent.probability
+    assert_equal 1, result.raw[:attempts]
+  end
+
+  def test_single_request_rejects_a_list_that_repeats_a_question
+    content = '{"answers":[{"team":{"billing":0.2,"technical":0.8}},{"team":{"billing":0.9,"technical":0.1}}]}'
+    responder = ->(_prompt) { { content:, tokens: tokens } }
+    error = assert_raises(RubyLLM::LLMJudge::Error) do
+      with_engine(responder:) do
+        RubyLLM::LLMJudge.judge('x', questions: TEAM, provider_options: { strategy: :single_request, malformed_retries: 0 })
+      end
+    end
+    assert_match(/Question IDs must be/, error.message)
+  end
+
   def test_single_request_tie_is_retried_then_resolved
     responses = ['{"answers":{"team":{"billing":0.5,"technical":0.5}}}',
                  '{"answers":{"team":{"billing":0.3,"technical":0.7}}}']

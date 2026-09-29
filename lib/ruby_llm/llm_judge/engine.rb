@@ -135,6 +135,11 @@ module RubyLLM
         raise Error, 'Scoring model returned a non-object response' unless parsed.is_a?(Hash)
 
         reported = parsed.fetch('answers')
+        # Some models mirror the prompt's question list: [{"id": {...}}, ...].
+        if reported.is_a?(Array) && reported.all? { |item| item.is_a?(Hash) }
+          ids = reported.flat_map(&:keys)
+          reported = reported.reduce({}, :merge) if ids.uniq.size == ids.size
+        end
         expected_questions = specs.map { |question, _| question.name.to_s }
         unless reported.is_a?(Hash) && reported.keys.sort == expected_questions.sort
           actual = reported.is_a?(Hash) ? reported.keys : reported.class.name
