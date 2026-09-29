@@ -130,6 +130,37 @@ class LegacyTest < Minitest::Test
     assert_raises(ArgumentError) { RubyLLM::LLMJudge.judge('x', questions: { a: { type: :choice, choices: { b: nil } } }) }
   end
 
+  def test_question_validation_matches_ruby_llm_2_1
+    invalid = {
+      'Duplicate judgment key: a' => { type: :choice, options: { a: 'A', 'a' => 'Also A' } },
+      'nonempty String or Symbol names' => { type: :choice, options: { '' => 'Blank' } },
+      'duplicate outcomes' => { type: :probability, criteria: { yes: 'Y', true: 'Also Y' } },
+      'Descriptions must be text' => { type: :choice, options: { a: 1 } },
+      'instructions must be text' => { type: :score, instructions: 5, levels: %w[Low High] }
+    }
+    invalid.each do |message, definition|
+      error = assert_raises(ArgumentError) { RubyLLM::LLMJudge.judge('x', questions: { q: definition }) }
+      assert_match(/#{Regexp.escape(message)}/, error.message)
+    end
+    assert_raises(ArgumentError) { RubyLLM::LLMJudge.judge('x', questions: { '' => { type: :probability } }) }
+  end
+
+  def test_token_totals_keep_every_reported_field
+    totals = RubyLLM::LLMJudge::Legacy.aggregate_tokens(
+      [RubyLLM::Tokens.new(input: 10, output: 2, cached: 4, thinking: 1), nil,
+       RubyLLM::Tokens.new(input: 5, output: 1, cached: 1)]
+    )
+
+    assert_equal [15, 3, 5, 1, nil], [totals.input, totals.output, totals.cached, totals.thinking, totals.cache_creation]
+  end
+
+  def test_output_limit_fields_for_azure_and_bedrock
+    %i[azure bedrock].zip([{ max_completion_tokens: 9 }, { inferenceConfig: { maxTokens: 9 } }]).each do |provider, field|
+      engine = RubyLLM::LLMJudge::Engine.new(config: RubyLLM.config, provider_options: { scoring_provider: provider })
+      assert_equal field, engine.send(:max_output_tokens_param, 9)
+    end
+  end
+
   def test_judge_api_options_raise
     error = assert_raises(ArgumentError) do
       RubyLLM::LLMJudge.judge('x', questions: QUESTIONS, metadata: { id: 1 })

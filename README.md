@@ -19,7 +19,7 @@ The gem also runs on RubyLLM 1.13 through 1.16, which predate the Judge API. The
 What differs before 2.1:
 
 - Results are `RubyLLM::LLMJudge::Legacy` objects, not `RubyLLM::Judgment`, `RubyLLM::Choice`, and so on. Avoid class checks until you upgrade.
-- There is no `RubyLLM.judge`, `RubyLLM::Judge` class DSL, `cost`, `context:` instrumentation, or `metadata:`. Passing `metadata:` raises.
+- There is no `RubyLLM.judge`, `RubyLLM::Judge` class DSL, `cost`, instrumentation, or `metadata:`. Passing `metadata:` raises. `context:` is accepted and supplies its configuration.
 - `scoring_protocol` accepts only `:chat_completions`, the API RubyLLM 1.x uses for OpenAI.
 - The output limit and `chat_provider_options` are sent with `with_params`, using the field each provider expects (`max_completion_tokens` for OpenAI and Azure, `generationConfig.maxOutputTokens` for Gemini and Vertex AI, `inferenceConfig.maxTokens` for Bedrock, and `max_tokens` otherwise).
 
@@ -70,20 +70,23 @@ TicketTriage.judge('Please refund today.').urgent.probability
 
 ## Choose a model
 
-Pass the chat model as `model:` and its provider as `scoring_provider`:
+Pass the chat model as `model:` and its provider as `scoring_provider`. For example, Claude Haiku 4.5 through OpenRouter:
 
 ```ruby
 result = RubyLLM::LLMJudge.judge(
   'Please refund the duplicate charge today.',
-  model: 'claude-haiku-4-5',
+  model: 'anthropic/claude-haiku-4.5',
   questions: { urgent: { type: :probability, instructions: 'Does this need attention today?' } },
   provider_options: {
-    scoring_provider: :anthropic
+    scoring_provider: :openrouter,
+    temperature: 0
   }
 )
 ```
 
-The default Luna rating request uses Chat Completions, temperature zero, reasoning disabled, `store: false`, and a four-token output limit. You can tune requests with `scoring_protocol`, `temperature`, `max_output_tokens`, and `chat_provider_options`.
+Both strategies return valid judgments with this model. Its one-call answers arrive in a Markdown code fence, which the gem removes before parsing.
+
+The default Luna rating request uses Chat Completions, temperature zero, reasoning disabled, `store: false`, and a four-token output limit. Tune requests with `scoring_protocol`, `temperature`, `max_output_tokens`, and `chat_provider_options`. `chat_provider_options` is merged over those defaults, so setting one key, such as `service_tier: 'flex'`, keeps reasoning disabled; set a key explicitly to change a default.
 
 ## One-call typed decisions
 
@@ -107,7 +110,7 @@ result.urgent.probability
 result.department.probabilities
 ```
 
-The model returns one JSON object containing a distribution for each question. The gem checks that every question and option is present, validates each probability, normalizes each distribution, and builds RubyLLM's typed answers. `result.raw[:reported_probabilities]` and `result.raw[:reported_totals]` preserve the model's original numbers for inspection. With an OpenAI key configured, this example calls Luna directly through Chat Completions with reasoning disabled, temperature zero, and `store: false`. The 1024-token limit suits small judgments; omit it for large question sets to use the 8192-token default. It makes one corrective retry for malformed JSON or missing fields, counting both calls in `result.tokens` and `result.raw[:attempts]`. Set `malformed_retries: 0` to disable that retry. An invalid response after retries raises an error.
+The model returns one JSON object containing a distribution for each question. The gem checks that every question and option is present, validates each probability, normalizes each distribution, and builds RubyLLM's typed answers. `result.raw[:reported_probabilities]` and `result.raw[:reported_totals]` preserve the model's original numbers for inspection. With an OpenAI key configured, this example calls Luna directly through Chat Completions with reasoning disabled, temperature zero, and `store: false`. The 1024-token limit suits small judgments; omit it for large question sets to use the 8192-token default. It makes one corrective retry for malformed JSON, missing fields, or a Choice whose top probabilities tie, counting both calls in `result.tokens` and `result.raw[:attempts]`. A tie that remains raises instead of selecting the first option; set `tie_breaker: :first` to accept the first option. Set `malformed_retries: 0` to disable that retry. An invalid response after retries raises an error.
 
 If you use OpenRouter for Luna, prioritize the provider with the lowest observed latency:
 
@@ -139,11 +142,11 @@ OpenRouter's [latency sorting](https://openrouter.ai/docs/guides/routing/provide
 
 ## How scoring works
 
-The default `:ratings` strategy asks the model to rate every declared answer from 0 to 9. It makes one call per answer, with up to six calls running at once, then applies softmax to the ratings. It retries a malformed digit once. When the highest ratings tie on a Choice question, it makes a one-call JSON judgment for that question and uses its distribution. If that call also ties, it raises an error instead of choosing whichever option came first. `result.raw[:tie_breaks]` records each resolution, and token usage includes the extra call. Set `tie_breaker: :first` to use the original first-option rule, or `tie_break_max_output_tokens:` to change the tie-break response limit (default 8192).
+The default `:ratings` strategy asks the model to rate every declared answer from 0 to 9. It makes one call per answer, with up to six calls running at once (`max_workers:` changes this), then applies softmax to the ratings. If a call fails after its retry, no new calls start, calls in flight finish, and the error is raised. It retries a malformed digit once. When the highest ratings tie on a Choice question, it makes a one-call JSON judgment for that question and uses its distribution. If that call also ties, it raises an error instead of choosing whichever option came first. `result.raw[:tie_breaks]` records each resolution, and token usage includes the extra call. Set `tie_breaker: :first` to use the original first-option rule, or `tie_break_max_output_tokens:` to change the tie-break response limit (default 8192).
 
 The `:single_request` strategy asks for all distributions in one call. Both strategies build the same RubyLLM answer types: a `choice` returns the selected answer and distribution; a `score` returns the distribution and its weighted level; a `probability` returns the positive answer's share. The gem supports Judge's 1–255 choice options, 2–10 score levels, and multiple questions in one judgment.
 
-These probabilities compare the answers you supplied. The `:single_request` values are reported by the chat model; the default ratings values come from softmax over its 0–9 ratings. Neither strategy establishes calibration by itself. Include an `other` or `escalate` choice when the named answers may not cover the input. `confidence` measures how concentrated the returned distribution is. Use labeled examples to set any automation thresholds.
+These probabilities compare the answers you supplied. The `:single_request` values are reported by the chat model; the default ratings values come from softmax over its 0–9 ratings. Neither strategy establishes calibration by itself. Include an `other` or `escalate` choice when the named answers may not cover the input. `confidence` measures how concentrated the returned distribution is: 1.0 for a single option, 0.0 for a tie. Use labeled examples to set any automation thresholds.
 
 Set optional `max_arms` and `max_input_bytes` in `provider_options` to cap work per judgment. For example, `{ max_arms: 12, max_input_bytes: 32_768 }` rejects larger requests before scoring. Token usage is aggregated across calls, and `raw` contains the ratings and model metadata.
 
@@ -211,7 +214,7 @@ Latency sorting reduced median time by 20% on AG News and 28% on SST-2. It was f
 
 ## Development
 
-The gem uses RubyLLM's Judge API when it is present and the `Legacy` path otherwise. `test/llm_judge_test.rb` covers the Judge API and `test/legacy_test.rb` covers RubyLLM 1.13 through 1.16; each skips on the other side.
+The gem uses RubyLLM's Judge API when it is present and the `Legacy` path otherwise. `test/llm_judge_test.rb` covers the Judge API and `test/legacy_test.rb` covers RubyLLM 1.13 through 1.16; each skips on the other side. `test/engine_test.rb` and `test/http_test.rb` run on every version; the HTTP tests send real RubyLLM requests to WebMock stubs and check their bodies.
 
 ```bash
 bundle exec rake test                              # the latest released RubyLLM

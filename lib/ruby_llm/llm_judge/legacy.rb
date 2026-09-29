@@ -26,7 +26,10 @@ module RubyLLM
         end
 
         def initialize(name, type:, instructions:, criteria:)
-          raise ArgumentError, 'A question name must be a String or Symbol' unless name.is_a?(String) || name.is_a?(Symbol)
+          unless name.is_a?(String) || name.is_a?(Symbol)
+            raise ArgumentError, 'A question name must be a String or Symbol'
+          end
+          raise ArgumentError, 'A question name cannot be empty' if name.to_s.empty?
 
           @name = name
           @type = type
@@ -38,20 +41,58 @@ module RubyLLM
 
         private
 
+        # Mirrors RubyLLM 2.1's Judge::Question validation.
         def validate!
+          raise ArgumentError, 'Question instructions must be text, a Hash, an Array, or nil' unless description?(instructions)
+
           case type
-          when :probability
-            return if criteria.nil?
-            unless criteria.is_a?(Hash) && (criteria.keys.map(&:to_s) - %w[yes no true false]).empty?
-              raise ArgumentError, 'Probability criteria must describe yes and no'
-            end
-          when :choice
-            raise ArgumentError, 'A choice needs a nonempty Hash of options' unless criteria.is_a?(Hash) && !criteria.empty?
-          when :score
-            unless criteria.is_a?(Array) && criteria.size >= 2 && criteria.none?(&:nil?)
-              raise ArgumentError, 'A score needs at least two non-nil levels'
-            end
+          when :probability then validate_probability!
+          when :choice then validate_choice!
+          when :score then validate_score!
           end
+        end
+
+        def validate_probability!
+          return if criteria.nil?
+
+          unless criteria.is_a?(Hash) && (criteria.keys.map(&:to_s) - %w[yes no true false]).empty?
+            raise ArgumentError, 'Probability criteria must describe yes and no'
+          end
+
+          positive = criteria.keys.map { |key| %w[yes true].include?(key.to_s) }
+          raise ArgumentError, 'Probability criteria contain duplicate outcomes' unless positive.uniq.size == positive.size
+
+          validate_descriptions!(criteria.values)
+        end
+
+        def validate_choice!
+          raise ArgumentError, 'A choice needs a nonempty Hash of options' unless criteria.is_a?(Hash) && !criteria.empty?
+          unless criteria.keys.all? { |key| (key.is_a?(String) || key.is_a?(Symbol)) && !key.to_s.empty? }
+            raise ArgumentError, 'Choice options must have nonempty String or Symbol names'
+          end
+
+          duplicate = criteria.keys.map(&:to_s).tally.find { |_, count| count > 1 }&.first
+          raise ArgumentError, "Duplicate judgment key: #{duplicate}" if duplicate
+
+          validate_descriptions!(criteria.values)
+        end
+
+        def validate_score!
+          unless criteria.is_a?(Array) && criteria.size >= 2 && criteria.none?(&:nil?)
+            raise ArgumentError, 'A score needs at least two non-nil levels'
+          end
+
+          validate_descriptions!(criteria)
+        end
+
+        def validate_descriptions!(values)
+          return if values.all? { |value| description?(value) }
+
+          raise ArgumentError, 'Descriptions must be text, a Hash, an Array, or nil'
+        end
+
+        def description?(value)
+          value.nil? || value.is_a?(String) || value.is_a?(Hash) || value.is_a?(Array)
         end
       end
 
@@ -140,10 +181,15 @@ module RubyLLM
 
       module_function
 
+      TOKEN_FIELDS = %i[input output cached cache_creation thinking].freeze
+
+      # Sums each field across calls; a field no call reported stays nil.
       def aggregate_tokens(tokens)
         tokens = tokens.compact
-        sum = ->(reader) { tokens.sum { |token| token.public_send(reader) || 0 } }
-        RubyLLM::Tokens.new(input: sum.(:input), output: sum.(:output))
+        RubyLLM::Tokens.new(**TOKEN_FIELDS.to_h do |field|
+          values = tokens.filter_map { |token| token.public_send(field) }
+          [field, values.empty? ? nil : values.sum]
+        end)
       end
     end
   end

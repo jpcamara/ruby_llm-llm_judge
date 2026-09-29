@@ -17,8 +17,10 @@ module RubyLLM
         @config = config
         options = provider_options.transform_keys(&:to_sym)
         allowed = %i[scoring_provider scoring_protocol temperature max_output_tokens chat_provider_options
-                     max_arms max_input_bytes strategy malformed_retries tie_breaker tie_break_max_output_tokens]
-        raise ArgumentError, 'Unknown LLMJudge provider options' unless (options.keys - allowed).empty?
+                     max_arms max_input_bytes strategy malformed_retries tie_breaker tie_break_max_output_tokens
+                     max_workers]
+        unknown = options.keys - allowed
+        raise ArgumentError, "Unknown LLMJudge provider options: #{unknown.join(', ')}" unless unknown.empty?
 
         @strategy = options.fetch(:strategy, :ratings).to_sym
         raise ArgumentError, 'strategy must be :ratings or :single_request' unless %i[ratings single_request].include?(@strategy)
@@ -38,11 +40,16 @@ module RubyLLM
         @temperature = options.fetch(:temperature, luna_defaults ? 0 : nil)
         @max_output_tokens = options.fetch(:max_output_tokens, @strategy == :single_request ? 8192 : 4)
         @tie_break_max_output_tokens = options.fetch(:tie_break_max_output_tokens, 8192)
-        @chat_provider_options = options.fetch(:chat_provider_options, default_chat_options(luna_defaults))
+        chat_provider_options = options.fetch(:chat_provider_options, {})
+        raise ArgumentError, 'chat_provider_options must be a Hash' unless chat_provider_options.is_a?(Hash)
+
+        # Merged over the defaults, so tuning one option keeps the others (such as disabled reasoning).
+        @chat_provider_options = deep_merge(default_chat_options(luna_defaults), chat_provider_options)
         @max_arms = options[:max_arms]
         @max_input_bytes = options[:max_input_bytes]
         @malformed_retries = options.fetch(:malformed_retries, 1)
-        raise ArgumentError, 'chat_provider_options must be a Hash' unless @chat_provider_options.is_a?(Hash)
+        @max_workers = options.fetch(:max_workers, MAX_WORKERS)
+        raise ArgumentError, 'max_workers must be a positive integer' unless @max_workers.is_a?(Integer) && @max_workers.positive?
         raise ArgumentError, 'max_output_tokens must be positive' unless @max_output_tokens.is_a?(Integer) && @max_output_tokens.positive?
         unless @tie_break_max_output_tokens.is_a?(Integer) && @tie_break_max_output_tokens.positive?
           raise ArgumentError, 'tie_break_max_output_tokens must be positive'
@@ -70,12 +77,9 @@ module RubyLLM
           }
           chosen = answer(question, softmax(ratings))
           if question.type == :choice && ratings.count(ratings.max) > 1 && @tie_breaker == :single_request
+            # Raises if the one-call judgment also ties, after its corrective retry.
             judgment = judge_single_request(input, { question.name => question }, model)
             chosen = judgment.answers.fetch(question.name)
-            probabilities = chosen.probabilities.values
-            if probabilities.count(probabilities.max) > 1
-              raise Error, "Scoring model could not resolve the tie for #{question.name}"
-            end
             tie_breaks << { question: question.name, ratings:, judgment: }
           end
           [question.name, chosen]
@@ -127,7 +131,7 @@ module RubyLLM
       end
 
       def parse_single_request(content, specs)
-        parsed = JSON.parse(content)
+        parsed = JSON.parse(strip_code_fence(content))
         raise Error, 'Scoring model returned a non-object response' unless parsed.is_a?(Hash)
 
         reported = parsed.fetch('answers')
@@ -153,6 +157,12 @@ module RubyLLM
 
           total = values.sum.to_f
           raise Error, "Scoring model returned zero probability for #{question.name}" unless total.positive?
+
+          # A tied Choice would otherwise select whichever option was listed first.
+          if question.type == :choice && @tie_breaker == :single_request && values.count(values.max) > 1
+            raise Error, "Scoring model could not resolve the tie for #{question.name}; " \
+                         'one option must have the highest probability'
+          end
 
           normalization[question.name.to_s] = total
           [question.name, answer(question, values.map { |value| value / total })]
@@ -230,26 +240,44 @@ module RubyLLM
         value.is_a?(String) ? value : JSON.generate(value)
       end
 
+      # Runs jobs on up to @max_workers threads. After a job fails, no new jobs
+      # start; calls already in flight finish, then the first error is raised.
       def run(jobs)
         queue = Queue.new
         jobs.each_with_index { |job, index| queue << [index, job] }
         results = Array.new(jobs.size)
-        workers = Array.new([jobs.size, MAX_WORKERS].min) do
+        errors = Queue.new
+        workers = Array.new([jobs.size, @max_workers].min) do
           Thread.new do
-            Thread.current.report_on_exception = false
-            loop do
+            while errors.empty?
               begin
                 index, job = queue.pop(true)
               rescue ThreadError
                 break
               end
-              results[index] = yield job
+              begin
+                results[index] = yield job
+              rescue StandardError => error
+                errors << error
+              end
             end
           end
         end
         workers.each(&:join)
-        workers.each(&:value)
+        raise errors.pop unless errors.empty?
+
         results
+      end
+
+      # Some models wrap JSON in a Markdown code fence despite the instructions.
+      def strip_code_fence(content)
+        content.to_s.strip.sub(/\A```(?:json)?[ \t]*\n?/i, '').sub(/\n?```\z/, '')
+      end
+
+      def deep_merge(base, overrides)
+        base.merge(overrides) do |_key, old, new|
+          old.is_a?(Hash) && new.is_a?(Hash) ? deep_merge(old, new) : new
+        end
       end
 
       def default_chat_options(luna_defaults)
@@ -292,7 +320,7 @@ module RubyLLM
           chat.with_max_output_tokens(max_output_tokens)
           chat.with_provider_options(@chat_provider_options)
         else
-          chat.with_params(**RubyLLM::Utils.deep_merge(max_output_tokens_param(max_output_tokens), @chat_provider_options))
+          chat.with_params(**deep_merge(max_output_tokens_param(max_output_tokens), @chat_provider_options))
         end
         chat
       end
@@ -331,11 +359,12 @@ module RubyLLM
       def softmax(ratings)
         peak = ratings.max
         weights = ratings.map { |rating| Math.exp(rating - peak) }
-        weights.map { |weight| weight / weights.sum }
+        total = weights.sum
+        weights.map { |weight| weight / total }
       end
 
       def concentration(probabilities)
-        return 0.0 if probabilities.one?
+        return 1.0 if probabilities.size == 1
         return 0.0 if probabilities.count(probabilities.max) > 1
 
         entropy = -probabilities.sum { |probability| probability.zero? ? 0.0 : probability * Math.log(probability) }

@@ -193,7 +193,7 @@ class LLMJudgeTest < Minitest::Test
 
     assert_equal 8, result.answers.size
     assert_equal :answer, result['only'].choice
-    assert_equal 0.0, result['only'].confidence
+    assert_equal 1.0, result['only'].confidence
   end
 
   def test_full_score_range
@@ -346,11 +346,11 @@ class LLMJudgeTest < Minitest::Test
     options = { strategy: :single_request }
     model = RubyLLM::Model.default('gpt-6-luna', 'llm_judge')
     tokens = RubyLLM::Tokens.new(input: 10, output: 5)
-    responder = ->(_prompt) { { content: '{"answers":{"team":{"billing":0.4,"technical":0.4}}}', tokens: } }
+    responder = ->(_prompt) { { content: '{"answers":{"team":{"billing":0.3,"technical":0.5}}}', tokens: } }
     engine = RubyLLM::LLMJudge::Engine.new(config: RubyLLM.config, provider_options: options, responder:)
     result = engine.judge('Refund', questions: { 'team' => question }, model:)
 
-    assert_in_delta 0.5, result.team.probabilities[:billing]
+    assert_in_delta 0.375, result.team.probabilities[:billing]
     assert_in_delta 0.8, result.raw[:reported_totals]['team']
 
     responder = ->(_prompt) { { content: '{"answers":{"team":{"billing":1.0}}}', tokens: } }

@@ -13,3 +13,4 @@ end
 
 gem 'minitest', '~> 5.25'
 gem 'rake', '~> 13.0'
+gem 'webmock', '~> 3.25'

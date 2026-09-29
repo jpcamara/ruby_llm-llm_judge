@@ -14,12 +14,10 @@ module RubyLLM
     # Raised for invalid scoring responses. RubyLLM::Error takes (response, message)
     # before 1.16 and (message, response:) on main, so build it for either.
     class Error < RubyLLM::Error
+      MESSAGE_FIRST = RubyLLM::Error.instance_method(:initialize).parameters.include?(%i[key response])
+
       def initialize(message = nil)
-        if RubyLLM::Error.instance_method(:initialize).parameters.include?(%i[key response])
-          super(message)
-        else
-          super(nil, message)
-        end
+        MESSAGE_FIRST ? super(message) : super(nil, message)
       end
     end
   end
