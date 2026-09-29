@@ -149,6 +149,21 @@ class HTTPTest < Minitest::Test
     end
   end
 
+  # An app that reaches Bedrock's OpenAI-compatible endpoint through :openai, with its own request format.
+  def test_prefixed_luna_ids_on_openai_get_only_the_callers_options
+    skip 'RubyLLM 2.1 renders the output limit for the scoring protocol' if RubyLLM::LLMJudge::NATIVE
+
+    stub_chat(OPENAI) { '7' }
+    RubyLLM::LLMJudge.judge('x', model: 'us.openai.gpt-5.6-luna', questions: { urgent: { type: :probability } },
+                                 provider_options: { chat_provider_options: { max_completion_tokens: nil, max_output_tokens: 256,
+                                                                              reasoning: { effort: 'none' } } })
+
+    requests.each do |body|
+      assert_equal({ 'model' => 'us.openai.gpt-5.6-luna', 'stream' => false, 'store' => false, 'max_output_tokens' => 256,
+                     'reasoning' => { 'effort' => 'none' } }, body.except('messages'))
+    end
+  end
+
   def test_luna_defaults_on_openrouter_disable_reasoning
     stub_chat(OPENROUTER) { '7' }
     RubyLLM::LLMJudge.judge('x', model: 'openai/gpt-5.6-luna', questions: { urgent: { type: :probability } },
