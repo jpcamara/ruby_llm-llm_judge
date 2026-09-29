@@ -74,7 +74,7 @@ module RubyLLM
             chosen = judgment.answers.fetch(question.name)
             probabilities = chosen.probabilities.values
             if probabilities.count(probabilities.max) > 1
-              raise RubyLLM::Error, "Scoring model could not resolve the tie for #{question.name}"
+              raise Error, "Scoring model could not resolve the tie for #{question.name}"
             end
             tie_breaks << { question: question.name, ratings:, judgment: }
           end
@@ -128,13 +128,13 @@ module RubyLLM
 
       def parse_single_request(content, specs)
         parsed = JSON.parse(content)
-        raise RubyLLM::Error, 'Scoring model returned a non-object response' unless parsed.is_a?(Hash)
+        raise Error, 'Scoring model returned a non-object response' unless parsed.is_a?(Hash)
 
         reported = parsed.fetch('answers')
         expected_questions = specs.map { |question, _| question.name.to_s }
         unless reported.is_a?(Hash) && reported.keys.sort == expected_questions.sort
           actual = reported.is_a?(Hash) ? reported.keys : reported.class.name
-          raise RubyLLM::Error, "Question IDs must be #{expected_questions.inspect}; got #{actual.inspect}"
+          raise Error, "Question IDs must be #{expected_questions.inspect}; got #{actual.inspect}"
         end
 
         normalization = {}
@@ -143,23 +143,23 @@ module RubyLLM
           keys = options.map { |name, _| name.to_s }
           unless distribution.is_a?(Hash) && distribution.keys.sort == keys.sort
             actual = distribution.is_a?(Hash) ? distribution.keys : distribution.class.name
-            raise RubyLLM::Error, "Option IDs for #{question.name} must be #{keys.inspect}; got #{actual.inspect}"
+            raise Error, "Option IDs for #{question.name} must be #{keys.inspect}; got #{actual.inspect}"
           end
 
           values = keys.map { |key| distribution.fetch(key) }
           unless values.all? { |value| value.is_a?(Numeric) && value.finite? && (0..1).cover?(value) }
-            raise RubyLLM::Error, "Scoring model returned invalid probabilities for #{question.name}"
+            raise Error, "Scoring model returned invalid probabilities for #{question.name}"
           end
 
           total = values.sum.to_f
-          raise RubyLLM::Error, "Scoring model returned zero probability for #{question.name}" unless total.positive?
+          raise Error, "Scoring model returned zero probability for #{question.name}" unless total.positive?
 
           normalization[question.name.to_s] = total
           [question.name, answer(question, values.map { |value| value / total })]
         end
         [answers, reported, normalization]
       rescue JSON::ParserError, KeyError, TypeError => error
-        raise RubyLLM::Error, "Scoring model returned invalid JSON probabilities: #{error.message}"
+        raise Error, "Scoring model returned invalid JSON probabilities: #{error.message}"
       end
 
       def single_request_prompt(input, specs)
@@ -268,7 +268,7 @@ module RubyLLM
           if /\A[0-9]\z/.match?(digit)
             return { digit: digit.to_i, tokens: aggregate_tokens(attempts.map(&:tokens)) }
           end
-          raise RubyLLM::Error, 'Scoring model returned no single digit' if attempts.size > @malformed_retries
+          raise Error, 'Scoring model returned no single digit' if attempts.size > @malformed_retries
         end
       end
 

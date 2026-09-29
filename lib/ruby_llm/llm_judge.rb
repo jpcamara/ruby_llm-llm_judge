@@ -10,6 +10,18 @@ module RubyLLM
     # RubyLLM 2.1 added the Judge API. Earlier versions run the engine directly
     # and return Legacy stand-ins with the same readers.
     NATIVE = defined?(RubyLLM::Judge) ? true : false
+
+    # Raised for invalid scoring responses. RubyLLM::Error takes (response, message)
+    # before 1.16 and (message, response:) on main, so build it for either.
+    class Error < RubyLLM::Error
+      def initialize(message = nil)
+        if RubyLLM::Error.instance_method(:initialize).parameters.include?(%i[key response])
+          super(message)
+        else
+          super(nil, message)
+        end
+      end
+    end
   end
 end
 

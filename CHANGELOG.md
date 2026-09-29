@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.1.1 (unreleased)
+
+- Fix invalid scoring responses raising `NoMethodError` on RubyLLM 1.13, which also skipped the corrective retry. They now raise `RubyLLM::LLMJudge::Error`, a `RubyLLM::Error`, on every supported RubyLLM version.
+
 ## 0.1.0 (2026-09-28)
 
 Initial release.

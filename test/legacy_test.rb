@@ -81,6 +81,34 @@ class LegacyTest < Minitest::Test
     assert_equal 1, result.raw[:attempts]
   end
 
+  def test_single_request_retries_malformed_json
+    responses = ['not json', '{"answers":{"department":{"billing":0.3,"technical":0.7}}}']
+    responder = ->(_prompt) { { content: responses.shift, tokens: RubyLLM::Tokens.new(input: 10, output: 5) } }
+    result = with_engine(responder:) do
+      RubyLLM::LLMJudge.judge('x', questions: QUESTIONS.slice(:department), provider_options: { strategy: :single_request })
+    end
+
+    assert_equal :technical, result.department.choice
+    assert_equal 2, result.raw[:attempts]
+    assert_equal 20, result.tokens.input
+  end
+
+  def test_invalid_responses_raise_ruby_llm_errors
+    responder = ->(_prompt) { { content: 'not json', tokens: RubyLLM::Tokens.new(input: 1, output: 1) } }
+    error = assert_raises(RubyLLM::Error) do
+      with_engine(responder:) do
+        RubyLLM::LLMJudge.judge('x', questions: QUESTIONS.slice(:department), provider_options: { strategy: :single_request })
+      end
+    end
+    assert_kind_of RubyLLM::LLMJudge::Error, error
+    assert_match(/invalid JSON probabilities/, error.message)
+    assert_nil error.response
+
+    scorer = ->(_prompt) { raise RubyLLM::LLMJudge::Error, 'Scoring model returned no single digit' }
+    error = assert_raises(RubyLLM::Error) { with_engine(scorer:) { RubyLLM::LLMJudge.judge('x', questions: QUESTIONS) } }
+    assert_equal 'Scoring model returned no single digit', error.message
+  end
+
   def test_string_question_and_option_names_are_preserved
     scorer = ->(prompt) { { digit: prompt.end_with?('calm — null') ? 8 : 1, tokens: RubyLLM::Tokens.new(input: 1, output: 1) } }
     result = with_engine(scorer:) do
