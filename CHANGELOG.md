@@ -4,6 +4,7 @@
 
 - Setting a `chat_provider_options` key to `nil` removes that field, including the Luna defaults and, before RubyLLM 2.1, the output limit field. A nested hash emptied this way is removed too.
 - One-call answers given as a list of single-question objects are accepted when each question appears once. Claude Haiku 4.5 returns this shape on its first attempt, which previously cost a corrective retry on nearly every judgment.
+- The one-call instructions now say that `answers` is an object keyed by question ID. Haiku no longer needs corrective retries (59 of 96 benchmark cases before), and Luna scored at least as well in a back-to-back comparison. See [the Haiku benchmark](benchmarks/haiku.md).
 
 ## 0.1.2 (2026-09-28)
 

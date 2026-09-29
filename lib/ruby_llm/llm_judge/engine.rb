@@ -11,7 +11,8 @@ module RubyLLM
                                     'For each question, return an object mapping every supplied option ID to a ' \
                                     'probability between 0 and 1. Include every option exactly once and make ' \
                                     'each question\'s probabilities sum to 1. Evaluate each question independently ' \
-                                    'against the same state. Return no explanations or markdown.'
+                                    'against the same state. Return no explanations or markdown. The "answers" value ' \
+                                    'must be an object whose keys are the question IDs.'
 
       def initialize(config:, model: DEFAULT_MODEL, provider_options: {}, scorer: nil, responder: nil)
         @config = config

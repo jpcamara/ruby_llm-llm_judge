@@ -84,7 +84,7 @@ result = RubyLLM::LLMJudge.judge(
 )
 ```
 
-Both strategies return valid judgments with this model. Its one-call answers arrive in a Markdown code fence, which the gem removes before parsing.
+Both strategies return valid judgments with this model. Its one-call answers arrive in a Markdown code fence, which the gem removes before parsing. On the benchmark cases it scored 56–57/64 on AG News and 29–30/32 on SST-2 at about 1.1 s median, a little below Luna. [Haiku results](benchmarks/haiku.md).
 
 The default Luna rating request uses Chat Completions, temperature zero, reasoning disabled, `store: false`, and a four-token output limit. Tune requests with `scoring_protocol`, `temperature`, `max_output_tokens`, and `chat_provider_options`. `chat_provider_options` is merged over those defaults, so setting one key, such as `service_tier: 'flex'`, keeps reasoning disabled; set a key explicitly to change a default. Set a key to `nil` to remove that field from the request, whether it is a default or, before RubyLLM 2.1, the output limit field. For example, an app that routes RubyLLM 1.x OpenAI chats through the Responses API can send `chat_provider_options: { max_completion_tokens: nil, max_output_tokens: 256 }`.
 

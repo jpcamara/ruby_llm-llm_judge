@@ -1,0 +1,3111 @@
+{
+  "model": "openai/gpt-6-luna",
+  "llm_judge": "0.1.3",
+  "ruby_llm": "1.13.2",
+  "records": [
+    {
+      "id": "agnews:3460",
+      "group": "agnews_prior",
+      "expected": "sci_tech",
+      "single_request": {
+        "ms": 909.6,
+        "tokens": {
+          "input_tokens": 251,
+          "output_tokens": 33,
+          "cached_tokens": 0,
+          "cache_creation_tokens": 0,
+          "thinking_tokens": 0
+        },
+        "attempts": 1,
+        "tie_breaks": null,
+        "answers": {
+          "topic": {
+            "type": "choice",
+            "choice": "sci_tech",
+            "probabilities": {
+              "world": 0.0,
+              "sports": 0.0,
+              "business": 0.35,
+              "sci_tech": 0.65
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "agnews:3406",
+      "group": "agnews_prior",
+      "expected": "business",
+      "single_request": {
+        "ms": 1096.0,
+        "tokens": {
+          "input_tokens": 268,
+          "output_tokens": 29,
+          "cached_tokens": 0,
+          "cache_creation_tokens": 0,
+          "thinking_tokens": 0
+        },
+        "attempts": 1,
+        "tie_breaks": null,
+        "answers": {
+          "topic": {
+            "type": "choice",
+            "choice": "business",
+            "probabilities": {
+              "world": 0.0,
+              "sports": 0.0,
+              "business": 1.0,
+              "sci_tech": 0.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "agnews:3457",
+      "group": "agnews_prior",
+      "expected": "sports",
+      "single_request": {
+        "ms": 982.4,
+        "tokens": {
+          "input_tokens": 276,
+          "output_tokens": 29,
+          "cached_tokens": 0,
+          "cache_creation_tokens": 0,
+          "thinking_tokens": 0
+        },
+        "attempts": 1,
+        "tie_breaks": null,
+        "answers": {
+          "topic": {
+            "type": "choice",
+            "choice": "sports",
+            "probabilities": {
+              "world": 0.0,
+              "sports": 1.0,
+              "business": 0.0,
+              "sci_tech": 0.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "agnews:3464",
+      "group": "agnews_prior",
+      "expected": "sports",
+      "single_request": {
+        "ms": 1121.8,
+        "tokens": {
+          "input_tokens": 260,
+          "output_tokens": 29,
+          "cached_tokens": 0,
+          "cache_creation_tokens": 0,
+          "thinking_tokens": 0
+        },
+        "attempts": 1,
+        "tie_breaks": null,
+        "answers": {
+          "topic": {
+            "type": "choice",
+            "choice": "sports",
+            "probabilities": {
+              "world": 0.0,
+              "sports": 1.0,
+              "business": 0.0,
+              "sci_tech": 0.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "agnews:3491",
+      "group": "agnews_prior",
+      "expected": "world",
+      "single_request": {
+        "ms": 845.1,
+        "tokens": {
+          "input_tokens": 281,
+          "output_tokens": 29,
+          "cached_tokens": 0,
+          "cache_creation_tokens": 0,
+          "thinking_tokens": 0
+        },
+        "attempts": 1,
+        "tie_breaks": null,
+        "answers": {
+          "topic": {
+            "type": "choice",
+            "choice": "world",
+            "probabilities": {
+              "world": 1.0,
+              "sports": 0.0,
+              "business": 0.0,
+              "sci_tech": 0.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "agnews:3420",
+      "group": "agnews_prior",
+      "expected": "sci_tech",
+      "single_request": {
+        "ms": 962.5,
+        "tokens": {
+          "input_tokens": 256,
+          "output_tokens": 37,
+          "cached_tokens": 0,
+          "cache_creation_tokens": 0,
+          "thinking_tokens": 0
+        },
+        "attempts": 1,
+        "tie_breaks": null,
+        "answers": {
+          "topic": {
+            "type": "choice",
+            "choice": "sci_tech",
+            "probabilities": {
+              "world": 0.02,
+              "sports": 0.01,
+              "business": 0.22,
+              "sci_tech": 0.75
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "agnews:3425",
+      "group": "agnews_prior",
+      "expected": "sports",
+      "single_request": {
+        "ms": 953.7,
+        "tokens": {
+          "input_tokens": 243,
+          "output_tokens": 29,
+          "cached_tokens": 0,
+          "cache_creation_tokens": 0,
+          "thinking_tokens": 0
+        },
+        "attempts": 1,
+        "tie_breaks": null,
+        "answers": {
+          "topic": {
+            "type": "choice",
+            "choice": "sports",
+            "probabilities": {
+              "world": 0.0,
+              "sports": 1.0,
+              "business": 0.0,
+              "sci_tech": 0.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "agnews:3410",
+      "group": "agnews_prior",
+      "expected": "business",
+      "single_request": {
+        "ms": 1235.1,
+        "tokens": {
+          "input_tokens": 278,
+          "output_tokens": 29,
+          "cached_tokens": 0,
+          "cache_creation_tokens": 0,
+          "thinking_tokens": 0
+        },
+        "attempts": 1,
+        "tie_breaks": null,
+        "answers": {
+          "topic": {
+            "type": "choice",
+            "choice": "business",
+            "probabilities": {
+              "world": 0.0,
+              "sports": 0.0,
+              "business": 1.0,
+              "sci_tech": 0.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "agnews:3486",
+      "group": "agnews_prior",
+      "expected": "sci_tech",
+      "single_request": {
+        "ms": 2164.7,
+        "tokens": {
+          "input_tokens": 266,
+          "output_tokens": 29,
+          "cached_tokens": 0,
+          "cache_creation_tokens": 0,
+          "thinking_tokens": 0
+        },
+        "attempts": 1,
+        "tie_breaks": null,
+        "answers": {
+          "topic": {
+            "type": "choice",
+            "choice": "sci_tech",
+            "probabilities": {
+              "world": 0.0,
+              "sports": 0.0,
+              "business": 0.0,
+              "sci_tech": 1.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "agnews:3477",
+      "group": "agnews_prior",
+      "expected": "world",
+      "single_request": {
+        "ms": 807.4,
+        "tokens": {
+          "input_tokens": 256,
+          "output_tokens": 29,
+          "cached_tokens": 0,
+          "cache_creation_tokens": 0,
+          "thinking_tokens": 0
+        },
+        "attempts": 1,
+        "tie_breaks": null,
+        "answers": {
+          "topic": {
+            "type": "choice",
+            "choice": "world",
+            "probabilities": {
+              "world": 1.0,
+              "sports": 0.0,
+              "business": 0.0,
+              "sci_tech": 0.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "agnews:3452",
+      "group": "agnews_prior",
+      "expected": "world",
+      "single_request": {
+        "ms": 1119.4,
+        "tokens": {
+          "input_tokens": 240,
+          "output_tokens": 29,
+          "cached_tokens": 0,
+          "cache_creation_tokens": 0,
+          "thinking_tokens": 0
+        },
+        "attempts": 1,
+        "tie_breaks": null,
+        "answers": {
+          "topic": {
+            "type": "choice",
+            "choice": "world",
+            "probabilities": {
+              "world": 1.0,
+              "sports": 0.0,
+              "business": 0.0,
+              "sci_tech": 0.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "agnews:3413",
+      "group": "agnews_prior",
+      "expected": "sports",
+      "single_request": {
+        "ms": 998.2,
+        "tokens": {
+          "input_tokens": 276,
+          "output_tokens": 37,
+          "cached_tokens": 0,
+          "cache_creation_tokens": 0,
+          "thinking_tokens": 0
+        },
+        "attempts": 1,
+        "tie_breaks": null,
+        "answers": {
+          "topic": {
+            "type": "choice",
+            "choice": "sports",
+            "probabilities": {
+              "world": 0.01,
+              "sports": 0.98,
+              "business": 0.005,
+              "sci_tech": 0.005
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "agnews:3498",
+      "group": "agnews_prior",
+      "expected": "sports",
+      "single_request": {
+        "ms": 1052.4,
+        "tokens": {
+          "input_tokens": 266,
+          "output_tokens": 29,
+          "cached_tokens": 0,
+          "cache_creation_tokens": 0,
+          "thinking_tokens": 0
+        },
+        "attempts": 1,
+        "tie_breaks": null,
+        "answers": {
+          "topic": {
+            "type": "choice",
+            "choice": "sports",
+            "probabilities": {
+              "world": 0.0,
+              "sports": 1.0,
+              "business": 0.0,
+              "sci_tech": 0.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "agnews:3431",
+      "group": "agnews_prior",
+      "expected": "world",
+      "single_request": {
+        "ms": 1228.8,
+        "tokens": {
+          "input_tokens": 272,
+          "output_tokens": 29,
+          "cached_tokens": 0,
+          "cache_creation_tokens": 0,
+          "thinking_tokens": 0
+        },
+        "attempts": 1,
+        "tie_breaks": null,
+        "answers": {
+          "topic": {
+            "type": "choice",
+            "choice": "world",
+            "probabilities": {
+              "world": 1.0,
+              "sports": 0.0,
+              "business": 0.0,
+              "sci_tech": 0.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "agnews:3492",
+      "group": "agnews_prior",
+      "expected": "business",
+      "single_request": {
+        "ms": 1189.8,
+        "tokens": {
+          "input_tokens": 258,
+          "output_tokens": 37,
+          "cached_tokens": 0,
+          "cache_creation_tokens": 0,
+          "thinking_tokens": 0
+        },
+        "attempts": 1,
+        "tie_breaks": null,
+        "answers": {
+          "topic": {
+            "type": "choice",
+            "choice": "business",
+            "probabilities": {
+              "world": 0.05,
+              "sports": 0.01,
+              "business": 0.9,
+              "sci_tech": 0.04
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "agnews:3463",
+      "group": "agnews_prior",
+      "expected": "sports",
+      "single_request": {
+        "ms": 981.4,
+        "tokens": {
+          "input_tokens": 272,
+          "output_tokens": 29,
+          "cached_tokens": 0,
+          "cache_creation_tokens": 0,
+          "thinking_tokens": 0
+        },
+        "attempts": 1,
+        "tie_breaks": null,
+        "answers": {
+          "topic": {
+            "type": "choice",
+            "choice": "sports",
+            "probabilities": {
+              "world": 0.0,
+              "sports": 1.0,
+              "business": 0.0,
+              "sci_tech": 0.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "agnews:3434",
+      "group": "agnews_prior",
+      "expected": "world",
+      "single_request": {
+        "ms": 1063.5,
+        "tokens": {
+          "input_tokens": 256,
+          "output_tokens": 29,
+          "cached_tokens": 0,
+          "cache_creation_tokens": 0,
+          "thinking_tokens": 0
+        },
+        "attempts": 1,
+        "tie_breaks": null,
+        "answers": {
+          "topic": {
+            "type": "choice",
+            "choice": "world",
+            "probabilities": {
+              "world": 1.0,
+              "sports": 0.0,
+              "business": 0.0,
+              "sci_tech": 0.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "agnews:3488",
+      "group": "agnews_prior",
+      "expected": "business",
+      "single_request": {
+        "ms": 1166.7,
+        "tokens": {
+          "input_tokens": 243,
+          "output_tokens": 37,
+          "cached_tokens": 0,
+          "cache_creation_tokens": 0,
+          "thinking_tokens": 0
+        },
+        "attempts": 1,
+        "tie_breaks": null,
+        "answers": {
+          "topic": {
+            "type": "choice",
+            "choice": "business",
+            "probabilities": {
+              "world": 0.25,
+              "sports": 0.05,
+              "business": 0.65,
+              "sci_tech": 0.05
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "agnews:3476",
+      "group": "agnews_prior",
+      "expected": "sci_tech",
+      "single_request": {
+        "ms": 981.2,
+        "tokens": {
+          "input_tokens": 245,
+          "output_tokens": 33,
+          "cached_tokens": 0,
+          "cache_creation_tokens": 0,
+          "thinking_tokens": 0
+        },
+        "attempts": 1,
+        "tie_breaks": null,
+        "answers": {
+          "topic": {
+            "type": "choice",
+            "choice": "sci_tech",
+            "probabilities": {
+              "world": 0.0,
+              "sports": 0.0,
+              "business": 0.05,
+              "sci_tech": 0.95
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "agnews:3496",
+      "group": "agnews_prior",
+      "expected": "sci_tech",
+      "single_request": {
+        "ms": 1205.8,
+        "tokens": {
+          "input_tokens": 263,
+          "output_tokens": 33,
+          "cached_tokens": 0,
+          "cache_creation_tokens": 0,
+          "thinking_tokens": 0
+        },
+        "attempts": 1,
+        "tie_breaks": null,
+        "answers": {
+          "topic": {
+            "type": "choice",
+            "choice": "sci_tech",
+            "probabilities": {
+              "world": 0.0,
+              "sports": 0.0,
+              "business": 0.18,
+              "sci_tech": 0.82
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "agnews:3412",
+      "group": "agnews_prior",
+      "expected": "sci_tech",
+      "single_request": {
+        "ms": 1388.1,
+        "tokens": {
+          "input_tokens": 274,
+          "output_tokens": 33,
+          "cached_tokens": 0,
+          "cache_creation_tokens": 0,
+          "thinking_tokens": 0
+        },
+        "attempts": 1,
+        "tie_breaks": null,
+        "answers": {
+          "topic": {
+            "type": "choice",
+            "choice": "sci_tech",
+            "probabilities": {
+              "world": 0.0,
+              "sports": 0.0,
+              "business": 0.35,
+              "sci_tech": 0.65
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "agnews:3468",
+      "group": "agnews_prior",
+      "expected": "sports",
+      "single_request": {
+        "ms": 914.1,
+        "tokens": {
+          "input_tokens": 265,
+          "output_tokens": 29,
+          "cached_tokens": 0,
+          "cache_creation_tokens": 0,
+          "thinking_tokens": 0
+        },
+        "attempts": 1,
+        "tie_breaks": null,
+        "answers": {
+          "topic": {
+            "type": "choice",
+            "choice": "sports",
+            "probabilities": {
+              "world": 0.0,
+              "sports": 1.0,
+              "business": 0.0,
+              "sci_tech": 0.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "agnews:3472",
+      "group": "agnews_prior",
+      "expected": "sci_tech",
+      "single_request": {
+        "ms": 850.5,
+        "tokens": {
+          "input_tokens": 273,
+          "output_tokens": 37,
+          "cached_tokens": 0,
+          "cache_creation_tokens": 0,
+          "thinking_tokens": 0
+        },
+        "attempts": 1,
+        "tie_breaks": null,
+        "answers": {
+          "topic": {
+            "type": "choice",
+            "choice": "sci_tech",
+            "probabilities": {
+              "world": 0.01,
+              "sports": 0.0,
+              "business": 0.0,
+              "sci_tech": 0.99
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "agnews:3448",
+      "group": "agnews_prior",
+      "expected": "business",
+      "single_request": {
+        "ms": 1006.4,
+        "tokens": {
+          "input_tokens": 276,
+          "output_tokens": 29,
+          "cached_tokens": 0,
+          "cache_creation_tokens": 0,
+          "thinking_tokens": 0
+        },
+        "attempts": 1,
+        "tie_breaks": null,
+        "answers": {
+          "topic": {
+            "type": "choice",
+            "choice": "business",
+            "probabilities": {
+              "world": 0.0,
+              "sports": 0.0,
+              "business": 1.0,
+              "sci_tech": 0.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "agnews:3482",
+      "group": "agnews_prior",
+      "expected": "business",
+      "single_request": {
+        "ms": 1080.9,
+        "tokens": {
+          "input_tokens": 249,
+          "output_tokens": 35,
+          "cached_tokens": 0,
+          "cache_creation_tokens": 0,
+          "thinking_tokens": 0
+        },
+        "attempts": 1,
+        "tie_breaks": null,
+        "answers": {
+          "topic": {
+            "type": "choice",
+            "choice": "business",
+            "probabilities": {
+              "world": 0.05,
+              "sports": 0.01,
+              "business": 0.94,
+              "sci_tech": 0.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "agnews:3441",
+      "group": "agnews_prior",
+      "expected": "sci_tech",
+      "single_request": {
+        "ms": 824.8,
+        "tokens": {
+          "input_tokens": 256,
+          "output_tokens": 33,
+          "cached_tokens": 0,
+          "cache_creation_tokens": 0,
+          "thinking_tokens": 0
+        },
+        "attempts": 1,
+        "tie_breaks": null,
+        "answers": {
+          "topic": {
+            "type": "choice",
+            "choice": "business",
+            "probabilities": {
+              "world": 0.0,
+              "sports": 0.0,
+              "business": 0.7,
+              "sci_tech": 0.3
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "agnews:3499",
+      "group": "agnews_prior",
+      "expected": "sports",
+      "single_request": {
+        "ms": 983.6,
+        "tokens": {
+          "input_tokens": 278,
+          "output_tokens": 29,
+          "cached_tokens": 0,
+          "cache_creation_tokens": 0,
+          "thinking_tokens": 0
+        },
+        "attempts": 1,
+        "tie_breaks": null,
+        "answers": {
+          "topic": {
+            "type": "choice",
+            "choice": "sports",
+            "probabilities": {
+              "world": 0.0,
+              "sports": 1.0,
+              "business": 0.0,
+              "sci_tech": 0.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "agnews:3430",
+      "group": "agnews_prior",
+      "expected": "business",
+      "single_request": {
+        "ms": 766.1,
+        "tokens": {
+          "input_tokens": 277,
+          "output_tokens": 29,
+          "cached_tokens": 0,
+          "cache_creation_tokens": 0,
+          "thinking_tokens": 0
+        },
+        "attempts": 1,
+        "tie_breaks": null,
+        "answers": {
+          "topic": {
+            "type": "choice",
+            "choice": "business",
+            "probabilities": {
+              "world": 0.0,
+              "sports": 0.0,
+              "business": 1.0,
+              "sci_tech": 0.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "agnews:3454",
+      "group": "agnews_prior",
+      "expected": "world",
+      "single_request": {
+        "ms": 1294.7,
+        "tokens": {
+          "input_tokens": 258,
+          "output_tokens": 29,
+          "cached_tokens": 0,
+          "cache_creation_tokens": 0,
+          "thinking_tokens": 0
+        },
+        "attempts": 1,
+        "tie_breaks": null,
+        "answers": {
+          "topic": {
+            "type": "choice",
+            "choice": "world",
+            "probabilities": {
+              "world": 1.0,
+              "sports": 0.0,
+              "business": 0.0,
+              "sci_tech": 0.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "agnews:3444",
+      "group": "agnews_prior",
+      "expected": "world",
+      "single_request": {
+        "ms": 909.7,
+        "tokens": {
+          "input_tokens": 272,
+          "output_tokens": 29,
+          "cached_tokens": 0,
+          "cache_creation_tokens": 0,
+          "thinking_tokens": 0
+        },
+        "attempts": 1,
+        "tie_breaks": null,
+        "answers": {
+          "topic": {
+            "type": "choice",
+            "choice": "world",
+            "probabilities": {
+              "world": 1.0,
+              "sports": 0.0,
+              "business": 0.0,
+              "sci_tech": 0.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "agnews:3466",
+      "group": "agnews_prior",
+      "expected": "business",
+      "single_request": {
+        "ms": 1082.9,
+        "tokens": {
+          "input_tokens": 274,
+          "output_tokens": 35,
+          "cached_tokens": 0,
+          "cache_creation_tokens": 0,
+          "thinking_tokens": 0
+        },
+        "attempts": 1,
+        "tie_breaks": null,
+        "answers": {
+          "topic": {
+            "type": "choice",
+            "choice": "sci_tech",
+            "probabilities": {
+              "world": 0.05,
+              "sports": 0.0,
+              "business": 0.3,
+              "sci_tech": 0.65
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "agnews:3461",
+      "group": "agnews_prior",
+      "expected": "world",
+      "single_request": {
+        "ms": 1169.7,
+        "tokens": {
+          "input_tokens": 264,
+          "output_tokens": 37,
+          "cached_tokens": 0,
+          "cache_creation_tokens": 0,
+          "thinking_tokens": 0
+        },
+        "attempts": 1,
+        "tie_breaks": null,
+        "answers": {
+          "topic": {
+            "type": "choice",
+            "choice": "world",
+            "probabilities": {
+              "world": 0.85,
+              "sports": 0.01,
+              "business": 0.13,
+              "sci_tech": 0.01
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "agnews:3587",
+      "group": "agnews_new",
+      "expected": "world",
+      "single_request": {
+        "ms": 918.6,
+        "tokens": {
+          "input_tokens": 258,
+          "output_tokens": 29,
+          "cached_tokens": 0,
+          "cache_creation_tokens": 0,
+          "thinking_tokens": 0
+        },
+        "attempts": 1,
+        "tie_breaks": null,
+        "answers": {
+          "topic": {
+            "type": "choice",
+            "choice": "world",
+            "probabilities": {
+              "world": 1.0,
+              "sports": 0.0,
+              "business": 0.0,
+              "sci_tech": 0.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "agnews:3598",
+      "group": "agnews_new",
+      "expected": "world",
+      "single_request": {
+        "ms": 1020.7,
+        "tokens": {
+          "input_tokens": 256,
+          "output_tokens": 29,
+          "cached_tokens": 0,
+          "cache_creation_tokens": 0,
+          "thinking_tokens": 0
+        },
+        "attempts": 1,
+        "tie_breaks": null,
+        "answers": {
+          "topic": {
+            "type": "choice",
+            "choice": "world",
+            "probabilities": {
+              "world": 1.0,
+              "sports": 0.0,
+              "business": 0.0,
+              "sci_tech": 0.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "agnews:3518",
+      "group": "agnews_new",
+      "expected": "world",
+      "single_request": {
+        "ms": 1088.0,
+        "tokens": {
+          "input_tokens": 300,
+          "output_tokens": 29,
+          "cached_tokens": 0,
+          "cache_creation_tokens": 0,
+          "thinking_tokens": 0
+        },
+        "attempts": 1,
+        "tie_breaks": null,
+        "answers": {
+          "topic": {
+            "type": "choice",
+            "choice": "world",
+            "probabilities": {
+              "world": 1.0,
+              "sports": 0.0,
+              "business": 0.0,
+              "sci_tech": 0.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "agnews:3516",
+      "group": "agnews_new",
+      "expected": "world",
+      "single_request": {
+        "ms": 1791.3,
+        "tokens": {
+          "input_tokens": 253,
+          "output_tokens": 29,
+          "cached_tokens": 0,
+          "cache_creation_tokens": 0,
+          "thinking_tokens": 0
+        },
+        "attempts": 1,
+        "tie_breaks": null,
+        "answers": {
+          "topic": {
+            "type": "choice",
+            "choice": "world",
+            "probabilities": {
+              "world": 1.0,
+              "sports": 0.0,
+              "business": 0.0,
+              "sci_tech": 0.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "agnews:3599",
+      "group": "agnews_new",
+      "expected": "sports",
+      "single_request": {
+        "ms": 1084.6,
+        "tokens": {
+          "input_tokens": 264,
+          "output_tokens": 29,
+          "cached_tokens": 0,
+          "cache_creation_tokens": 0,
+          "thinking_tokens": 0
+        },
+        "attempts": 1,
+        "tie_breaks": null,
+        "answers": {
+          "topic": {
+            "type": "choice",
+            "choice": "sports",
+            "probabilities": {
+              "world": 0.0,
+              "sports": 1.0,
+              "business": 0.0,
+              "sci_tech": 0.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "agnews:3542",
+      "group": "agnews_new",
+      "expected": "business",
+      "single_request": {
+        "ms": 1088.7,
+        "tokens": {
+          "input_tokens": 258,
+          "output_tokens": 37,
+          "cached_tokens": 0,
+          "cache_creation_tokens": 0,
+          "thinking_tokens": 0
+        },
+        "attempts": 1,
+        "tie_breaks": null,
+        "answers": {
+          "topic": {
+            "type": "choice",
+            "choice": "business",
+            "probabilities": {
+              "world": 0.03,
+              "sports": 0.01,
+              "business": 0.95,
+              "sci_tech": 0.01
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "agnews:3555",
+      "group": "agnews_new",
+      "expected": "world",
+      "single_request": {
+        "ms": 1495.3,
+        "tokens": {
+          "input_tokens": 280,
+          "output_tokens": 37,
+          "cached_tokens": 0,
+          "cache_creation_tokens": 0,
+          "thinking_tokens": 0
+        },
+        "attempts": 1,
+        "tie_breaks": null,
+        "answers": {
+          "topic": {
+            "type": "choice",
+            "choice": "business",
+            "probabilities": {
+              "world": 0.03,
+              "sports": 0.01,
+              "business": 0.95,
+              "sci_tech": 0.01
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "agnews:3544",
+      "group": "agnews_new",
+      "expected": "sports",
+      "single_request": {
+        "ms": 986.5,
+        "tokens": {
+          "input_tokens": 266,
+          "output_tokens": 29,
+          "cached_tokens": 0,
+          "cache_creation_tokens": 0,
+          "thinking_tokens": 0
+        },
+        "attempts": 1,
+        "tie_breaks": null,
+        "answers": {
+          "topic": {
+            "type": "choice",
+            "choice": "sports",
+            "probabilities": {
+              "world": 0.0,
+              "sports": 1.0,
+              "business": 0.0,
+              "sci_tech": 0.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "agnews:3554",
+      "group": "agnews_new",
+      "expected": "business",
+      "single_request": {
+        "ms": 948.4,
+        "tokens": {
+          "input_tokens": 286,
+          "output_tokens": 35,
+          "cached_tokens": 0,
+          "cache_creation_tokens": 0,
+          "thinking_tokens": 0
+        },
+        "attempts": 1,
+        "tie_breaks": null,
+        "answers": {
+          "topic": {
+            "type": "choice",
+            "choice": "business",
+            "probabilities": {
+              "world": 0.25,
+              "sports": 0.0,
+              "business": 0.7,
+              "sci_tech": 0.05
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "agnews:3577",
+      "group": "agnews_new",
+      "expected": "business",
+      "single_request": {
+        "ms": 960.7,
+        "tokens": {
+          "input_tokens": 265,
+          "output_tokens": 37,
+          "cached_tokens": 0,
+          "cache_creation_tokens": 0,
+          "thinking_tokens": 0
+        },
+        "attempts": 1,
+        "tie_breaks": null,
+        "answers": {
+          "topic": {
+            "type": "choice",
+            "choice": "business",
+            "probabilities": {
+              "world": 0.02,
+              "sports": 0.01,
+              "business": 0.96,
+              "sci_tech": 0.01
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "agnews:3538",
+      "group": "agnews_new",
+      "expected": "business",
+      "single_request": {
+        "ms": 866.0,
+        "tokens": {
+          "input_tokens": 253,
+          "output_tokens": 37,
+          "cached_tokens": 0,
+          "cache_creation_tokens": 0,
+          "thinking_tokens": 0
+        },
+        "attempts": 1,
+        "tie_breaks": null,
+        "answers": {
+          "topic": {
+            "type": "choice",
+            "choice": "business",
+            "probabilities": {
+              "world": 0.02,
+              "sports": 0.0,
+              "business": 0.96,
+              "sci_tech": 0.02
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "agnews:3556",
+      "group": "agnews_new",
+      "expected": "business",
+      "single_request": {
+        "ms": 983.9,
+        "tokens": {
+          "input_tokens": 275,
+          "output_tokens": 37,
+          "cached_tokens": 0,
+          "cache_creation_tokens": 0,
+          "thinking_tokens": 0
+        },
+        "attempts": 1,
+        "tie_breaks": null,
+        "answers": {
+          "topic": {
+            "type": "choice",
+            "choice": "business",
+            "probabilities": {
+              "world": 0.02,
+              "sports": 0.01,
+              "business": 0.95,
+              "sci_tech": 0.02
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "agnews:3512",
+      "group": "agnews_new",
+      "expected": "sci_tech",
+      "single_request": {
+        "ms": 930.4,
+        "tokens": {
+          "input_tokens": 252,
+          "output_tokens": 35,
+          "cached_tokens": 0,
+          "cache_creation_tokens": 0,
+          "thinking_tokens": 0
+        },
+        "attempts": 1,
+        "tie_breaks": null,
+        "answers": {
+          "topic": {
+            "type": "choice",
+            "choice": "sci_tech",
+            "probabilities": {
+              "world": 0.1,
+              "sports": 0.0,
+              "business": 0.05,
+              "sci_tech": 0.85
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "agnews:3580",
+      "group": "agnews_new",
+      "expected": "business",
+      "single_request": {
+        "ms": 946.8,
+        "tokens": {
+          "input_tokens": 254,
+          "output_tokens": 29,
+          "cached_tokens": 0,
+          "cache_creation_tokens": 0,
+          "thinking_tokens": 0
+        },
+        "attempts": 1,
+        "tie_breaks": null,
+        "answers": {
+          "topic": {
+            "type": "choice",
+            "choice": "business",
+            "probabilities": {
+              "world": 0.0,
+              "sports": 0.0,
+              "business": 1.0,
+              "sci_tech": 0.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "agnews:3507",
+      "group": "agnews_new",
+      "expected": "sports",
+      "single_request": {
+        "ms": 924.6,
+        "tokens": {
+          "input_tokens": 255,
+          "output_tokens": 29,
+          "cached_tokens": 0,
+          "cache_creation_tokens": 0,
+          "thinking_tokens": 0
+        },
+        "attempts": 1,
+        "tie_breaks": null,
+        "answers": {
+          "topic": {
+            "type": "choice",
+            "choice": "sports",
+            "probabilities": {
+              "world": 0.0,
+              "sports": 1.0,
+              "business": 0.0,
+              "sci_tech": 0.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "agnews:3588",
+      "group": "agnews_new",
+      "expected": "sci_tech",
+      "single_request": {
+        "ms": 930.6,
+        "tokens": {
+          "input_tokens": 256,
+          "output_tokens": 33,
+          "cached_tokens": 0,
+          "cache_creation_tokens": 0,
+          "thinking_tokens": 0
+        },
+        "attempts": 1,
+        "tie_breaks": null,
+        "answers": {
+          "topic": {
+            "type": "choice",
+            "choice": "sci_tech",
+            "probabilities": {
+              "world": 0.0,
+              "sports": 0.0,
+              "business": 0.12,
+              "sci_tech": 0.88
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "agnews:3595",
+      "group": "agnews_new",
+      "expected": "business",
+      "single_request": {
+        "ms": 1035.4,
+        "tokens": {
+          "input_tokens": 276,
+          "output_tokens": 37,
+          "cached_tokens": 0,
+          "cache_creation_tokens": 0,
+          "thinking_tokens": 0
+        },
+        "attempts": 1,
+        "tie_breaks": null,
+        "answers": {
+          "topic": {
+            "type": "choice",
+            "choice": "business",
+            "probabilities": {
+              "world": 0.02,
+              "sports": 0.01,
+              "business": 0.96,
+              "sci_tech": 0.01
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "agnews:3537",
+      "group": "agnews_new",
+      "expected": "sci_tech",
+      "single_request": {
+        "ms": 1124.5,
+        "tokens": {
+          "input_tokens": 273,
+          "output_tokens": 29,
+          "cached_tokens": 0,
+          "cache_creation_tokens": 0,
+          "thinking_tokens": 0
+        },
+        "attempts": 1,
+        "tie_breaks": null,
+        "answers": {
+          "topic": {
+            "type": "choice",
+            "choice": "business",
+            "probabilities": {
+              "world": 0.0,
+              "sports": 0.0,
+              "business": 1.0,
+              "sci_tech": 0.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "agnews:3551",
+      "group": "agnews_new",
+      "expected": "sports",
+      "single_request": {
+        "ms": 749.3,
+        "tokens": {
+          "input_tokens": 257,
+          "output_tokens": 29,
+          "cached_tokens": 0,
+          "cache_creation_tokens": 0,
+          "thinking_tokens": 0
+        },
+        "attempts": 1,
+        "tie_breaks": null,
+        "answers": {
+          "topic": {
+            "type": "choice",
+            "choice": "sports",
+            "probabilities": {
+              "world": 0.0,
+              "sports": 1.0,
+              "business": 0.0,
+              "sci_tech": 0.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "agnews:3509",
+      "group": "agnews_new",
+      "expected": "world",
+      "single_request": {
+        "ms": 992.0,
+        "tokens": {
+          "input_tokens": 258,
+          "output_tokens": 29,
+          "cached_tokens": 0,
+          "cache_creation_tokens": 0,
+          "thinking_tokens": 0
+        },
+        "attempts": 1,
+        "tie_breaks": null,
+        "answers": {
+          "topic": {
+            "type": "choice",
+            "choice": "world",
+            "probabilities": {
+              "world": 1.0,
+              "sports": 0.0,
+              "business": 0.0,
+              "sci_tech": 0.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "agnews:3506",
+      "group": "agnews_new",
+      "expected": "sci_tech",
+      "single_request": {
+        "ms": 1535.6,
+        "tokens": {
+          "input_tokens": 259,
+          "output_tokens": 33,
+          "cached_tokens": 0,
+          "cache_creation_tokens": 0,
+          "thinking_tokens": 0
+        },
+        "attempts": 1,
+        "tie_breaks": null,
+        "answers": {
+          "topic": {
+            "type": "choice",
+            "choice": "sci_tech",
+            "probabilities": {
+              "world": 0.0,
+              "sports": 0.0,
+              "business": 0.35,
+              "sci_tech": 0.65
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "agnews:3501",
+      "group": "agnews_new",
+      "expected": "sci_tech",
+      "single_request": {
+        "ms": 774.2,
+        "tokens": {
+          "input_tokens": 271,
+          "output_tokens": 29,
+          "cached_tokens": 0,
+          "cache_creation_tokens": 0,
+          "thinking_tokens": 0
+        },
+        "attempts": 1,
+        "tie_breaks": null,
+        "answers": {
+          "topic": {
+            "type": "choice",
+            "choice": "sci_tech",
+            "probabilities": {
+              "world": 0.0,
+              "sports": 0.0,
+              "business": 0.0,
+              "sci_tech": 1.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "agnews:3564",
+      "group": "agnews_new",
+      "expected": "sci_tech",
+      "single_request": {
+        "ms": 1011.0,
+        "tokens": {
+          "input_tokens": 273,
+          "output_tokens": 33,
+          "cached_tokens": 0,
+          "cache_creation_tokens": 0,
+          "thinking_tokens": 0
+        },
+        "attempts": 1,
+        "tie_breaks": null,
+        "answers": {
+          "topic": {
+            "type": "choice",
+            "choice": "sci_tech",
+            "probabilities": {
+              "world": 0.05,
+              "sports": 0.0,
+              "business": 0.0,
+              "sci_tech": 0.95
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "agnews:3545",
+      "group": "agnews_new",
+      "expected": "world",
+      "single_request": {
+        "ms": 909.0,
+        "tokens": {
+          "input_tokens": 264,
+          "output_tokens": 29,
+          "cached_tokens": 0,
+          "cache_creation_tokens": 0,
+          "thinking_tokens": 0
+        },
+        "attempts": 1,
+        "tie_breaks": null,
+        "answers": {
+          "topic": {
+            "type": "choice",
+            "choice": "world",
+            "probabilities": {
+              "world": 1.0,
+              "sports": 0.0,
+              "business": 0.0,
+              "sci_tech": 0.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "agnews:3562",
+      "group": "agnews_new",
+      "expected": "sports",
+      "single_request": {
+        "ms": 749.2,
+        "tokens": {
+          "input_tokens": 252,
+          "output_tokens": 29,
+          "cached_tokens": 0,
+          "cache_creation_tokens": 0,
+          "thinking_tokens": 0
+        },
+        "attempts": 1,
+        "tie_breaks": null,
+        "answers": {
+          "topic": {
+            "type": "choice",
+            "choice": "sports",
+            "probabilities": {
+              "world": 0.0,
+              "sports": 1.0,
+              "business": 0.0,
+              "sci_tech": 0.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "agnews:3532",
+      "group": "agnews_new",
+      "expected": "sci_tech",
+      "single_request": {
+        "ms": 2227.8,
+        "tokens": {
+          "input_tokens": 250,
+          "output_tokens": 33,
+          "cached_tokens": 0,
+          "cache_creation_tokens": 0,
+          "thinking_tokens": 0
+        },
+        "attempts": 1,
+        "tie_breaks": null,
+        "answers": {
+          "topic": {
+            "type": "choice",
+            "choice": "sci_tech",
+            "probabilities": {
+              "world": 0.0,
+              "sports": 0.0,
+              "business": 0.15,
+              "sci_tech": 0.85
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "agnews:3525",
+      "group": "agnews_new",
+      "expected": "sports",
+      "single_request": {
+        "ms": 1088.3,
+        "tokens": {
+          "input_tokens": 266,
+          "output_tokens": 29,
+          "cached_tokens": 0,
+          "cache_creation_tokens": 0,
+          "thinking_tokens": 0
+        },
+        "attempts": 1,
+        "tie_breaks": null,
+        "answers": {
+          "topic": {
+            "type": "choice",
+            "choice": "sports",
+            "probabilities": {
+              "world": 0.0,
+              "sports": 1.0,
+              "business": 0.0,
+              "sci_tech": 0.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "agnews:3559",
+      "group": "agnews_new",
+      "expected": "sports",
+      "single_request": {
+        "ms": 884.8,
+        "tokens": {
+          "input_tokens": 253,
+          "output_tokens": 29,
+          "cached_tokens": 0,
+          "cache_creation_tokens": 0,
+          "thinking_tokens": 0
+        },
+        "attempts": 1,
+        "tie_breaks": null,
+        "answers": {
+          "topic": {
+            "type": "choice",
+            "choice": "sports",
+            "probabilities": {
+              "world": 0.0,
+              "sports": 1.0,
+              "business": 0.0,
+              "sci_tech": 0.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "agnews:3535",
+      "group": "agnews_new",
+      "expected": "sci_tech",
+      "single_request": {
+        "ms": 1139.0,
+        "tokens": {
+          "input_tokens": 251,
+          "output_tokens": 33,
+          "cached_tokens": 0,
+          "cache_creation_tokens": 0,
+          "thinking_tokens": 0
+        },
+        "attempts": 1,
+        "tie_breaks": null,
+        "answers": {
+          "topic": {
+            "type": "choice",
+            "choice": "sci_tech",
+            "probabilities": {
+              "world": 0.0,
+              "sports": 0.0,
+              "business": 0.05,
+              "sci_tech": 0.95
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "agnews:3568",
+      "group": "agnews_new",
+      "expected": "sports",
+      "single_request": {
+        "ms": 944.0,
+        "tokens": {
+          "input_tokens": 253,
+          "output_tokens": 29,
+          "cached_tokens": 0,
+          "cache_creation_tokens": 0,
+          "thinking_tokens": 0
+        },
+        "attempts": 1,
+        "tie_breaks": null,
+        "answers": {
+          "topic": {
+            "type": "choice",
+            "choice": "sports",
+            "probabilities": {
+              "world": 0.0,
+              "sports": 1.0,
+              "business": 0.0,
+              "sci_tech": 0.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "agnews:3536",
+      "group": "agnews_new",
+      "expected": "world",
+      "single_request": {
+        "ms": 1024.4,
+        "tokens": {
+          "input_tokens": 281,
+          "output_tokens": 29,
+          "cached_tokens": 0,
+          "cache_creation_tokens": 0,
+          "thinking_tokens": 0
+        },
+        "attempts": 1,
+        "tie_breaks": null,
+        "answers": {
+          "topic": {
+            "type": "choice",
+            "choice": "world",
+            "probabilities": {
+              "world": 1.0,
+              "sports": 0.0,
+              "business": 0.0,
+              "sci_tech": 0.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "agnews:3553",
+      "group": "agnews_new",
+      "expected": "business",
+      "single_request": {
+        "ms": 987.4,
+        "tokens": {
+          "input_tokens": 261,
+          "output_tokens": 35,
+          "cached_tokens": 0,
+          "cache_creation_tokens": 0,
+          "thinking_tokens": 0
+        },
+        "attempts": 1,
+        "tie_breaks": null,
+        "answers": {
+          "topic": {
+            "type": "choice",
+            "choice": "business",
+            "probabilities": {
+              "world": 0.1,
+              "sports": 0.0,
+              "business": 0.85,
+              "sci_tech": 0.05
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "sst2:292",
+      "group": "sst2",
+      "expected": "negative",
+      "single_request": {
+        "ms": 967.3,
+        "tokens": {
+          "input_tokens": 285,
+          "output_tokens": 52,
+          "cached_tokens": 0,
+          "cache_creation_tokens": 0,
+          "thinking_tokens": 0
+        },
+        "attempts": 1,
+        "tie_breaks": null,
+        "answers": {
+          "positive": {
+            "type": "probability",
+            "probability": 0.02
+          },
+          "sentiment": {
+            "type": "choice",
+            "choice": "negative",
+            "probabilities": {
+              "negative": 0.98,
+              "positive": 0.02
+            }
+          },
+          "valence": {
+            "type": "score",
+            "score": 0.02,
+            "probabilities": {
+              "0": 0.98,
+              "1": 0.02
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "sst2:247",
+      "group": "sst2",
+      "expected": "negative",
+      "single_request": {
+        "ms": 1166.3,
+        "tokens": {
+          "input_tokens": 294,
+          "output_tokens": 52,
+          "cached_tokens": 0,
+          "cache_creation_tokens": 0,
+          "thinking_tokens": 0
+        },
+        "attempts": 1,
+        "tie_breaks": null,
+        "answers": {
+          "positive": {
+            "type": "probability",
+            "probability": 0.01
+          },
+          "sentiment": {
+            "type": "choice",
+            "choice": "negative",
+            "probabilities": {
+              "negative": 0.99,
+              "positive": 0.01
+            }
+          },
+          "valence": {
+            "type": "score",
+            "score": 0.01,
+            "probabilities": {
+              "0": 0.99,
+              "1": 0.01
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "sst2:212",
+      "group": "sst2",
+      "expected": "negative",
+      "single_request": {
+        "ms": 1072.4,
+        "tokens": {
+          "input_tokens": 267,
+          "output_tokens": 40,
+          "cached_tokens": 0,
+          "cache_creation_tokens": 0,
+          "thinking_tokens": 0
+        },
+        "attempts": 1,
+        "tie_breaks": null,
+        "answers": {
+          "positive": {
+            "type": "probability",
+            "probability": 0.0
+          },
+          "sentiment": {
+            "type": "choice",
+            "choice": "negative",
+            "probabilities": {
+              "negative": 1.0,
+              "positive": 0.0
+            }
+          },
+          "valence": {
+            "type": "score",
+            "score": 0.0,
+            "probabilities": {
+              "0": 1.0,
+              "1": 0.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "sst2:238",
+      "group": "sst2",
+      "expected": "negative",
+      "single_request": {
+        "ms": 983.2,
+        "tokens": {
+          "input_tokens": 266,
+          "output_tokens": 52,
+          "cached_tokens": 0,
+          "cache_creation_tokens": 0,
+          "thinking_tokens": 0
+        },
+        "attempts": 1,
+        "tie_breaks": null,
+        "answers": {
+          "positive": {
+            "type": "probability",
+            "probability": 0.03
+          },
+          "sentiment": {
+            "type": "choice",
+            "choice": "negative",
+            "probabilities": {
+              "negative": 0.97,
+              "positive": 0.03
+            }
+          },
+          "valence": {
+            "type": "score",
+            "score": 0.03,
+            "probabilities": {
+              "0": 0.97,
+              "1": 0.03
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "sst2:273",
+      "group": "sst2",
+      "expected": "positive",
+      "single_request": {
+        "ms": 923.6,
+        "tokens": {
+          "input_tokens": 265,
+          "output_tokens": 52,
+          "cached_tokens": 0,
+          "cache_creation_tokens": 0,
+          "thinking_tokens": 0
+        },
+        "attempts": 1,
+        "tie_breaks": null,
+        "answers": {
+          "positive": {
+            "type": "probability",
+            "probability": 0.05
+          },
+          "sentiment": {
+            "type": "choice",
+            "choice": "negative",
+            "probabilities": {
+              "negative": 0.95,
+              "positive": 0.05
+            }
+          },
+          "valence": {
+            "type": "score",
+            "score": 0.05,
+            "probabilities": {
+              "0": 0.95,
+              "1": 0.05
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "sst2:270",
+      "group": "sst2",
+      "expected": "positive",
+      "single_request": {
+        "ms": 992.4,
+        "tokens": {
+          "input_tokens": 261,
+          "output_tokens": 52,
+          "cached_tokens": 0,
+          "cache_creation_tokens": 0,
+          "thinking_tokens": 0
+        },
+        "attempts": 1,
+        "tie_breaks": null,
+        "answers": {
+          "positive": {
+            "type": "probability",
+            "probability": 0.82
+          },
+          "sentiment": {
+            "type": "choice",
+            "choice": "positive",
+            "probabilities": {
+              "negative": 0.18,
+              "positive": 0.82
+            }
+          },
+          "valence": {
+            "type": "score",
+            "score": 0.82,
+            "probabilities": {
+              "0": 0.18,
+              "1": 0.82
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "sst2:284",
+      "group": "sst2",
+      "expected": "negative",
+      "single_request": {
+        "ms": 1507.8,
+        "tokens": {
+          "input_tokens": 262,
+          "output_tokens": 52,
+          "cached_tokens": 0,
+          "cache_creation_tokens": 0,
+          "thinking_tokens": 0
+        },
+        "attempts": 1,
+        "tie_breaks": null,
+        "answers": {
+          "positive": {
+            "type": "probability",
+            "probability": 0.03
+          },
+          "sentiment": {
+            "type": "choice",
+            "choice": "negative",
+            "probabilities": {
+              "negative": 0.97,
+              "positive": 0.03
+            }
+          },
+          "valence": {
+            "type": "score",
+            "score": 0.03,
+            "probabilities": {
+              "0": 0.97,
+              "1": 0.03
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "sst2:217",
+      "group": "sst2",
+      "expected": "negative",
+      "single_request": {
+        "ms": 1629.7,
+        "tokens": {
+          "input_tokens": 289,
+          "output_tokens": 52,
+          "cached_tokens": 0,
+          "cache_creation_tokens": 0,
+          "thinking_tokens": 0
+        },
+        "attempts": 1,
+        "tie_breaks": null,
+        "answers": {
+          "positive": {
+            "type": "probability",
+            "probability": 0.02
+          },
+          "sentiment": {
+            "type": "choice",
+            "choice": "negative",
+            "probabilities": {
+              "negative": 0.98,
+              "positive": 0.02
+            }
+          },
+          "valence": {
+            "type": "score",
+            "score": 0.02,
+            "probabilities": {
+              "0": 0.98,
+              "1": 0.02
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "sst2:236",
+      "group": "sst2",
+      "expected": "positive",
+      "single_request": {
+        "ms": 894.5,
+        "tokens": {
+          "input_tokens": 286,
+          "output_tokens": 52,
+          "cached_tokens": 0,
+          "cache_creation_tokens": 0,
+          "thinking_tokens": 0
+        },
+        "attempts": 1,
+        "tie_breaks": null,
+        "answers": {
+          "positive": {
+            "type": "probability",
+            "probability": 0.98
+          },
+          "sentiment": {
+            "type": "choice",
+            "choice": "positive",
+            "probabilities": {
+              "negative": 0.02,
+              "positive": 0.98
+            }
+          },
+          "valence": {
+            "type": "score",
+            "score": 0.98,
+            "probabilities": {
+              "0": 0.02,
+              "1": 0.98
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "sst2:295",
+      "group": "sst2",
+      "expected": "positive",
+      "single_request": {
+        "ms": 977.1,
+        "tokens": {
+          "input_tokens": 263,
+          "output_tokens": 52,
+          "cached_tokens": 0,
+          "cache_creation_tokens": 0,
+          "thinking_tokens": 0
+        },
+        "attempts": 1,
+        "tie_breaks": null,
+        "answers": {
+          "positive": {
+            "type": "probability",
+            "probability": 0.85
+          },
+          "sentiment": {
+            "type": "choice",
+            "choice": "positive",
+            "probabilities": {
+              "negative": 0.15,
+              "positive": 0.85
+            }
+          },
+          "valence": {
+            "type": "score",
+            "score": 0.85,
+            "probabilities": {
+              "0": 0.15,
+              "1": 0.85
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "sst2:234",
+      "group": "sst2",
+      "expected": "positive",
+      "single_request": {
+        "ms": 832.0,
+        "tokens": {
+          "input_tokens": 262,
+          "output_tokens": 52,
+          "cached_tokens": 0,
+          "cache_creation_tokens": 0,
+          "thinking_tokens": 0
+        },
+        "attempts": 1,
+        "tie_breaks": null,
+        "answers": {
+          "positive": {
+            "type": "probability",
+            "probability": 0.95
+          },
+          "sentiment": {
+            "type": "choice",
+            "choice": "positive",
+            "probabilities": {
+              "negative": 0.05,
+              "positive": 0.95
+            }
+          },
+          "valence": {
+            "type": "score",
+            "score": 0.95,
+            "probabilities": {
+              "0": 0.05,
+              "1": 0.95
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "sst2:239",
+      "group": "sst2",
+      "expected": "positive",
+      "single_request": {
+        "ms": 781.3,
+        "tokens": {
+          "input_tokens": 271,
+          "output_tokens": 40,
+          "cached_tokens": 0,
+          "cache_creation_tokens": 0,
+          "thinking_tokens": 0
+        },
+        "attempts": 1,
+        "tie_breaks": null,
+        "answers": {
+          "positive": {
+            "type": "probability",
+            "probability": 1.0
+          },
+          "sentiment": {
+            "type": "choice",
+            "choice": "positive",
+            "probabilities": {
+              "negative": 0.0,
+              "positive": 1.0
+            }
+          },
+          "valence": {
+            "type": "score",
+            "score": 1.0,
+            "probabilities": {
+              "0": 0.0,
+              "1": 1.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "sst2:222",
+      "group": "sst2",
+      "expected": "positive",
+      "single_request": {
+        "ms": 1082.7,
+        "tokens": {
+          "input_tokens": 283,
+          "output_tokens": 52,
+          "cached_tokens": 0,
+          "cache_creation_tokens": 0,
+          "thinking_tokens": 0
+        },
+        "attempts": 1,
+        "tie_breaks": null,
+        "answers": {
+          "positive": {
+            "type": "probability",
+            "probability": 0.99
+          },
+          "sentiment": {
+            "type": "choice",
+            "choice": "positive",
+            "probabilities": {
+              "negative": 0.01,
+              "positive": 0.99
+            }
+          },
+          "valence": {
+            "type": "score",
+            "score": 0.99,
+            "probabilities": {
+              "0": 0.01,
+              "1": 0.99
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "sst2:211",
+      "group": "sst2",
+      "expected": "negative",
+      "single_request": {
+        "ms": 1233.0,
+        "tokens": {
+          "input_tokens": 277,
+          "output_tokens": 52,
+          "cached_tokens": 0,
+          "cache_creation_tokens": 0,
+          "thinking_tokens": 0
+        },
+        "attempts": 1,
+        "tie_breaks": null,
+        "answers": {
+          "positive": {
+            "type": "probability",
+            "probability": 0.02
+          },
+          "sentiment": {
+            "type": "choice",
+            "choice": "negative",
+            "probabilities": {
+              "negative": 0.98,
+              "positive": 0.02
+            }
+          },
+          "valence": {
+            "type": "score",
+            "score": 0.02,
+            "probabilities": {
+              "0": 0.98,
+              "1": 0.02
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "sst2:287",
+      "group": "sst2",
+      "expected": "positive",
+      "single_request": {
+        "ms": 927.1,
+        "tokens": {
+          "input_tokens": 297,
+          "output_tokens": 52,
+          "cached_tokens": 0,
+          "cache_creation_tokens": 0,
+          "thinking_tokens": 0
+        },
+        "attempts": 1,
+        "tie_breaks": null,
+        "answers": {
+          "positive": {
+            "type": "probability",
+            "probability": 0.99
+          },
+          "sentiment": {
+            "type": "choice",
+            "choice": "positive",
+            "probabilities": {
+              "negative": 0.01,
+              "positive": 0.99
+            }
+          },
+          "valence": {
+            "type": "score",
+            "score": 0.99,
+            "probabilities": {
+              "0": 0.01,
+              "1": 0.99
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "sst2:262",
+      "group": "sst2",
+      "expected": "negative",
+      "single_request": {
+        "ms": 1435.7,
+        "tokens": {
+          "input_tokens": 294,
+          "output_tokens": 52,
+          "cached_tokens": 0,
+          "cache_creation_tokens": 0,
+          "thinking_tokens": 0
+        },
+        "attempts": 1,
+        "tie_breaks": null,
+        "answers": {
+          "positive": {
+            "type": "probability",
+            "probability": 0.01
+          },
+          "sentiment": {
+            "type": "choice",
+            "choice": "negative",
+            "probabilities": {
+              "negative": 0.99,
+              "positive": 0.01
+            }
+          },
+          "valence": {
+            "type": "score",
+            "score": 0.01,
+            "probabilities": {
+              "0": 0.99,
+              "1": 0.01
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "sst2:204",
+      "group": "sst2",
+      "expected": "positive",
+      "single_request": {
+        "ms": 902.1,
+        "tokens": {
+          "input_tokens": 284,
+          "output_tokens": 52,
+          "cached_tokens": 0,
+          "cache_creation_tokens": 0,
+          "thinking_tokens": 0
+        },
+        "attempts": 1,
+        "tie_breaks": null,
+        "answers": {
+          "positive": {
+            "type": "probability",
+            "probability": 0.85
+          },
+          "sentiment": {
+            "type": "choice",
+            "choice": "positive",
+            "probabilities": {
+              "negative": 0.15,
+              "positive": 0.85
+            }
+          },
+          "valence": {
+            "type": "score",
+            "score": 0.85,
+            "probabilities": {
+              "0": 0.15,
+              "1": 0.85
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "sst2:230",
+      "group": "sst2",
+      "expected": "positive",
+      "single_request": {
+        "ms": 1039.5,
+        "tokens": {
+          "input_tokens": 273,
+          "output_tokens": 52,
+          "cached_tokens": 0,
+          "cache_creation_tokens": 0,
+          "thinking_tokens": 0
+        },
+        "attempts": 1,
+        "tie_breaks": null,
+        "answers": {
+          "positive": {
+            "type": "probability",
+            "probability": 0.03
+          },
+          "sentiment": {
+            "type": "choice",
+            "choice": "negative",
+            "probabilities": {
+              "negative": 0.97,
+              "positive": 0.03
+            }
+          },
+          "valence": {
+            "type": "score",
+            "score": 0.03,
+            "probabilities": {
+              "0": 0.97,
+              "1": 0.03
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "sst2:205",
+      "group": "sst2",
+      "expected": "positive",
+      "single_request": {
+        "ms": 872.4,
+        "tokens": {
+          "input_tokens": 262,
+          "output_tokens": 52,
+          "cached_tokens": 0,
+          "cache_creation_tokens": 0,
+          "thinking_tokens": 0
+        },
+        "attempts": 1,
+        "tie_breaks": null,
+        "answers": {
+          "positive": {
+            "type": "probability",
+            "probability": 0.99
+          },
+          "sentiment": {
+            "type": "choice",
+            "choice": "positive",
+            "probabilities": {
+              "negative": 0.01,
+              "positive": 0.99
+            }
+          },
+          "valence": {
+            "type": "score",
+            "score": 0.99,
+            "probabilities": {
+              "0": 0.01,
+              "1": 0.99
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "sst2:224",
+      "group": "sst2",
+      "expected": "positive",
+      "single_request": {
+        "ms": 1071.7,
+        "tokens": {
+          "input_tokens": 282,
+          "output_tokens": 52,
+          "cached_tokens": 0,
+          "cache_creation_tokens": 0,
+          "thinking_tokens": 0
+        },
+        "attempts": 1,
+        "tie_breaks": null,
+        "answers": {
+          "positive": {
+            "type": "probability",
+            "probability": 0.65
+          },
+          "sentiment": {
+            "type": "choice",
+            "choice": "positive",
+            "probabilities": {
+              "negative": 0.35,
+              "positive": 0.65
+            }
+          },
+          "valence": {
+            "type": "score",
+            "score": 0.65,
+            "probabilities": {
+              "0": 0.35,
+              "1": 0.65
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "sst2:251",
+      "group": "sst2",
+      "expected": "negative",
+      "single_request": {
+        "ms": 1576.8,
+        "tokens": {
+          "input_tokens": 268,
+          "output_tokens": 40,
+          "cached_tokens": 0,
+          "cache_creation_tokens": 0,
+          "thinking_tokens": 0
+        },
+        "attempts": 1,
+        "tie_breaks": null,
+        "answers": {
+          "positive": {
+            "type": "probability",
+            "probability": 0.0
+          },
+          "sentiment": {
+            "type": "choice",
+            "choice": "negative",
+            "probabilities": {
+              "negative": 1.0,
+              "positive": 0.0
+            }
+          },
+          "valence": {
+            "type": "score",
+            "score": 0.0,
+            "probabilities": {
+              "0": 1.0,
+              "1": 0.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "sst2:268",
+      "group": "sst2",
+      "expected": "negative",
+      "single_request": {
+        "ms": 2458.4,
+        "tokens": {
+          "input_tokens": 276,
+          "output_tokens": 40,
+          "cached_tokens": 0,
+          "cache_creation_tokens": 0,
+          "thinking_tokens": 0
+        },
+        "attempts": 1,
+        "tie_breaks": null,
+        "answers": {
+          "positive": {
+            "type": "probability",
+            "probability": 0.0
+          },
+          "sentiment": {
+            "type": "choice",
+            "choice": "negative",
+            "probabilities": {
+              "negative": 1.0,
+              "positive": 0.0
+            }
+          },
+          "valence": {
+            "type": "score",
+            "score": 0.0,
+            "probabilities": {
+              "0": 1.0,
+              "1": 0.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "sst2:250",
+      "group": "sst2",
+      "expected": "positive",
+      "single_request": {
+        "ms": 834.6,
+        "tokens": {
+          "input_tokens": 267,
+          "output_tokens": 40,
+          "cached_tokens": 0,
+          "cache_creation_tokens": 0,
+          "thinking_tokens": 0
+        },
+        "attempts": 1,
+        "tie_breaks": null,
+        "answers": {
+          "positive": {
+            "type": "probability",
+            "probability": 1.0
+          },
+          "sentiment": {
+            "type": "choice",
+            "choice": "positive",
+            "probabilities": {
+              "negative": 0.0,
+              "positive": 1.0
+            }
+          },
+          "valence": {
+            "type": "score",
+            "score": 1.0,
+            "probabilities": {
+              "0": 0.0,
+              "1": 1.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "sst2:215",
+      "group": "sst2",
+      "expected": "positive",
+      "single_request": {
+        "ms": 1175.9,
+        "tokens": {
+          "input_tokens": 284,
+          "output_tokens": 52,
+          "cached_tokens": 0,
+          "cache_creation_tokens": 0,
+          "thinking_tokens": 0
+        },
+        "attempts": 1,
+        "tie_breaks": null,
+        "answers": {
+          "positive": {
+            "type": "probability",
+            "probability": 0.97
+          },
+          "sentiment": {
+            "type": "choice",
+            "choice": "positive",
+            "probabilities": {
+              "negative": 0.03,
+              "positive": 0.97
+            }
+          },
+          "valence": {
+            "type": "score",
+            "score": 0.97,
+            "probabilities": {
+              "0": 0.03,
+              "1": 0.97
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "sst2:225",
+      "group": "sst2",
+      "expected": "positive",
+      "single_request": {
+        "ms": 930.4,
+        "tokens": {
+          "input_tokens": 276,
+          "output_tokens": 52,
+          "cached_tokens": 0,
+          "cache_creation_tokens": 0,
+          "thinking_tokens": 0
+        },
+        "attempts": 1,
+        "tie_breaks": null,
+        "answers": {
+          "positive": {
+            "type": "probability",
+            "probability": 0.99
+          },
+          "sentiment": {
+            "type": "choice",
+            "choice": "positive",
+            "probabilities": {
+              "negative": 0.01,
+              "positive": 0.99
+            }
+          },
+          "valence": {
+            "type": "score",
+            "score": 0.99,
+            "probabilities": {
+              "0": 0.01,
+              "1": 0.99
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "sst2:256",
+      "group": "sst2",
+      "expected": "negative",
+      "single_request": {
+        "ms": 1743.2,
+        "tokens": {
+          "input_tokens": 623,
+          "output_tokens": 103,
+          "cached_tokens": 0,
+          "cache_creation_tokens": 0,
+          "thinking_tokens": 0
+        },
+        "attempts": 2,
+        "tie_breaks": null,
+        "answers": {
+          "positive": {
+            "type": "probability",
+            "probability": 0.01
+          },
+          "sentiment": {
+            "type": "choice",
+            "choice": "negative",
+            "probabilities": {
+              "negative": 0.99,
+              "positive": 0.01
+            }
+          },
+          "valence": {
+            "type": "score",
+            "score": 0.01,
+            "probabilities": {
+              "0": 0.99,
+              "1": 0.01
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "sst2:265",
+      "group": "sst2",
+      "expected": "negative",
+      "single_request": {
+        "ms": 1056.2,
+        "tokens": {
+          "input_tokens": 281,
+          "output_tokens": 52,
+          "cached_tokens": 0,
+          "cache_creation_tokens": 0,
+          "thinking_tokens": 0
+        },
+        "attempts": 1,
+        "tie_breaks": null,
+        "answers": {
+          "positive": {
+            "type": "probability",
+            "probability": 0.02
+          },
+          "sentiment": {
+            "type": "choice",
+            "choice": "negative",
+            "probabilities": {
+              "negative": 0.98,
+              "positive": 0.02
+            }
+          },
+          "valence": {
+            "type": "score",
+            "score": 0.02,
+            "probabilities": {
+              "0": 0.98,
+              "1": 0.02
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "sst2:281",
+      "group": "sst2",
+      "expected": "negative",
+      "single_request": {
+        "ms": 805.1,
+        "tokens": {
+          "input_tokens": 265,
+          "output_tokens": 40,
+          "cached_tokens": 0,
+          "cache_creation_tokens": 0,
+          "thinking_tokens": 0
+        },
+        "attempts": 1,
+        "tie_breaks": null,
+        "answers": {
+          "positive": {
+            "type": "probability",
+            "probability": 0.0
+          },
+          "sentiment": {
+            "type": "choice",
+            "choice": "negative",
+            "probabilities": {
+              "negative": 1.0,
+              "positive": 0.0
+            }
+          },
+          "valence": {
+            "type": "score",
+            "score": 0.0,
+            "probabilities": {
+              "0": 1.0,
+              "1": 0.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "sst2:233",
+      "group": "sst2",
+      "expected": "negative",
+      "single_request": {
+        "ms": 993.4,
+        "tokens": {
+          "input_tokens": 268,
+          "output_tokens": 52,
+          "cached_tokens": 0,
+          "cache_creation_tokens": 0,
+          "thinking_tokens": 0
+        },
+        "attempts": 1,
+        "tie_breaks": null,
+        "answers": {
+          "positive": {
+            "type": "probability",
+            "probability": 0.02
+          },
+          "sentiment": {
+            "type": "choice",
+            "choice": "negative",
+            "probabilities": {
+              "negative": 0.98,
+              "positive": 0.02
+            }
+          },
+          "valence": {
+            "type": "score",
+            "score": 0.02,
+            "probabilities": {
+              "0": 0.98,
+              "1": 0.02
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "sst2:260",
+      "group": "sst2",
+      "expected": "negative",
+      "single_request": {
+        "ms": 958.1,
+        "tokens": {
+          "input_tokens": 282,
+          "output_tokens": 52,
+          "cached_tokens": 0,
+          "cache_creation_tokens": 0,
+          "thinking_tokens": 0
+        },
+        "attempts": 1,
+        "tie_breaks": null,
+        "answers": {
+          "positive": {
+            "type": "probability",
+            "probability": 0.25
+          },
+          "sentiment": {
+            "type": "choice",
+            "choice": "negative",
+            "probabilities": {
+              "negative": 0.75,
+              "positive": 0.25
+            }
+          },
+          "valence": {
+            "type": "score",
+            "score": 0.25,
+            "probabilities": {
+              "0": 0.75,
+              "1": 0.25
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "sst2:218",
+      "group": "sst2",
+      "expected": "negative",
+      "single_request": {
+        "ms": 1167.8,
+        "tokens": {
+          "input_tokens": 266,
+          "output_tokens": 52,
+          "cached_tokens": 0,
+          "cache_creation_tokens": 0,
+          "thinking_tokens": 0
+        },
+        "attempts": 1,
+        "tie_breaks": null,
+        "answers": {
+          "positive": {
+            "type": "probability",
+            "probability": 0.05
+          },
+          "sentiment": {
+            "type": "choice",
+            "choice": "negative",
+            "probabilities": {
+              "negative": 0.95,
+              "positive": 0.05
+            }
+          },
+          "valence": {
+            "type": "score",
+            "score": 0.05,
+            "probabilities": {
+              "0": 0.95,
+              "1": 0.05
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "sst2:299",
+      "group": "sst2",
+      "expected": "positive",
+      "single_request": {
+        "ms": 1173.7,
+        "tokens": {
+          "input_tokens": 277,
+          "output_tokens": 52,
+          "cached_tokens": 0,
+          "cache_creation_tokens": 0,
+          "thinking_tokens": 0
+        },
+        "attempts": 1,
+        "tie_breaks": null,
+        "answers": {
+          "positive": {
+            "type": "probability",
+            "probability": 0.85
+          },
+          "sentiment": {
+            "type": "choice",
+            "choice": "positive",
+            "probabilities": {
+              "negative": 0.15,
+              "positive": 0.85
+            }
+          },
+          "valence": {
+            "type": "score",
+            "score": 0.85,
+            "probabilities": {
+              "0": 0.15,
+              "1": 0.85
+            }
+          }
+        }
+      }
+    }
+  ]
+}
