@@ -318,11 +318,25 @@ module RubyLLM
         chat.with_temperature(@temperature) unless @temperature.nil?
         if NATIVE
           chat.with_max_output_tokens(max_output_tokens)
-          chat.with_provider_options(@chat_provider_options)
+          chat.with_provider_options(deep_compact(@chat_provider_options))
         else
-          chat.with_params(**deep_merge(max_output_tokens_param(max_output_tokens), @chat_provider_options))
+          chat.with_params(**deep_compact(deep_merge(max_output_tokens_param(max_output_tokens), @chat_provider_options)))
         end
         chat
+      end
+
+      # A nil in chat_provider_options removes that field: a default, or before 2.1
+      # the output limit field. A hash emptied by removal is removed too.
+      def deep_compact(hash)
+        hash.each_with_object({}) do |(key, value), compacted|
+          next if value.nil?
+
+          if value.is_a?(Hash) && !value.empty?
+            value = deep_compact(value)
+            next if value.empty?
+          end
+          compacted[key] = value
+        end
       end
 
       # The request field each provider reads for the output limit, as RubyLLM 2.1 renders it.

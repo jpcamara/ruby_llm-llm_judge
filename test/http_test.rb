@@ -96,6 +96,46 @@ class HTTPTest < Minitest::Test
     end
   end
 
+  def test_nil_chat_provider_options_remove_default_fields
+    stub_chat(OPENAI) { '7' }
+    RubyLLM::LLMJudge.judge('x', questions: { urgent: { type: :probability } },
+                                 provider_options: { chat_provider_options: { reasoning_effort: nil } })
+
+    requests.each do |body|
+      refute body.key?('reasoning_effort')
+      assert_equal false, body['store']
+    end
+  end
+
+  def test_nil_nested_options_remove_hashes_they_empty
+    stub_chat(OPENROUTER) { '7' }
+    RubyLLM::LLMJudge.judge('x', model: 'openai/gpt-6-luna', questions: { urgent: { type: :probability } },
+                                 provider_options: { scoring_provider: :openrouter,
+                                                     chat_provider_options: { reasoning: { effort: nil },
+                                                                              provider: { sort: 'latency', only: nil },
+                                                                              metadata: {} } })
+
+    requests.each do |body|
+      refute body.key?('reasoning')
+      assert_equal({ 'sort' => 'latency' }, body['provider'])
+      assert_equal({}, body['metadata'])
+    end
+  end
+
+  def test_nil_chat_provider_options_can_rename_the_output_limit_field
+    skip 'RubyLLM 2.1 renders the output limit for the scoring protocol' if RubyLLM::LLMJudge::NATIVE
+
+    stub_chat(OPENAI) { '{"answers":{"urgent":{"true":0.8,"false":0.2}}}' }
+    RubyLLM::LLMJudge.judge('x', questions: { urgent: { type: :probability } },
+                                 provider_options: { strategy: :single_request,
+                                                     chat_provider_options: { max_completion_tokens: nil,
+                                                                              max_output_tokens: 256 } })
+
+    body = requests.first
+    refute body.key?('max_completion_tokens')
+    assert_equal 256, body['max_output_tokens']
+  end
+
   def test_other_providers_use_their_own_output_field_and_no_luna_defaults
     stub_chat(OPENROUTER) { "```json\n{\"answers\":{\"team\":{\"billing\":0.7,\"technical\":0.3}}}\n```" }
     result = RubyLLM::LLMJudge.judge('x', model: 'anthropic/claude-haiku-4.5', questions: TEAM,

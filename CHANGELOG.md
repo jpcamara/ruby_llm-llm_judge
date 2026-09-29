@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.1.3 (unreleased)
+
+- Setting a `chat_provider_options` key to `nil` removes that field, including the Luna defaults and, before RubyLLM 2.1, the output limit field. A nested hash emptied this way is removed too.
+
 ## 0.1.2 (2026-09-28)
 
 - When a rating call fails, no new calls start and the error is raised once calls in flight finish. Previously the remaining calls kept running, and were billed, after `judge` raised.

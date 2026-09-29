@@ -86,7 +86,9 @@ result = RubyLLM::LLMJudge.judge(
 
 Both strategies return valid judgments with this model. Its one-call answers arrive in a Markdown code fence, which the gem removes before parsing.
 
-The default Luna rating request uses Chat Completions, temperature zero, reasoning disabled, `store: false`, and a four-token output limit. Tune requests with `scoring_protocol`, `temperature`, `max_output_tokens`, and `chat_provider_options`. `chat_provider_options` is merged over those defaults, so setting one key, such as `service_tier: 'flex'`, keeps reasoning disabled; set a key explicitly to change a default.
+The default Luna rating request uses Chat Completions, temperature zero, reasoning disabled, `store: false`, and a four-token output limit. Tune requests with `scoring_protocol`, `temperature`, `max_output_tokens`, and `chat_provider_options`. `chat_provider_options` is merged over those defaults, so setting one key, such as `service_tier: 'flex'`, keeps reasoning disabled; set a key explicitly to change a default. Set a key to `nil` to remove that field from the request, whether it is a default or, before RubyLLM 2.1, the output limit field. For example, an app that routes RubyLLM 1.x OpenAI chats through the Responses API can send `chat_provider_options: { max_completion_tokens: nil, max_output_tokens: 256 }`.
+
+These defaults apply only to `gpt-6-luna` on the `:openai` provider. Other routes to Luna, such as `openai/gpt-6-luna` on OpenRouter or a Bedrock Luna ID, get no temperature or reasoning setting. Set `temperature: 0` and disable reasoning in that provider's format yourself, as the OpenRouter example below does. With reasoning left on, the ratings strategy's four-token output limit can be spent on reasoning and produce "no single digit" errors.
 
 ## One-call typed decisions
 
