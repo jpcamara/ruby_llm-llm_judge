@@ -5,6 +5,7 @@
 - Setting a `chat_provider_options` key to `nil` removes that field, including the Luna defaults and, before RubyLLM 2.1, the output limit field. A nested hash emptied this way is removed too.
 - One-call answers given as a list of single-question objects are accepted when each question appears once. Claude Haiku 4.5 returns this shape on its first attempt, which previously cost a corrective retry on nearly every judgment.
 - The one-call instructions now say that `answers` is an object keyed by question ID. Haiku no longer needs corrective retries (59 of 96 benchmark cases before), and Luna scored at least as well in a back-to-back comparison. See [the Haiku benchmark](benchmarks/haiku.md).
+- Luna defaults apply to every Luna model ID (for example `gpt-5.6-luna`, `openai/gpt-6-luna`, `gpt-luna-latest`), not only `gpt-6-luna`, and to OpenRouter as well as OpenAI. On OpenRouter they send temperature zero and `reasoning: { enabled: false }`. With reasoning on, Luna's ratings often returned no digit. Pro variants are excluded.
 
 ## 0.1.2 (2026-09-28)
 

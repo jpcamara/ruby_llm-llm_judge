@@ -6,6 +6,12 @@ module RubyLLM
   module LLMJudge
     class Engine
       MAX_WORKERS = 6
+      # Luna model IDs, with or without a provider prefix ("openai/", "us.openai.") or variant suffix
+      # (":batch"). Pro variants
+      # are excluded: they exist to reason more.
+      LUNA = %r{(?:\A|[/.])gpt-(?:\d+(?:\.\d+)?-)?luna(?:-latest)?(?::\w+)?\z}
+      # Providers whose request format for disabling reasoning is known.
+      LUNA_PROVIDERS = %i[openai openrouter].freeze
       SYSTEM_INSTRUCTIONS = 'Return exactly one ASCII digit 0-9. 9 means very likely to be the correct answer; 0 means very unlikely. No explanation.'
       SINGLE_REQUEST_INSTRUCTIONS = 'Answer all questions using only a JSON object with an "answers" field. ' \
                                     'For each question, return an object mapping every supplied option ID to a ' \
@@ -32,8 +38,9 @@ module RubyLLM
         @scoring_model = model
         raise ArgumentError, 'A model is required' unless @scoring_model.is_a?(String) && !@scoring_model.empty?
 
-        luna_defaults = @scoring_provider == :openai && @scoring_model == DEFAULT_MODEL
-        @scoring_protocol = options.fetch(:scoring_protocol, luna_defaults ? :chat_completions : nil)
+        luna_defaults = LUNA_PROVIDERS.include?(@scoring_provider) && LUNA.match?(@scoring_model)
+        @scoring_protocol = options.fetch(:scoring_protocol,
+                                          luna_defaults && @scoring_provider == :openai ? :chat_completions : nil)
         # Before 2.1, RubyLLM chats use each provider's one chat API (Chat Completions for OpenAI).
         if !NATIVE && ![nil, :chat_completions].include?(@scoring_protocol&.to_sym)
           raise ArgumentError, 'scoring_protocol requires RubyLLM 2.1'
@@ -286,10 +293,13 @@ module RubyLLM
         end
       end
 
+      # Luna rates poorly with reasoning on: the output limit is spent before the answer.
       def default_chat_options(luna_defaults)
-        return {} unless @scoring_provider == :openai
-
-        luna_defaults ? { store: false, reasoning_effort: 'none' } : { store: false }
+        case @scoring_provider
+        when :openai then luna_defaults ? { store: false, reasoning_effort: 'none' } : { store: false }
+        when :openrouter then luna_defaults ? { reasoning: { enabled: false } } : {}
+        else {}
+        end
       end
 
       def score_with_model(prompt)

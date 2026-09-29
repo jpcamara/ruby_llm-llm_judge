@@ -111,7 +111,7 @@ class HTTPTest < Minitest::Test
     stub_chat(OPENROUTER) { '7' }
     RubyLLM::LLMJudge.judge('x', model: 'openai/gpt-6-luna', questions: { urgent: { type: :probability } },
                                  provider_options: { scoring_provider: :openrouter,
-                                                     chat_provider_options: { reasoning: { effort: nil },
+                                                     chat_provider_options: { reasoning: { enabled: nil },
                                                                               provider: { sort: 'latency', only: nil },
                                                                               metadata: {} } })
 
@@ -134,6 +134,46 @@ class HTTPTest < Minitest::Test
     body = requests.first
     refute body.key?('max_completion_tokens')
     assert_equal 256, body['max_output_tokens']
+  end
+
+  def test_luna_defaults_apply_to_every_luna_model_on_openai
+    stub_chat(OPENAI) { '7' }
+    RubyLLM::LLMJudge.judge('x', model: 'gpt-5.6-luna', questions: { urgent: { type: :probability } })
+
+    requests.each do |body|
+      assert_equal 'gpt-5.6-luna', body['model']
+      assert_equal 'none', body['reasoning_effort']
+      assert_equal false, body['store']
+      # RubyLLM before 2.1 sends temperature 1.0 for any OpenAI model whose ID starts with gpt-5.
+      assert_equal(RubyLLM::LLMJudge::NATIVE ? 0 : 1.0, body['temperature'])
+    end
+  end
+
+  def test_luna_defaults_on_openrouter_disable_reasoning
+    stub_chat(OPENROUTER) { '7' }
+    RubyLLM::LLMJudge.judge('x', model: 'openai/gpt-5.6-luna', questions: { urgent: { type: :probability } },
+                                 provider_options: { scoring_provider: :openrouter })
+
+    requests.each do |body|
+      assert_equal({ 'enabled' => false }, body['reasoning'])
+      assert_equal 0, body['temperature']
+      refute body.key?('reasoning_effort')
+      refute body.key?('store')
+    end
+  end
+
+  def test_luna_pro_and_other_models_get_no_luna_defaults
+    stub_chat(OPENROUTER) { '7' }
+    %w[openai/gpt-6-luna-pro openai/gpt-6-sol].each do |model|
+      RubyLLM::LLMJudge.judge('x', model:, questions: { urgent: { type: :probability } },
+                                   provider_options: { scoring_provider: :openrouter })
+    end
+
+    requests.each do |body|
+      refute body.key?('reasoning_effort')
+      refute body.key?('reasoning')
+      refute body.key?('temperature')
+    end
   end
 
   def test_other_providers_use_their_own_output_field_and_no_luna_defaults
