@@ -1,5 +1,13 @@
 # Changelog
 
+## Unreleased
+
+- `structured_output: true` sends a strict JSON Schema with one-call requests, requiring every question and option.
+- `strategy: :committed` asks for one option per question and returns it with probability 1.
+- The one-call prompt lists the questions before the state, so repeated instructions form a cacheable prefix.
+- The provider accepts RubyLLM main's `with:` attachments argument and raises `UnsupportedAttachmentError` when images are passed. Judgments on RubyLLM main failed with `ArgumentError` before.
+- The README explains when to enable reasoning: off suits classification, while rule-following questions need it.
+
 ## 0.1.3 (2026-09-29)
 
 - Setting a `chat_provider_options` key to `nil` removes that field, including the Luna defaults and, before RubyLLM 2.1, the output limit field. A nested hash emptied this way is removed too.

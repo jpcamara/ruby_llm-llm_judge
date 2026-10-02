@@ -84,6 +84,46 @@ class HTTPTest < Minitest::Test
     assert_equal %w[billing technical], request['questions'].first['options'].map { |option| option['id'] }
   end
 
+  def test_structured_output_sends_a_strict_schema_for_probabilities
+    stub_chat(OPENAI) { '{"answers":{"team":{"billing":0.1,"technical":0.9}}}' }
+    result = RubyLLM::LLMJudge.judge('App crashes', questions: TEAM,
+                                                   provider_options: { strategy: :single_request, structured_output: true })
+
+    assert_equal :technical, result.team.choice
+    format = requests.first.fetch('response_format')
+    assert_equal 'json_schema', format['type']
+    schema = format.dig('json_schema', 'schema')
+    assert_equal true, format.dig('json_schema', 'strict')
+    assert_equal ['answers'], schema['required']
+    team = schema.dig('properties', 'answers', 'properties', 'team')
+    assert_equal %w[billing technical], team['required']
+    assert_equal false, team['additionalProperties']
+    assert_equal({ 'type' => 'number' }, team.dig('properties', 'billing'))
+  end
+
+  def test_structured_output_limits_committed_answers_to_the_options
+    stub_chat(OPENROUTER) { '{"answers":{"team":"billing","urgent":false}}' }
+    result = RubyLLM::LLMJudge.judge('Refund please', model: 'openai/gpt-6-luna',
+                                                     questions: TEAM.merge(urgent: { type: :probability }),
+                                                     provider_options: { scoring_provider: :openrouter, strategy: :committed,
+                                                                         structured_output: true })
+
+    assert_equal :billing, result.team.choice
+    assert_equal 0.0, result.urgent.probability
+    body = requests.first
+    assert_instructions(body, RubyLLM::LLMJudge::Engine::COMMITTED_INSTRUCTIONS)
+    answers = body.dig('response_format', 'json_schema', 'schema', 'properties', 'answers')
+    assert_equal({ 'type' => 'string', 'enum' => %w[billing technical] }, answers.dig('properties', 'team'))
+    assert_equal({ 'type' => 'string', 'enum' => %w[true false] }, answers.dig('properties', 'urgent'))
+  end
+
+  def test_without_structured_output_no_schema_is_sent
+    stub_chat(OPENAI) { '{"answers":{"team":"technical"}}' }
+    RubyLLM::LLMJudge.judge('x', questions: TEAM, provider_options: { strategy: :committed })
+
+    refute requests.first.key?('response_format')
+  end
+
   def test_chat_provider_options_are_merged_over_the_luna_defaults
     stub_chat(OPENAI) { '7' }
     RubyLLM::LLMJudge.judge('x', questions: { urgent: { type: :probability } },

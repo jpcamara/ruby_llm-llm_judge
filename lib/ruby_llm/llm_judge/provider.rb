@@ -7,7 +7,10 @@ module RubyLLM
         'http://127.0.0.1'
       end
 
-      def judge(input, questions:, model:, provider_options: {})
+      # RubyLLM passes images as +with:+; they are not supported yet.
+      def judge(input, questions:, model:, with: [], provider_options: {})
+        raise UnsupportedAttachmentError, Array(with).first.mime_type unless Array(with).empty?
+
         Engine.new(config:, model: model.id, provider_options:).judge(input, questions:, model:)
       end
 

@@ -8,6 +8,14 @@ class LLMJudgeTest < Minitest::Test
     skip 'RubyLLM predates the Judge API; see legacy_test.rb' unless RubyLLM::LLMJudge::NATIVE
   end
 
+  def test_attachments_are_rejected
+    provider = RubyLLM::LLMJudge::Provider.new(RubyLLM.config)
+    image = Struct.new(:mime_type).new('image/png')
+    assert_raises(RubyLLM::UnsupportedAttachmentError) do
+      provider.judge('x', questions: {}, model: RubyLLM::Model.default('gpt-6-luna', 'llm_judge'), with: [image])
+    end
+  end
+
   def fake_engine(digits, provider_options: {})
     queue = Queue.new
     digits.each { |digit| queue << digit }
@@ -243,7 +251,7 @@ class LLMJudgeTest < Minitest::Test
       chat
     end
 
-    engine.send(:respond_with_model, 'test')
+    engine.send(:respond_with_model, 'test', mode: :probabilities)
 
     assert_equal 1024, captured[:max_output_tokens]
   end

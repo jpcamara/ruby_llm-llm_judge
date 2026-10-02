@@ -4,6 +4,7 @@
 # covers both the Judge API path and the pre-2.1 Legacy path.
 
 require 'minitest/autorun'
+require 'json'
 require 'ruby_llm/llm_judge'
 
 class EngineTest < Minitest::Test
@@ -129,6 +130,78 @@ class EngineTest < Minitest::Test
       end
     end
     assert_match(/Question IDs must be/, error.message)
+  end
+
+  def test_committed_answers_are_one_hot
+    content = '{"answers":{"team":"technical","urgent":true,"mood":1}}'
+    responder = ->(_prompt) { { content:, tokens: tokens } }
+    result = with_engine(responder:) do
+      RubyLLM::LLMJudge.judge('x', questions: TEAM.merge(urgent: { type: :probability },
+                                                         mood: { type: :score, levels: %w[Calm Angry] }),
+                                   provider_options: { strategy: :committed })
+    end
+
+    assert_equal :technical, result.team.choice
+    assert_equal({ billing: 0.0, technical: 1.0 }, result.team.probabilities)
+    assert_equal 1.0, result.team.confidence
+    assert_equal 1.0, result.urgent.probability
+    assert_equal 1.0, result.mood.score
+    assert_equal 'committed_answers', result.raw[:method]
+  end
+
+  def test_committed_answers_accept_yes_no_and_string_levels
+    content = '{"answers":{"urgent":"no","mood":"0"}}'
+    responder = ->(_prompt) { { content:, tokens: tokens } }
+    result = with_engine(responder:) do
+      RubyLLM::LLMJudge.judge('x', questions: { urgent: { type: :probability }, mood: { type: :score, levels: %w[Calm Angry] } },
+                                   provider_options: { strategy: :committed })
+    end
+
+    assert_equal 0.0, result.urgent.probability
+    assert_equal 0.0, result.mood.score
+  end
+
+  def test_committed_answer_outside_the_options_is_retried_then_raises
+    responses = ['{"answers":{"team":"sales"}}', '{"answers":{"team":"billing"}}']
+    prompts = []
+    responder = lambda do |prompt|
+      prompts << prompt
+      { content: responses.shift || '{"answers":{"team":"sales"}}', tokens: tokens }
+    end
+    result = with_engine(responder:) do
+      RubyLLM::LLMJudge.judge('x', questions: TEAM, provider_options: { strategy: :committed })
+    end
+    assert_equal :billing, result.team.choice
+    assert_equal 2, result.raw[:attempts]
+    assert_match(/must be one of \["billing", "technical"\]; got "sales"/, prompts.last)
+
+    responder = ->(_prompt) { { content: '{"answers":{"team":"sales"}}', tokens: tokens } }
+    assert_raises(RubyLLM::LLMJudge::Error) do
+      with_engine(responder:) { RubyLLM::LLMJudge.judge('x', questions: TEAM, provider_options: { strategy: :committed }) }
+    end
+  end
+
+  def test_one_call_prompt_puts_questions_before_state
+    prompt = nil
+    responder = lambda do |sent|
+      prompt = sent
+      { content: '{"answers":{"team":{"billing":0.2,"technical":0.8}}}', tokens: tokens }
+    end
+    with_engine(responder:) do
+      RubyLLM::LLMJudge.judge('Refund please', questions: TEAM, provider_options: { strategy: :single_request })
+    end
+
+    assert_equal %w[questions state], JSON.parse(prompt.split("\n", 2).last).keys
+  end
+
+  def test_structured_output_must_be_boolean
+    assert_raises(ArgumentError) do
+      RubyLLM::LLMJudge.judge('x', questions: TEAM, provider_options: { structured_output: 'yes' })
+    end
+    error = assert_raises(ArgumentError) do
+      RubyLLM::LLMJudge.judge('x', questions: TEAM, provider_options: { strategy: :guess })
+    end
+    assert_match(/:committed/, error.message)
   end
 
   def test_single_request_tie_is_retried_then_resolved

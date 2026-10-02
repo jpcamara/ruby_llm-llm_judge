@@ -142,6 +142,33 @@ result = RubyLLM::LLMJudge.judge(
 
 OpenRouter's [latency sorting](https://openrouter.ai/docs/guides/routing/provider-selection) chooses among its available providers using their observed response times. It sped up OpenRouter in our test, while direct OpenAI was faster still. The measured speed and answer-quality tradeoffs are below.
 
+The one-call prompt lists the questions before the state, so instructions that repeat across calls form a prefix that providers with prompt caching can reuse.
+
+### Strict response schemas
+
+Set `structured_output: true` to send a strict JSON Schema with the one-call request, through RubyLLM's `with_schema`. The schema requires every question and every option, and nothing else, so a provider that supports structured outputs cannot return the wrong shape. Without it, the gem validates the reply and makes its corrective retry; with it, that retry should not be needed. Models and providers without structured-output support reject the request, so leave it off for them.
+
+### Committed answers
+
+Set `strategy: :committed` to ask for one option per question instead of a distribution. The reply is shorter, and each answer comes back with probability 1 for the chosen option and 0 for the rest, so `confidence` is always 1.0 and the probabilities carry no calibration. Use it when you only need the decision; use `:single_request` or `:ratings` when you threshold on probabilities. It accepts `structured_output: true`, which limits each answer to that question's option IDs.
+
+### Reasoning
+
+The Luna defaults disable reasoning, which suits classification: on the benchmarks below, Luna is as accurate with reasoning off and much faster. Questions that apply explicit rules to a state are different. On [StreamDecisionBench](https://github.com/JacobLinCool/StreamDecisionBench), whose questions carry decision policies, GPT-5.6 Luna answered 43.8% of states correctly with reasoning off and 88.8% with reasoning effort low, at about twice the latency.
+
+To enable reasoning, override the default and leave room for it in the output limit:
+
+```ruby
+provider_options: {
+  strategy: :single_request,
+  max_output_tokens: 4096,
+  chat_provider_options: { reasoning_effort: 'low' }          # OpenAI
+  # chat_provider_options: { reasoning: { effort: 'low' } }   # OpenRouter
+}
+```
+
+Reasoning does not fit the `:ratings` strategy, whose four-token output limit is meant for a single digit.
+
 ## How scoring works
 
 The default `:ratings` strategy asks the model to rate every declared answer from 0 to 9. It makes one call per answer, with up to six calls running at once (`max_workers:` changes this), then applies softmax to the ratings. If a call fails after its retry, no new calls start, calls in flight finish, and the error is raised. It retries a malformed digit once. When the highest ratings tie on a Choice question, it makes a one-call JSON judgment for that question and uses its distribution. If that call also ties, it raises an error instead of choosing whichever option came first. `result.raw[:tie_breaks]` records each resolution, and token usage includes the extra call. Set `tie_breaker: :first` to use the original first-option rule, or `tie_break_max_output_tokens:` to change the tie-break response limit (default 8192).

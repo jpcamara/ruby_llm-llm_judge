@@ -21,18 +21,23 @@ module RubyLLM
                                     'each question\'s probabilities sum to 1. Evaluate each question independently ' \
                                     'against the same state. Return no explanations or markdown. The "answers" value ' \
                                     'must be an object whose keys are the question IDs.'
+      COMMITTED_INSTRUCTIONS = 'Answer all questions using only a JSON object with an "answers" field whose keys are ' \
+                               'the question IDs. For each question, give the ID of the one option that best applies. ' \
+                               'Evaluate each question independently against the same state. Return no explanations ' \
+                               'or markdown.'
+      STRATEGIES = %i[ratings single_request committed].freeze
 
       def initialize(config:, model: DEFAULT_MODEL, provider_options: {}, scorer: nil, responder: nil)
         @config = config
         options = provider_options.transform_keys(&:to_sym)
         allowed = %i[scoring_provider scoring_protocol temperature max_output_tokens chat_provider_options
                      max_arms max_input_bytes strategy malformed_retries tie_breaker tie_break_max_output_tokens
-                     max_workers]
+                     max_workers structured_output]
         unknown = options.keys - allowed
         raise ArgumentError, "Unknown LLMJudge provider options: #{unknown.join(', ')}" unless unknown.empty?
 
         @strategy = options.fetch(:strategy, :ratings).to_sym
-        raise ArgumentError, 'strategy must be :ratings or :single_request' unless %i[ratings single_request].include?(@strategy)
+        raise ArgumentError, 'strategy must be :ratings, :single_request, or :committed' unless STRATEGIES.include?(@strategy)
         @tie_breaker = options.fetch(:tie_breaker, :single_request).to_sym
         raise ArgumentError, 'tie_breaker must be :single_request or :first' unless %i[single_request first].include?(@tie_breaker)
 
@@ -48,7 +53,7 @@ module RubyLLM
           raise ArgumentError, 'scoring_protocol requires RubyLLM 2.1'
         end
         @temperature = options.fetch(:temperature, luna_defaults ? 0 : nil)
-        @max_output_tokens = options.fetch(:max_output_tokens, @strategy == :single_request ? 8192 : 4)
+        @max_output_tokens = options.fetch(:max_output_tokens, @strategy == :ratings ? 4 : 8192)
         @tie_break_max_output_tokens = options.fetch(:tie_break_max_output_tokens, 8192)
         chat_provider_options = options.fetch(:chat_provider_options, {})
         raise ArgumentError, 'chat_provider_options must be a Hash' unless chat_provider_options.is_a?(Hash)
@@ -59,6 +64,8 @@ module RubyLLM
         @max_input_bytes = options[:max_input_bytes]
         @malformed_retries = options.fetch(:malformed_retries, 1)
         @max_workers = options.fetch(:max_workers, MAX_WORKERS)
+        @structured_output = options.fetch(:structured_output, false)
+        raise ArgumentError, 'structured_output must be true or false' unless [true, false].include?(@structured_output)
         raise ArgumentError, 'max_workers must be a positive integer' unless @max_workers.is_a?(Integer) && @max_workers.positive?
         raise ArgumentError, 'max_output_tokens must be positive' unless @max_output_tokens.is_a?(Integer) && @max_output_tokens.positive?
         unless @tie_break_max_output_tokens.is_a?(Integer) && @tie_break_max_output_tokens.positive?
@@ -72,11 +79,12 @@ module RubyLLM
         end
 
         @scorer = scorer || method(:score_with_model)
-        @responder = responder || method(:respond_with_model)
+        @responder = responder
       end
 
       def judge(input, questions:, model:)
-        return judge_single_request(input, questions, model) if @strategy == :single_request
+        return judge_one_call(input, questions, model, :probabilities) if @strategy == :single_request
+        return judge_one_call(input, questions, model, :committed) if @strategy == :committed
 
         jobs = build_jobs(input, questions)
         results = run(jobs) { |job| @scorer.call(job[:prompt]) }
@@ -88,7 +96,7 @@ module RubyLLM
           chosen = answer(question, softmax(ratings))
           if question.type == :choice && ratings.count(ratings.max) > 1 && @tie_breaker == :single_request
             # Raises if the one-call judgment also ties, after its corrective retry.
-            judgment = judge_single_request(input, { question.name => question }, model)
+            judgment = judge_one_call(input, { question.name => question }, model, :probabilities)
             chosen = judgment.answers.fetch(question.name)
             tie_breaks << { question: question.name, ratings:, judgment: }
           end
@@ -113,34 +121,45 @@ module RubyLLM
 
       private
 
-      def judge_single_request(input, questions, model)
+      # One request for every question. :probabilities asks for a distribution per question;
+      # :committed asks for one option per question and returns it with probability 1.
+      def judge_one_call(input, questions, model, mode)
         specs = validated_options(input, questions)
-        original_prompt = single_request_prompt(input, specs)
+        original_prompt = one_call_prompt(input, specs)
         prompt = original_prompt
         attempts = []
         loop do
-          result = @responder.call(prompt)
+          result = respond(prompt, mode, specs)
           attempts << result
           begin
-            answers, reported, normalization = parse_single_request(result.fetch(:content), specs)
+            answers, reported, normalization = mode == :committed ? parse_committed(result.fetch(:content), specs)
+                                                                  : parse_single_request(result.fetch(:content), specs)
+            raw = { method: mode == :committed ? 'committed_answers' : 'single_request_probabilities',
+                    scoring_provider: @scoring_provider, scoring_model: @scoring_model,
+                    reported_probabilities: reported, attempts: attempts.size }
+            raw[:reported_totals] = normalization if normalization
             return Types::Judgment.new(
-              answers:, model: model.id,
-              tokens: aggregate_tokens(attempts.map { |attempt| attempt.fetch(:tokens) }),
-              raw: { method: 'single_request_probabilities', scoring_provider: @scoring_provider,
-                     scoring_model: @scoring_model, reported_probabilities: reported,
-                     reported_totals: normalization, attempts: attempts.size }
+              answers:, model: model.id, raw:,
+              tokens: aggregate_tokens(attempts.map { |attempt| attempt.fetch(:tokens) })
             )
           rescue RubyLLM::Error => error
             raise if attempts.size > @malformed_retries
 
             prompt = "#{original_prompt}\n\nThe previous answer was invalid: #{error.message}. " \
                      "Previous answer: #{result.fetch(:content).to_s[0, 4000]}\n" \
-                     'Return a complete corrected JSON object with every question and option.'
+                     'Return a complete corrected JSON object with every question.'
           end
         end
       end
 
-      def parse_single_request(content, specs)
+      def respond(prompt, mode, specs)
+        return @responder.call(prompt) if @responder
+
+        respond_with_model(prompt, mode:, schema: @structured_output ? answer_schema(mode, specs) : nil)
+      end
+
+      # The answers object keyed by question ID, accepting a fenced reply or a list of one-question objects.
+      def reported_answers(content, specs)
         parsed = JSON.parse(strip_code_fence(content))
         raise Error, 'Scoring model returned a non-object response' unless parsed.is_a?(Hash)
 
@@ -156,6 +175,44 @@ module RubyLLM
           raise Error, "Question IDs must be #{expected_questions.inspect}; got #{actual.inspect}"
         end
 
+        reported
+      end
+
+      def parse_committed(content, specs)
+        reported = reported_answers(content, specs)
+        answers = specs.to_h do |question, options|
+          keys = options.map { |name, _| name.to_s }
+          value = reported.fetch(question.name.to_s)
+          value = { 'yes' => 'true', 'no' => 'false' }.fetch(value.to_s.downcase, value.to_s) if question.type == :probability
+          index = keys.index(value.to_s) unless value.is_a?(Hash) || value.is_a?(Array)
+          raise Error, "The answer for #{question.name} must be one of #{keys.inspect}; got #{value.inspect}" unless index
+
+          [question.name, answer(question, keys.each_index.map { |position| position == index ? 1.0 : 0.0 })]
+        end
+        [answers, reported, nil]
+      rescue JSON::ParserError, KeyError, TypeError => error
+        raise Error, "Scoring model returned invalid JSON answers: #{error.message}"
+      end
+
+      # A strict JSON Schema that admits only complete answers to these questions.
+      def answer_schema(mode, specs)
+        properties = specs.to_h do |question, options|
+          keys = options.map { |name, _| name.to_s }
+          schema = if mode == :committed
+                     { type: 'string', enum: keys }
+                   else
+                     { type: 'object', properties: keys.to_h { |key| [key, { type: 'number' }] },
+                       required: keys, additionalProperties: false }
+                   end
+          [question.name.to_s, schema]
+        end
+        answers = { type: 'object', properties:, required: properties.keys, additionalProperties: false }
+        { name: 'judgment', strict: true,
+          schema: { type: 'object', properties: { answers: }, required: ['answers'], additionalProperties: false } }
+      end
+
+      def parse_single_request(content, specs)
+        reported = reported_answers(content, specs)
         normalization = {}
         answers = specs.to_h do |question, options|
           distribution = reported.fetch(question.name.to_s)
@@ -187,13 +244,14 @@ module RubyLLM
         raise Error, "Scoring model returned invalid JSON probabilities: #{error.message}"
       end
 
-      def single_request_prompt(input, specs)
+      # Questions come before the state, so instructions repeated across calls form a cacheable prefix.
+      def one_call_prompt(input, specs)
         request = {
-          state: input,
           questions: specs.map do |question, options|
             { id: question.name, type: question.type, instructions: question.instructions,
               options: options.map { |name, description| { id: name.to_s, description: } } }
-          end
+          end,
+          state: input
         }
         "Evaluate this decision request. Return only the requested JSON object.\n#{JSON.generate(request)}"
       end
@@ -318,13 +376,16 @@ module RubyLLM
         end
       end
 
-      def respond_with_model(prompt)
+      def respond_with_model(prompt, mode:, schema: nil)
         limit = @strategy == :ratings ? @tie_break_max_output_tokens : @max_output_tokens
-        response = scoring_chat(instructions: SINGLE_REQUEST_INSTRUCTIONS, max_output_tokens: limit).ask(prompt)
-        { content: response.content.to_s, tokens: response.tokens }
+        instructions = mode == :committed ? COMMITTED_INSTRUCTIONS : SINGLE_REQUEST_INSTRUCTIONS
+        response = scoring_chat(instructions:, max_output_tokens: limit, schema:).ask(prompt)
+        # With a schema, RubyLLM parses the JSON reply into a Hash.
+        content = response.content
+        { content: content.is_a?(String) ? content : JSON.generate(content), tokens: response.tokens }
       end
 
-      def scoring_chat(instructions: SYSTEM_INSTRUCTIONS, max_output_tokens: @max_output_tokens)
+      def scoring_chat(instructions: SYSTEM_INSTRUCTIONS, max_output_tokens: @max_output_tokens, schema: nil)
         context = RubyLLM::Context.new(@config)
         chat = if NATIVE
                  context.chat(model: @scoring_model, provider: @scoring_provider,
@@ -334,6 +395,7 @@ module RubyLLM
                end
         chat.with_instructions(instructions)
         chat.with_temperature(@temperature) unless @temperature.nil?
+        chat.with_schema(schema) if schema
         if NATIVE
           chat.with_max_output_tokens(max_output_tokens)
           chat.with_provider_options(deep_compact(@chat_provider_options))
