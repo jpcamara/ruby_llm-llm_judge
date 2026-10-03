@@ -1,0 +1,1416 @@
+{
+ "date": "2026-10-02",
+ "classification_96_cases": {
+  "anthropic/claude-haiku-4.5 committed+schema": [
+   {
+    "ag": 55,
+    "sst": 29,
+    "sst_prob": 29,
+    "brier": 0.2812,
+    "errors": 0,
+    "retried": 0,
+    "median_ms": 1179.4,
+    "out_tokens": 15.1875
+   },
+   {
+    "ag": 55,
+    "sst": 29,
+    "sst_prob": 29,
+    "brier": 0.2812,
+    "errors": 0,
+    "retried": 0,
+    "median_ms": 1248.0,
+    "out_tokens": 15.1875
+   },
+   {
+    "ag": 55,
+    "sst": 29,
+    "sst_prob": 29,
+    "brier": 0.2812,
+    "errors": 0,
+    "retried": 0,
+    "median_ms": 1271.1,
+    "out_tokens": 15.1875
+   }
+  ],
+  "anthropic/claude-haiku-4.5 committed": [
+   {
+    "ag": 56,
+    "sst": 29,
+    "sst_prob": 29,
+    "brier": 0.25,
+    "errors": 0,
+    "retried": 0,
+    "median_ms": 902.05,
+    "out_tokens": 33.8542
+   },
+   {
+    "ag": 56,
+    "sst": 29,
+    "sst_prob": 29,
+    "brier": 0.25,
+    "errors": 0,
+    "retried": 0,
+    "median_ms": 877.15,
+    "out_tokens": 33.8542
+   },
+   {
+    "ag": 56,
+    "sst": 29,
+    "sst_prob": 29,
+    "brier": 0.25,
+    "errors": 0,
+    "retried": 0,
+    "median_ms": 869.65,
+    "out_tokens": 33.8542
+   }
+  ],
+  "anthropic/claude-haiku-4.5 single_request+schema": [
+   {
+    "ag": 56,
+    "sst": 28,
+    "sst_prob": 28,
+    "brier": 0.2009,
+    "errors": 0,
+    "retried": 0,
+    "median_ms": 1358.15,
+    "out_tokens": 41.6667
+   },
+   {
+    "ag": 56,
+    "sst": 28,
+    "sst_prob": 28,
+    "brier": 0.2009,
+    "errors": 0,
+    "retried": 0,
+    "median_ms": 1434.6,
+    "out_tokens": 41.6667
+   },
+   {
+    "ag": 56,
+    "sst": 28,
+    "sst_prob": 28,
+    "brier": 0.2009,
+    "errors": 0,
+    "retried": 0,
+    "median_ms": 1341.65,
+    "out_tokens": 41.6667
+   }
+  ],
+  "anthropic/claude-haiku-4.5 single_request": [
+   {
+    "ag": 56,
+    "sst": 29,
+    "sst_prob": 29,
+    "brier": 0.2286,
+    "errors": 0,
+    "retried": 0,
+    "median_ms": 1067.8,
+    "out_tokens": 81.25
+   },
+   {
+    "ag": 56,
+    "sst": 29,
+    "sst_prob": 29,
+    "brier": 0.2286,
+    "errors": 0,
+    "retried": 0,
+    "median_ms": 1081.65,
+    "out_tokens": 81.25
+   },
+   {
+    "ag": 56,
+    "sst": 29,
+    "sst_prob": 29,
+    "brier": 0.2286,
+    "errors": 0,
+    "retried": 0,
+    "median_ms": 1045.35,
+    "out_tokens": 81.25
+   }
+  ],
+  "openai/gpt-5.6-luna committed+schema": [
+   {
+    "ag": 55,
+    "sst": 30,
+    "sst_prob": 30,
+    "brier": 0.2812,
+    "errors": 0,
+    "retried": 0,
+    "median_ms": 1074.3,
+    "out_tokens": 18.7083
+   },
+   {
+    "ag": 57,
+    "sst": 30,
+    "sst_prob": 30,
+    "brier": 0.2188,
+    "errors": 0,
+    "retried": 0,
+    "median_ms": 1031.25,
+    "out_tokens": 18.7708
+   },
+   {
+    "ag": 56,
+    "sst": 30,
+    "sst_prob": 30,
+    "brier": 0.25,
+    "errors": 0,
+    "retried": 0,
+    "median_ms": 1005.95,
+    "out_tokens": 18.7396
+   }
+  ],
+  "openai/gpt-5.6-luna committed": [
+   {
+    "ag": 58,
+    "sst": 28,
+    "sst_prob": 27,
+    "brier": 0.1875,
+    "errors": 0,
+    "retried": 0,
+    "median_ms": 828.1,
+    "out_tokens": 14.7396
+   },
+   {
+    "ag": 57,
+    "sst": 28,
+    "sst_prob": 28,
+    "brier": 0.2188,
+    "errors": 0,
+    "retried": 0,
+    "median_ms": 845.75,
+    "out_tokens": 14.7083
+   },
+   {
+    "ag": 59,
+    "sst": 26,
+    "sst_prob": 26,
+    "brier": 0.1562,
+    "errors": 0,
+    "retried": 0,
+    "median_ms": 860.45,
+    "out_tokens": 14.7708
+   }
+  ],
+  "openai/gpt-5.6-luna single_request+schema": [
+   {
+    "ag": 59,
+    "sst": 30,
+    "sst_prob": 30,
+    "brier": 0.1131,
+    "errors": 0,
+    "retried": 0,
+    "median_ms": 1151.3,
+    "out_tokens": 43.5625
+   },
+   {
+    "ag": 60,
+    "sst": 30,
+    "sst_prob": 30,
+    "brier": 0.1109,
+    "errors": 0,
+    "retried": 0,
+    "median_ms": 1212.8,
+    "out_tokens": 43.1875
+   },
+   {
+    "ag": 62,
+    "sst": 30,
+    "sst_prob": 30,
+    "brier": 0.0867,
+    "errors": 0,
+    "retried": 0,
+    "median_ms": 1187.45,
+    "out_tokens": 44.2083
+   }
+  ],
+  "openai/gpt-5.6-luna single_request": [
+   {
+    "ag": 60,
+    "sst": 29,
+    "sst_prob": 29,
+    "brier": 0.1161,
+    "errors": 0,
+    "retried": 0,
+    "median_ms": 1130.95,
+    "out_tokens": 39.3333
+   },
+   {
+    "ag": 60,
+    "sst": 30,
+    "sst_prob": 30,
+    "brier": 0.1197,
+    "errors": 0,
+    "retried": 0,
+    "median_ms": 1182.0,
+    "out_tokens": 39.8542
+   },
+   {
+    "ag": 61,
+    "sst": 29,
+    "sst_prob": 29,
+    "brier": 0.1076,
+    "errors": 0,
+    "retried": 0,
+    "median_ms": 1125.2,
+    "out_tokens": 39.75
+   }
+  ],
+  "openai/gpt-5.6-terra committed+schema": [
+   {
+    "ag": 60,
+    "sst": 29,
+    "sst_prob": 29,
+    "brier": 0.125,
+    "errors": 0,
+    "retried": 0,
+    "median_ms": 1051.35,
+    "out_tokens": 18.8333
+   },
+   {
+    "ag": 60,
+    "sst": 29,
+    "sst_prob": 29,
+    "brier": 0.125,
+    "errors": 0,
+    "retried": 0,
+    "median_ms": 1027.9,
+    "out_tokens": 18.8333
+   },
+   {
+    "ag": 60,
+    "sst": 29,
+    "sst_prob": 29,
+    "brier": 0.125,
+    "errors": 0,
+    "retried": 0,
+    "median_ms": 1062.4,
+    "out_tokens": 18.8333
+   }
+  ],
+  "openai/gpt-5.6-terra committed": [
+   {
+    "ag": 62,
+    "sst": 29,
+    "sst_prob": 29,
+    "brier": 0.0625,
+    "errors": 0,
+    "retried": 0,
+    "median_ms": 973.85,
+    "out_tokens": 14.8021
+   },
+   {
+    "ag": 60,
+    "sst": 29,
+    "sst_prob": 29,
+    "brier": 0.125,
+    "errors": 0,
+    "retried": 0,
+    "median_ms": 917.85,
+    "out_tokens": 14.7708
+   },
+   {
+    "ag": 61,
+    "sst": 29,
+    "sst_prob": 29,
+    "brier": 0.0938,
+    "errors": 0,
+    "retried": 0,
+    "median_ms": 955.4,
+    "out_tokens": 14.7708
+   }
+  ],
+  "openai/gpt-5.6-terra single_request+schema": [
+   {
+    "ag": 60,
+    "sst": 29,
+    "sst_prob": 29,
+    "brier": 0.0929,
+    "errors": 0,
+    "retried": 0,
+    "median_ms": 1221.8,
+    "out_tokens": 42.7292
+   },
+   {
+    "ag": 61,
+    "sst": 29,
+    "sst_prob": 29,
+    "brier": 0.0807,
+    "errors": 0,
+    "retried": 0,
+    "median_ms": 1227.15,
+    "out_tokens": 42.6458
+   },
+   {
+    "ag": 61,
+    "sst": 29,
+    "sst_prob": 29,
+    "brier": 0.0972,
+    "errors": 0,
+    "retried": 0,
+    "median_ms": 1224.9,
+    "out_tokens": 42.6875
+   }
+  ],
+  "openai/gpt-5.6-terra single_request": [
+   {
+    "ag": 61,
+    "sst": 30,
+    "sst_prob": 30,
+    "brier": 0.1079,
+    "errors": 0,
+    "retried": 0,
+    "median_ms": 1145.15,
+    "out_tokens": 39.75
+   },
+   {
+    "ag": 62,
+    "sst": 29,
+    "sst_prob": 29,
+    "brier": 0.0989,
+    "errors": 0,
+    "retried": 0,
+    "median_ms": 1126.8,
+    "out_tokens": 39.625
+   },
+   {
+    "ag": 60,
+    "sst": 28,
+    "sst_prob": 28,
+    "brier": 0.1104,
+    "errors": 0,
+    "retried": 0,
+    "median_ms": 1119.2,
+    "out_tokens": 39.6875
+   }
+  ],
+  "openai/gpt-6-luna committed+schema": [
+   {
+    "ag": 57,
+    "sst": 29,
+    "sst_prob": 29,
+    "brier": 0.2188,
+    "errors": 0,
+    "retried": 0,
+    "median_ms": 922.95,
+    "out_tokens": 18.6458
+   },
+   {
+    "ag": 57,
+    "sst": 29,
+    "sst_prob": 29,
+    "brier": 0.2188,
+    "errors": 0,
+    "retried": 0,
+    "median_ms": 901.75,
+    "out_tokens": 18.6458
+   },
+   {
+    "ag": 57,
+    "sst": 29,
+    "sst_prob": 29,
+    "brier": 0.2188,
+    "errors": 0,
+    "retried": 0,
+    "median_ms": 984.3,
+    "out_tokens": 18.7083
+   }
+  ],
+  "openai/gpt-6-luna committed": [
+   {
+    "ag": 55,
+    "sst": 30,
+    "sst_prob": 26,
+    "brier": 0.2812,
+    "errors": 0,
+    "retried": 0,
+    "median_ms": 839.75,
+    "out_tokens": 14.6771
+   },
+   {
+    "ag": 57,
+    "sst": 28,
+    "sst_prob": 25,
+    "brier": 0.2188,
+    "errors": 0,
+    "retried": 0,
+    "median_ms": 841.45,
+    "out_tokens": 14.6771
+   },
+   {
+    "ag": 56,
+    "sst": 28,
+    "sst_prob": 26,
+    "brier": 0.25,
+    "errors": 0,
+    "retried": 0,
+    "median_ms": 840.95,
+    "out_tokens": 14.6458
+   }
+  ],
+  "openai/gpt-6-luna single_request+schema": [
+   {
+    "ag": 60,
+    "sst": 30,
+    "sst_prob": 30,
+    "brier": 0.1048,
+    "errors": 0,
+    "retried": 2,
+    "median_ms": 1379.0,
+    "out_tokens": 44.4583
+   },
+   {
+    "ag": 60,
+    "sst": 29,
+    "sst_prob": 29,
+    "brier": 0.1059,
+    "errors": 0,
+    "retried": 0,
+    "median_ms": 1209.5,
+    "out_tokens": 42.875
+   },
+   {
+    "ag": 58,
+    "sst": 27,
+    "sst_prob": 27,
+    "brier": 0.1457,
+    "errors": 0,
+    "retried": 0,
+    "median_ms": 1244.0,
+    "out_tokens": 42.0208
+   }
+  ],
+  "openai/gpt-6-luna single_request": [
+   {
+    "ag": 59,
+    "sst": 29,
+    "sst_prob": 29,
+    "brier": 0.111,
+    "errors": 0,
+    "retried": 5,
+    "median_ms": 1007.2,
+    "out_tokens": 39.8229
+   },
+   {
+    "ag": 60,
+    "sst": 28,
+    "sst_prob": 28,
+    "brier": 0.1153,
+    "errors": 0,
+    "retried": 3,
+    "median_ms": 965.55,
+    "out_tokens": 39.2917
+   },
+   {
+    "ag": 60,
+    "sst": 30,
+    "sst_prob": 30,
+    "brier": 0.1134,
+    "errors": 0,
+    "retried": 2,
+    "median_ms": 1047.65,
+    "out_tokens": 38.75
+   }
+  ]
+ },
+ "classification_96_cases_questions_first_prompt": {
+  "anthropic/claude-haiku-4.5 committed+schema": [
+   {
+    "ag": 54,
+    "sst": 29,
+    "sst_prob": 29,
+    "brier": 0.3125,
+    "errors": 0,
+    "retried": 0,
+    "median_ms": 1314.95,
+    "out_tokens": 15.25
+   },
+   {
+    "ag": 54,
+    "sst": 29,
+    "sst_prob": 29,
+    "brier": 0.3125,
+    "errors": 0,
+    "retried": 0,
+    "median_ms": 1281.85,
+    "out_tokens": 15.25
+   },
+   {
+    "ag": 54,
+    "sst": 29,
+    "sst_prob": 29,
+    "brier": 0.3125,
+    "errors": 0,
+    "retried": 0,
+    "median_ms": 1334.4,
+    "out_tokens": 15.25
+   }
+  ],
+  "anthropic/claude-haiku-4.5 committed": [
+   {
+    "ag": 53,
+    "sst": 29,
+    "sst_prob": 29,
+    "brier": 0.3438,
+    "errors": 0,
+    "retried": 0,
+    "median_ms": 924.25,
+    "out_tokens": 33.8958
+   },
+   {
+    "ag": 53,
+    "sst": 29,
+    "sst_prob": 29,
+    "brier": 0.3438,
+    "errors": 0,
+    "retried": 0,
+    "median_ms": 906.3,
+    "out_tokens": 33.8958
+   },
+   {
+    "ag": 53,
+    "sst": 29,
+    "sst_prob": 29,
+    "brier": 0.3438,
+    "errors": 0,
+    "retried": 0,
+    "median_ms": 893.0,
+    "out_tokens": 33.8958
+   }
+  ],
+  "anthropic/claude-haiku-4.5 single_request+schema": [
+   {
+    "ag": 53,
+    "sst": 29,
+    "sst_prob": 29,
+    "brier": 0.2822,
+    "errors": 0,
+    "retried": 0,
+    "median_ms": 1501.75,
+    "out_tokens": 42.9792
+   },
+   {
+    "ag": 53,
+    "sst": 29,
+    "sst_prob": 29,
+    "brier": 0.2822,
+    "errors": 0,
+    "retried": 0,
+    "median_ms": 1476.8,
+    "out_tokens": 42.9792
+   },
+   {
+    "ag": 53,
+    "sst": 29,
+    "sst_prob": 29,
+    "brier": 0.2822,
+    "errors": 0,
+    "retried": 0,
+    "median_ms": 1433.65,
+    "out_tokens": 42.9792
+   }
+  ],
+  "anthropic/claude-haiku-4.5 single_request": [
+   {
+    "ag": 55,
+    "sst": 28,
+    "sst_prob": 28,
+    "brier": 0.2394,
+    "errors": 0,
+    "retried": 0,
+    "median_ms": 1056.6,
+    "out_tokens": 81.6667
+   },
+   {
+    "ag": 55,
+    "sst": 28,
+    "sst_prob": 28,
+    "brier": 0.2394,
+    "errors": 0,
+    "retried": 0,
+    "median_ms": 1056.15,
+    "out_tokens": 81.6667
+   },
+   {
+    "ag": 55,
+    "sst": 28,
+    "sst_prob": 28,
+    "brier": 0.2394,
+    "errors": 0,
+    "retried": 0,
+    "median_ms": 1075.45,
+    "out_tokens": 81.6667
+   }
+  ],
+  "openai/gpt-5.6-luna committed+schema": [
+   {
+    "ag": 55,
+    "sst": 29,
+    "sst_prob": 29,
+    "brier": 0.2812,
+    "errors": 0,
+    "retried": 0,
+    "median_ms": 1014.5,
+    "out_tokens": 18.7083
+   },
+   {
+    "ag": 57,
+    "sst": 30,
+    "sst_prob": 30,
+    "brier": 0.2188,
+    "errors": 0,
+    "retried": 0,
+    "median_ms": 967.15,
+    "out_tokens": 18.7708
+   },
+   {
+    "ag": 54,
+    "sst": 29,
+    "sst_prob": 29,
+    "brier": 0.3125,
+    "errors": 0,
+    "retried": 0,
+    "median_ms": 1022.3,
+    "out_tokens": 18.6771
+   }
+  ],
+  "openai/gpt-5.6-luna committed": [
+   {
+    "ag": 53,
+    "sst": 29,
+    "sst_prob": 29,
+    "brier": 0.3438,
+    "errors": 0,
+    "retried": 0,
+    "median_ms": 910.7,
+    "out_tokens": 14.7083
+   },
+   {
+    "ag": 56,
+    "sst": 29,
+    "sst_prob": 29,
+    "brier": 0.25,
+    "errors": 0,
+    "retried": 0,
+    "median_ms": 896.55,
+    "out_tokens": 14.7396
+   },
+   {
+    "ag": 54,
+    "sst": 29,
+    "sst_prob": 29,
+    "brier": 0.3125,
+    "errors": 0,
+    "retried": 0,
+    "median_ms": 900.3,
+    "out_tokens": 14.6771
+   }
+  ],
+  "openai/gpt-5.6-luna single_request+schema": [
+   {
+    "ag": 57,
+    "sst": 30,
+    "sst_prob": 30,
+    "brier": 0.1774,
+    "errors": 0,
+    "retried": 0,
+    "median_ms": 1152.2,
+    "out_tokens": 45.2708
+   },
+   {
+    "ag": 55,
+    "sst": 28,
+    "sst_prob": 28,
+    "brier": 0.2053,
+    "errors": 0,
+    "retried": 0,
+    "median_ms": 1159.05,
+    "out_tokens": 45
+   },
+   {
+    "ag": 55,
+    "sst": 30,
+    "sst_prob": 30,
+    "brier": 0.2394,
+    "errors": 0,
+    "retried": 0,
+    "median_ms": 1140.25,
+    "out_tokens": 44.8125
+   }
+  ],
+  "openai/gpt-5.6-luna single_request": [
+   {
+    "ag": 57,
+    "sst": 30,
+    "sst_prob": 30,
+    "brier": 0.1899,
+    "errors": 0,
+    "retried": 0,
+    "median_ms": 1102.1,
+    "out_tokens": 40.6667
+   },
+   {
+    "ag": 56,
+    "sst": 30,
+    "sst_prob": 30,
+    "brier": 0.1937,
+    "errors": 0,
+    "retried": 0,
+    "median_ms": 1054.9,
+    "out_tokens": 40.7917
+   },
+   {
+    "ag": 54,
+    "sst": 30,
+    "sst_prob": 30,
+    "brier": 0.1936,
+    "errors": 0,
+    "retried": 0,
+    "median_ms": 1064.35,
+    "out_tokens": 40.875
+   }
+  ],
+  "openai/gpt-5.6-terra committed+schema": [
+   {
+    "ag": 59,
+    "sst": 28,
+    "sst_prob": 28,
+    "brier": 0.1562,
+    "errors": 0,
+    "retried": 0,
+    "median_ms": 1034.95,
+    "out_tokens": 18.8021
+   },
+   {
+    "ag": 58,
+    "sst": 29,
+    "sst_prob": 29,
+    "brier": 0.1875,
+    "errors": 0,
+    "retried": 0,
+    "median_ms": 1056.7,
+    "out_tokens": 18.8021
+   },
+   {
+    "ag": 58,
+    "sst": 29,
+    "sst_prob": 29,
+    "brier": 0.1875,
+    "errors": 0,
+    "retried": 0,
+    "median_ms": 1053.35,
+    "out_tokens": 18.8021
+   }
+  ],
+  "openai/gpt-5.6-terra committed": [
+   {
+    "ag": 59,
+    "sst": 29,
+    "sst_prob": 29,
+    "brier": 0.1562,
+    "errors": 0,
+    "retried": 0,
+    "median_ms": 920.5,
+    "out_tokens": 14.7708
+   },
+   {
+    "ag": 58,
+    "sst": 29,
+    "sst_prob": 29,
+    "brier": 0.1875,
+    "errors": 0,
+    "retried": 0,
+    "median_ms": 916.0,
+    "out_tokens": 14.7396
+   },
+   {
+    "ag": 56,
+    "sst": 30,
+    "sst_prob": 30,
+    "brier": 0.25,
+    "errors": 0,
+    "retried": 0,
+    "median_ms": 914.4,
+    "out_tokens": 14.7083
+   }
+  ],
+  "openai/gpt-5.6-terra single_request+schema": [
+   {
+    "ag": 58,
+    "sst": 29,
+    "sst_prob": 29,
+    "brier": 0.1417,
+    "errors": 0,
+    "retried": 0,
+    "median_ms": 1288.05,
+    "out_tokens": 44.25
+   },
+   {
+    "ag": 60,
+    "sst": 29,
+    "sst_prob": 29,
+    "brier": 0.1192,
+    "errors": 0,
+    "retried": 0,
+    "median_ms": 1254.5,
+    "out_tokens": 44.375
+   },
+   {
+    "ag": 60,
+    "sst": 28,
+    "sst_prob": 28,
+    "brier": 0.1139,
+    "errors": 0,
+    "retried": 0,
+    "median_ms": 1256.9,
+    "out_tokens": 44.5625
+   }
+  ],
+  "openai/gpt-5.6-terra single_request": [
+   {
+    "ag": 56,
+    "sst": 29,
+    "sst_prob": 29,
+    "brier": 0.1501,
+    "errors": 0,
+    "retried": 0,
+    "median_ms": 1135.8,
+    "out_tokens": 41.3333
+   },
+   {
+    "ag": 58,
+    "sst": 28,
+    "sst_prob": 28,
+    "brier": 0.1333,
+    "errors": 0,
+    "retried": 0,
+    "median_ms": 1136.55,
+    "out_tokens": 41.25
+   },
+   {
+    "ag": 56,
+    "sst": 28,
+    "sst_prob": 28,
+    "brier": 0.1449,
+    "errors": 0,
+    "retried": 0,
+    "median_ms": 1128.3,
+    "out_tokens": 41.3333
+   }
+  ],
+  "openai/gpt-6-luna committed+schema": [
+   {
+    "ag": 55,
+    "sst": 29,
+    "sst_prob": 29,
+    "brier": 0.2812,
+    "errors": 0,
+    "retried": 0,
+    "median_ms": 912.75,
+    "out_tokens": 18.6771
+   },
+   {
+    "ag": 55,
+    "sst": 29,
+    "sst_prob": 29,
+    "brier": 0.2812,
+    "errors": 0,
+    "retried": 0,
+    "median_ms": 843.05,
+    "out_tokens": 18.6771
+   },
+   {
+    "ag": 56,
+    "sst": 29,
+    "sst_prob": 29,
+    "brier": 0.25,
+    "errors": 0,
+    "retried": 0,
+    "median_ms": 849.05,
+    "out_tokens": 18.7083
+   }
+  ],
+  "openai/gpt-6-luna committed": [
+   {
+    "ag": 57,
+    "sst": 29,
+    "sst_prob": 29,
+    "brier": 0.2188,
+    "errors": 0,
+    "retried": 0,
+    "median_ms": 902.75,
+    "out_tokens": 14.7396
+   },
+   {
+    "ag": 57,
+    "sst": 29,
+    "sst_prob": 29,
+    "brier": 0.2188,
+    "errors": 0,
+    "retried": 0,
+    "median_ms": 844.1,
+    "out_tokens": 14.7708
+   },
+   {
+    "ag": 58,
+    "sst": 27,
+    "sst_prob": 27,
+    "brier": 0.1875,
+    "errors": 0,
+    "retried": 0,
+    "median_ms": 837.3,
+    "out_tokens": 14.8021
+   }
+  ],
+  "openai/gpt-6-luna single_request+schema": [
+   {
+    "ag": 56,
+    "sst": 29,
+    "sst_prob": 29,
+    "brier": 0.2117,
+    "errors": 0,
+    "retried": 2,
+    "median_ms": 1412.8,
+    "out_tokens": 44.8333
+   },
+   {
+    "ag": 55,
+    "sst": 30,
+    "sst_prob": 29,
+    "brier": 0.2262,
+    "errors": 0,
+    "retried": 0,
+    "median_ms": 1222.0,
+    "out_tokens": 43.8542
+   },
+   {
+    "ag": 57,
+    "sst": 28,
+    "sst_prob": 27,
+    "brier": 0.1918,
+    "errors": 0,
+    "retried": 2,
+    "median_ms": 1072.35,
+    "out_tokens": 44.4792
+   }
+  ],
+  "openai/gpt-6-luna single_request": [
+   {
+    "ag": 55,
+    "sst": 29,
+    "sst_prob": 29,
+    "brier": 0.2543,
+    "errors": 0,
+    "retried": 8,
+    "median_ms": 1006.75,
+    "out_tokens": 44.3125
+   },
+   {
+    "ag": 59,
+    "sst": 30,
+    "sst_prob": 30,
+    "brier": 0.1184,
+    "errors": 0,
+    "retried": 11,
+    "median_ms": 986.85,
+    "out_tokens": 45.4062
+   },
+   {
+    "ag": 56,
+    "sst": 29,
+    "sst_prob": 29,
+    "brier": 0.1935,
+    "errors": 0,
+    "retried": 4,
+    "median_ms": 933.65,
+    "out_tokens": 42.0104
+   }
+  ]
+ },
+ "classification_gpt-6-luna_0.1.3_control": {
+  "openai/gpt-6-luna single_request": [
+   {
+    "ag": 60,
+    "sst": 29,
+    "sst_prob": 29,
+    "brier": 0.114,
+    "errors": 0,
+    "retried": 2,
+    "median_ms": 1293.6,
+    "out_tokens": 38.5208
+   },
+   {
+    "ag": 58,
+    "sst": 29,
+    "sst_prob": 29,
+    "brier": 0.1703,
+    "errors": 0,
+    "retried": 4,
+    "median_ms": 1379.55,
+    "out_tokens": 39.5312
+   },
+   {
+    "ag": 59,
+    "sst": 30,
+    "sst_prob": 30,
+    "brier": 0.1338,
+    "errors": 0,
+    "retried": 3,
+    "median_ms": 1330.7,
+    "out_tokens": 39.2396
+   }
+  ]
+ },
+ "streamdecisionbench_untimed_480_states": {
+  "anthropic_claude-haiku-4.5-low": [
+   {
+    "untimed": 90.21,
+    "by_family": {
+     "live_debugging": 89.17,
+     "procedural_coaching": 78.33,
+     "support_call_assist": 96.67,
+     "presenter_voice_control": 96.67
+    }
+   }
+  ],
+  "anthropic_claude-haiku-4.5-off": [
+   {
+    "untimed": 40.0,
+    "by_family": {
+     "live_debugging": 12.5,
+     "procedural_coaching": 30.0,
+     "support_call_assist": 60.0,
+     "presenter_voice_control": 57.5
+    }
+   }
+  ],
+  "clef-flash": [
+   {
+    "untimed": 21.67,
+    "by_family": {
+     "live_debugging": 15.0,
+     "procedural_coaching": 25.83,
+     "support_call_assist": 30.83,
+     "presenter_voice_control": 15.0
+    }
+   }
+  ],
+  "clef": [
+   {
+    "untimed": 38.96,
+    "by_family": {
+     "live_debugging": 45.0,
+     "procedural_coaching": 15.83,
+     "support_call_assist": 75.83,
+     "presenter_voice_control": 19.17
+    }
+   },
+   {
+    "untimed": 38.96,
+    "by_family": {
+     "live_debugging": 45.0,
+     "procedural_coaching": 15.83,
+     "support_call_assist": 75.83,
+     "presenter_voice_control": 19.17
+    }
+   },
+   {
+    "untimed": 38.96,
+    "by_family": {
+     "live_debugging": 45.0,
+     "procedural_coaching": 15.83,
+     "support_call_assist": 75.83,
+     "presenter_voice_control": 19.17
+    }
+   }
+  ],
+  "jev": [
+   {
+    "untimed": 61.88,
+    "by_family": {
+     "live_debugging": 42.5,
+     "procedural_coaching": 63.33,
+     "support_call_assist": 73.33,
+     "presenter_voice_control": 68.33
+    }
+   },
+   {
+    "untimed": 61.46,
+    "by_family": {
+     "live_debugging": 40.83,
+     "procedural_coaching": 65.83,
+     "support_call_assist": 72.5,
+     "presenter_voice_control": 66.67
+    }
+   },
+   {
+    "untimed": 62.5,
+    "by_family": {
+     "live_debugging": 44.17,
+     "procedural_coaching": 65.83,
+     "support_call_assist": 70.83,
+     "presenter_voice_control": 69.17
+    }
+   }
+  ],
+  "kev-4b": [
+   {
+    "untimed": 21.88,
+    "by_family": {
+     "live_debugging": 17.5,
+     "procedural_coaching": 13.33,
+     "support_call_assist": 38.33,
+     "presenter_voice_control": 18.33
+    }
+   },
+   {
+    "untimed": 21.67,
+    "by_family": {
+     "live_debugging": 17.5,
+     "procedural_coaching": 13.33,
+     "support_call_assist": 37.5,
+     "presenter_voice_control": 18.33
+    }
+   },
+   {
+    "untimed": 22.08,
+    "by_family": {
+     "live_debugging": 17.5,
+     "procedural_coaching": 13.33,
+     "support_call_assist": 39.17,
+     "presenter_voice_control": 18.33
+    }
+   }
+  ],
+  "llm_judge_openai_gpt-5.6-luna_committed+schema@low": [
+   {
+    "untimed": 90.0,
+    "by_family": {
+     "live_debugging": 90.0,
+     "procedural_coaching": 86.67,
+     "support_call_assist": 86.67,
+     "presenter_voice_control": 96.67
+    }
+   }
+  ],
+  "llm_judge_openai_gpt-5.6-luna_committed+schema@none": [
+   {
+    "untimed": 47.29,
+    "by_family": {
+     "live_debugging": 27.5,
+     "procedural_coaching": 37.5,
+     "support_call_assist": 69.17,
+     "presenter_voice_control": 55.0
+    }
+   }
+  ],
+  "llm_judge_openai_gpt-5.6-luna_single_request+schema@low": [
+   {
+    "untimed": 90.0,
+    "by_family": {
+     "live_debugging": 89.17,
+     "procedural_coaching": 89.17,
+     "support_call_assist": 84.17,
+     "presenter_voice_control": 97.5
+    }
+   }
+  ],
+  "llm_judge_openai_gpt-5.6-luna_single_request@none": [
+   {
+    "untimed": 40.83,
+    "by_family": {
+     "live_debugging": 20.0,
+     "procedural_coaching": 35.0,
+     "support_call_assist": 70.83,
+     "presenter_voice_control": 37.5
+    }
+   }
+  ],
+  "openai_gpt-5.6-luna-low": [
+   {
+    "untimed": 90.62,
+    "by_family": {
+     "live_debugging": 88.33,
+     "procedural_coaching": 85.83,
+     "support_call_assist": 90.83,
+     "presenter_voice_control": 97.5
+    }
+   },
+   {
+    "untimed": 88.33,
+    "by_family": {
+     "live_debugging": 87.5,
+     "procedural_coaching": 82.5,
+     "support_call_assist": 85.83,
+     "presenter_voice_control": 97.5
+    }
+   },
+   {
+    "untimed": 89.38,
+    "by_family": {
+     "live_debugging": 87.5,
+     "procedural_coaching": 85.0,
+     "support_call_assist": 89.17,
+     "presenter_voice_control": 95.83
+    }
+   }
+  ],
+  "openai_gpt-5.6-luna-none": [
+   {
+    "untimed": 44.38,
+    "by_family": {
+     "live_debugging": 24.17,
+     "procedural_coaching": 30.0,
+     "support_call_assist": 65.83,
+     "presenter_voice_control": 57.5
+    }
+   }
+  ],
+  "openai_gpt-5.6-terra-low": [
+   {
+    "untimed": 96.46,
+    "by_family": {
+     "live_debugging": 99.17,
+     "procedural_coaching": 92.5,
+     "support_call_assist": 96.67,
+     "presenter_voice_control": 97.5
+    }
+   }
+  ],
+  "openai_gpt-5.6-terra-none": [
+   {
+    "untimed": 81.25,
+    "by_family": {
+     "live_debugging": 70.83,
+     "procedural_coaching": 70.83,
+     "support_call_assist": 95.83,
+     "presenter_voice_control": 87.5
+    }
+   },
+   {
+    "untimed": 82.71,
+    "by_family": {
+     "live_debugging": 72.5,
+     "procedural_coaching": 75.83,
+     "support_call_assist": 96.67,
+     "presenter_voice_control": 85.83
+    }
+   },
+   {
+    "untimed": 80.62,
+    "by_family": {
+     "live_debugging": 68.33,
+     "procedural_coaching": 71.67,
+     "support_call_assist": 95.0,
+     "presenter_voice_control": 87.5
+    }
+   }
+  ],
+  "openai_gpt-6-luna-low": [
+   {
+    "untimed": 92.08,
+    "by_family": {
+     "live_debugging": 94.17,
+     "procedural_coaching": 84.17,
+     "support_call_assist": 95.83,
+     "presenter_voice_control": 94.17
+    }
+   }
+  ],
+  "openai_gpt-6-luna-none": [
+   {
+    "untimed": 52.71,
+    "by_family": {
+     "live_debugging": 24.17,
+     "procedural_coaching": 41.67,
+     "support_call_assist": 75.83,
+     "presenter_voice_control": 69.17
+    }
+   }
+  ]
+ },
+ "streamdecisionbench_llm_judge_questions_first_prompt": {
+  "llm_judge_openai_gpt-5.6-luna_committed+schema@low": [
+   {
+    "untimed": 90.62,
+    "by_family": {
+     "live_debugging": 84.17,
+     "procedural_coaching": 89.17,
+     "support_call_assist": 90.83,
+     "presenter_voice_control": 98.33
+    }
+   }
+  ],
+  "llm_judge_openai_gpt-5.6-luna_committed+schema@none": [
+   {
+    "untimed": 42.5,
+    "by_family": {
+     "live_debugging": 18.33,
+     "procedural_coaching": 27.5,
+     "support_call_assist": 64.17,
+     "presenter_voice_control": 60.0
+    }
+   }
+  ],
+  "llm_judge_openai_gpt-5.6-luna_committed@none": [
+   {
+    "untimed": 40.0,
+    "by_family": {
+     "live_debugging": 14.17,
+     "procedural_coaching": 32.5,
+     "support_call_assist": 62.5,
+     "presenter_voice_control": 50.83
+    }
+   }
+  ],
+  "llm_judge_openai_gpt-5.6-luna_ratings@none": [
+   {
+    "untimed": 1.04,
+    "by_family": {
+     "live_debugging": 0,
+     "procedural_coaching": 0.83,
+     "support_call_assist": 2.5,
+     "presenter_voice_control": 0.83
+    }
+   }
+  ],
+  "llm_judge_openai_gpt-5.6-luna_single_request+schema@low": [
+   {
+    "untimed": 84.79,
+    "by_family": {
+     "live_debugging": 85.83,
+     "procedural_coaching": 84.17,
+     "support_call_assist": 85.0,
+     "presenter_voice_control": 84.17
+    }
+   }
+  ],
+  "llm_judge_openai_gpt-5.6-luna_single_request+schema@none": [
+   {
+    "untimed": 25.83,
+    "by_family": {
+     "live_debugging": 15.0,
+     "procedural_coaching": 8.33,
+     "support_call_assist": 59.17,
+     "presenter_voice_control": 20.83
+    }
+   }
+  ],
+  "llm_judge_openai_gpt-5.6-luna_single_request@none": [
+   {
+    "untimed": 26.25,
+    "by_family": {
+     "live_debugging": 16.67,
+     "procedural_coaching": 14.17,
+     "support_call_assist": 50.83,
+     "presenter_voice_control": 23.33
+    }
+   }
+  ]
+ },
+ "notes": {
+  "ratings_subset": "llm_judge ratings@none (questions-first prompt) answered 48 states, first 6 per scenario; 5 correct",
+  "gpt-6-luna-none": "4 transport errors counted as wrong"
+ }
+}

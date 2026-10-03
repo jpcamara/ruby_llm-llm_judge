@@ -181,7 +181,7 @@ class EngineTest < Minitest::Test
     end
   end
 
-  def test_one_call_prompt_puts_questions_before_state
+  def test_one_call_prompt_puts_state_before_questions
     prompt = nil
     responder = lambda do |sent|
       prompt = sent
@@ -191,7 +191,7 @@ class EngineTest < Minitest::Test
       RubyLLM::LLMJudge.judge('Refund please', questions: TEAM, provider_options: { strategy: :single_request })
     end
 
-    assert_equal %w[questions state], JSON.parse(prompt.split("\n", 2).last).keys
+    assert_equal %w[state questions], JSON.parse(prompt.split("\n", 2).last).keys
   end
 
   def test_structured_output_must_be_boolean

@@ -142,19 +142,17 @@ result = RubyLLM::LLMJudge.judge(
 
 OpenRouter's [latency sorting](https://openrouter.ai/docs/guides/routing/provider-selection) chooses among its available providers using their observed response times. It sped up OpenRouter in our test, while direct OpenAI was faster still. The measured speed and answer-quality tradeoffs are below.
 
-The one-call prompt lists the questions before the state, so instructions that repeat across calls form a prefix that providers with prompt caching can reuse.
-
 ### Strict response schemas
 
-Set `structured_output: true` to send a strict JSON Schema with the one-call request, through RubyLLM's `with_schema`. The schema requires every question and every option, and nothing else, so a provider that supports structured outputs cannot return the wrong shape. Without it, the gem validates the reply and makes its corrective retry; with it, that retry should not be needed. Models and providers without structured-output support reject the request, so leave it off for them.
+Set `structured_output: true` to send a strict JSON Schema with the one-call request, through RubyLLM's `with_schema`. The schema requires every question and every option, and nothing else, so a provider that supports structured outputs cannot return the wrong shape. Without it, the gem validates the reply and makes its corrective retry. In our runs it had little effect on accuracy, cut GPT-6 Luna's corrective retries from 3.3 to 0.7 per 96 judgments, and added 40–350 ms. Models and providers without structured-output support reject the request, so leave it off for them.
 
 ### Committed answers
 
-Set `strategy: :committed` to ask for one option per question instead of a distribution. The reply is shorter, and each answer comes back with probability 1 for the chosen option and 0 for the rest, so `confidence` is always 1.0 and the probabilities carry no calibration. Use it when you only need the decision; use `:single_request` or `:ratings` when you threshold on probabilities. It accepts `structured_output: true`, which limits each answer to that question's option IDs.
+Set `strategy: :committed` to ask for one option per question instead of a distribution. The reply is shorter, and each answer comes back with probability 1 for the chosen option and 0 for the rest, so `confidence` is always 1.0 and the probabilities carry no calibration. Use it when you only need the decision; use `:single_request` or `:ratings` when you threshold on probabilities. It accepts `structured_output: true`, which limits each answer to that question's option IDs. On classification it was 100–300 ms faster than probabilities and as accurate or up to three cases in 64 less; on rule-following questions it was the most accurate mode with reasoning off.
 
 ### Reasoning
 
-The Luna defaults disable reasoning, which suits classification: on the benchmarks below, Luna is as accurate with reasoning off and much faster. Questions that apply explicit rules to a state are different. On [StreamDecisionBench](https://github.com/JacobLinCool/StreamDecisionBench), whose questions carry decision policies, GPT-5.6 Luna answered 43.8% of states correctly with reasoning off and 88.8% with reasoning effort low, at about twice the latency.
+The Luna defaults disable reasoning, which suits classification: on the benchmarks below, Luna is as accurate with reasoning off and much faster. Questions that apply explicit rules to a state are different. On [StreamDecisionBench](https://github.com/JacobLinCool/StreamDecisionBench), whose questions carry decision policies, GPT-5.6 Luna through LLM Judge answered 47% of states correctly with reasoning off and 90% with reasoning effort low, at about twice the latency. The ratings strategy cannot apply a policy across a state and should not be used for these questions. [Classification and rule-following results by mode](benchmarks/decision-modes.md).
 
 To enable reasoning, override the default and leave room for it in the output limit:
 

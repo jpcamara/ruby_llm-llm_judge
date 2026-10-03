@@ -244,14 +244,15 @@ module RubyLLM
         raise Error, "Scoring model returned invalid JSON probabilities: #{error.message}"
       end
 
-      # Questions come before the state, so instructions repeated across calls form a cacheable prefix.
+      # The state comes first: listing the questions first made Luna 6 retry more and answer less
+      # accurately on the benchmark cases.
       def one_call_prompt(input, specs)
         request = {
+          state: input,
           questions: specs.map do |question, options|
             { id: question.name, type: question.type, instructions: question.instructions,
               options: options.map { |name, description| { id: name.to_s, description: } } }
-          end,
-          state: input
+          end
         }
         "Evaluate this decision request. Return only the requested JSON object.\n#{JSON.generate(request)}"
       end

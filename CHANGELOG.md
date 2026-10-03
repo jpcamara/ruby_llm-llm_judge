@@ -4,9 +4,8 @@
 
 - `structured_output: true` sends a strict JSON Schema with one-call requests, requiring every question and option.
 - `strategy: :committed` asks for one option per question and returns it with probability 1.
-- The one-call prompt lists the questions before the state, so repeated instructions form a cacheable prefix.
 - The provider accepts RubyLLM main's `with:` attachments argument and raises `UnsupportedAttachmentError` when images are passed. Judgments on RubyLLM main failed with `ArgumentError` before.
-- The README explains when to enable reasoning: off suits classification, while rule-following questions need it.
+- The README explains when to enable reasoning: off suits classification, while rule-following questions need it. See [the decision-mode benchmarks](benchmarks/decision-modes.md).
 
 ## 0.1.3 (2026-09-29)
 
