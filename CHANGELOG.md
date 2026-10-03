@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 0.1.4 (2026-10-03)
 
 - `structured_output: true` sends a strict JSON Schema with one-call requests, requiring every question and option.
 - `strategy: :committed` asks for one option per question and returns it with probability 1.
