@@ -10,6 +10,9 @@ module RubyLLM
     # RubyLLM 2.1 added the Judge API. Earlier versions run the engine directly
     # and return Legacy stand-ins with the same readers.
     NATIVE = defined?(RubyLLM::Judge) ? true : false
+    # RubyLLM 2.0 has the 2.x chat API (protocols, with_max_output_tokens, with_provider_options,
+    # Tokens.aggregate) but not the Judge API, so it uses those with the Legacy answer types.
+    CHAT_2X = RubyLLM::Chat.method_defined?(:with_provider_options)
 
     # Raised for invalid scoring responses. RubyLLM::Error takes (response, message)
     # before 1.16 and (message, response:) on main, so build it for either.

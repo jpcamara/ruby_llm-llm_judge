@@ -48,9 +48,9 @@ module RubyLLM
         luna_defaults = LUNA_IDS.fetch(@scoring_provider, nil)&.match?(@scoring_model) || false
         @scoring_protocol = options.fetch(:scoring_protocol,
                                           luna_defaults && @scoring_provider == :openai ? :chat_completions : nil)
-        # Before 2.1, RubyLLM chats use each provider's one chat API (Chat Completions for OpenAI).
-        if !NATIVE && ![nil, :chat_completions].include?(@scoring_protocol&.to_sym)
-          raise ArgumentError, 'scoring_protocol requires RubyLLM 2.1'
+        # Before 2.0, RubyLLM chats use each provider's one chat API (Chat Completions for OpenAI).
+        if !CHAT_2X && ![nil, :chat_completions].include?(@scoring_protocol&.to_sym)
+          raise ArgumentError, 'scoring_protocol requires RubyLLM 2.0'
         end
         @temperature = options.fetch(:temperature, luna_defaults ? 0 : nil)
         @max_output_tokens = options.fetch(:max_output_tokens, @strategy == :ratings ? 4 : 8192)
@@ -388,7 +388,7 @@ module RubyLLM
 
       def scoring_chat(instructions: SYSTEM_INSTRUCTIONS, max_output_tokens: @max_output_tokens, schema: nil)
         context = RubyLLM::Context.new(@config)
-        chat = if NATIVE
+        chat = if CHAT_2X
                  context.chat(model: @scoring_model, provider: @scoring_provider,
                               protocol: @scoring_protocol, assume_model_exists: true)
                else
@@ -397,7 +397,7 @@ module RubyLLM
         chat.with_instructions(instructions)
         chat.with_temperature(@temperature) unless @temperature.nil?
         chat.with_schema(schema) if schema
-        if NATIVE
+        if CHAT_2X
           chat.with_max_output_tokens(max_output_tokens)
           chat.with_provider_options(deep_compact(@chat_provider_options))
         else
@@ -406,7 +406,7 @@ module RubyLLM
         chat
       end
 
-      # A nil in chat_provider_options removes that field: a default, or before 2.1
+      # A nil in chat_provider_options removes that field: a default, or before 2.0
       # the output limit field. A hash emptied by removal is removed too.
       def deep_compact(hash)
         hash.each_with_object({}) do |(key, value), compacted|
@@ -420,7 +420,7 @@ module RubyLLM
         end
       end
 
-      # The request field each provider reads for the output limit, as RubyLLM 2.1 renders it.
+      # The request field each provider reads for the output limit, as RubyLLM 2.x renders it.
       def max_output_tokens_param(limit)
         case @scoring_provider
         when :openai, :azure then { max_completion_tokens: limit }
@@ -431,7 +431,7 @@ module RubyLLM
       end
 
       def aggregate_tokens(tokens)
-        NATIVE ? RubyLLM::Tokens.aggregate(tokens) : Legacy.aggregate_tokens(tokens)
+        CHAT_2X ? RubyLLM::Tokens.aggregate(tokens) : Legacy.aggregate_tokens(tokens)
       end
 
       def answer(question, probabilities)

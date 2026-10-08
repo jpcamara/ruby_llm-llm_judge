@@ -163,7 +163,7 @@ class HTTPTest < Minitest::Test
   end
 
   def test_nil_chat_provider_options_can_rename_the_output_limit_field
-    skip 'RubyLLM 2.1 renders the output limit for the scoring protocol' if RubyLLM::LLMJudge::NATIVE
+    skip 'RubyLLM 2.x renders the output limit for the scoring protocol' if RubyLLM::LLMJudge::CHAT_2X
 
     stub_chat(OPENAI) { '{"answers":{"urgent":{"true":0.8,"false":0.2}}}' }
     RubyLLM::LLMJudge.judge('x', questions: { urgent: { type: :probability } },
@@ -184,14 +184,14 @@ class HTTPTest < Minitest::Test
       assert_equal 'gpt-5.6-luna', body['model']
       assert_equal 'none', body['reasoning_effort']
       assert_equal false, body['store']
-      # RubyLLM before 2.1 sends temperature 1.0 for any OpenAI model whose ID starts with gpt-5.
-      assert_equal(RubyLLM::LLMJudge::NATIVE ? 0 : 1.0, body['temperature'])
+      # RubyLLM 1.x sends temperature 1.0 for any OpenAI model whose ID starts with gpt-5.
+      assert_equal(RubyLLM::LLMJudge::CHAT_2X ? 0 : 1.0, body['temperature'])
     end
   end
 
   # An app that reaches Bedrock's OpenAI-compatible endpoint through :openai, with its own request format.
   def test_prefixed_luna_ids_on_openai_get_only_the_callers_options
-    skip 'RubyLLM 2.1 renders the output limit for the scoring protocol' if RubyLLM::LLMJudge::NATIVE
+    skip 'RubyLLM 2.x renders the output limit for the scoring protocol' if RubyLLM::LLMJudge::CHAT_2X
 
     stub_chat(OPENAI) { '7' }
     RubyLLM::LLMJudge.judge('x', model: 'us.openai.gpt-5.6-luna', questions: { urgent: { type: :probability } },

@@ -146,6 +146,8 @@ class LegacyTest < Minitest::Test
   end
 
   def test_token_totals_keep_every_reported_field
+    skip 'RubyLLM 2.x sums tokens with Tokens.aggregate' if RubyLLM::LLMJudge::CHAT_2X
+
     totals = RubyLLM::LLMJudge::Legacy.aggregate_tokens(
       [RubyLLM::Tokens.new(input: 10, output: 2, cached: 4, thinking: 1), nil,
        RubyLLM::Tokens.new(input: 5, output: 1, cached: 1)]
@@ -168,9 +170,12 @@ class LegacyTest < Minitest::Test
     assert_match(/metadata/, error.message)
   end
 
-  def test_other_protocols_raise
-    assert_raises(ArgumentError) do
-      RubyLLM::LLMJudge::Engine.new(config: RubyLLM.config, provider_options: { scoring_protocol: :responses })
+  def test_other_protocols_raise_before_ruby_llm_2
+    options = { provider_options: { scoring_protocol: :responses } }
+    if RubyLLM::LLMJudge::CHAT_2X
+      RubyLLM::LLMJudge::Engine.new(config: RubyLLM.config, **options)
+    else
+      assert_raises(ArgumentError) { RubyLLM::LLMJudge::Engine.new(config: RubyLLM.config, **options) }
     end
   end
 
@@ -185,12 +190,19 @@ class LegacyTest < Minitest::Test
   def test_luna_chat_request_settings
     chat = chat_for(:openai, model: 'gpt-6-luna')
 
-    assert_equal({ max_completion_tokens: 4, store: false, reasoning_effort: 'none' }, chat.params)
+    if RubyLLM::LLMJudge::CHAT_2X
+      assert_equal 4, chat.max_output_tokens
+      assert_equal({ store: false, reasoning_effort: 'none' }, chat.provider_options)
+    else
+      assert_equal({ max_completion_tokens: 4, store: false, reasoning_effort: 'none' }, chat.params)
+    end
     assert_equal 0, chat.instance_variable_get(:@temperature)
     assert_equal RubyLLM::LLMJudge::Engine::SYSTEM_INSTRUCTIONS, chat.messages.first.content
   end
 
   def test_output_limit_uses_each_providers_field
+    skip 'RubyLLM 2.x renders the output limit itself' if RubyLLM::LLMJudge::CHAT_2X
+
     assert_equal({ max_tokens: 4 }, chat_for(:anthropic).params)
     assert_equal({ generationConfig: { maxOutputTokens: 4 } }, chat_for(:gemini).params)
     assert_equal({ max_tokens: 1024, provider: { sort: 'latency' } },
