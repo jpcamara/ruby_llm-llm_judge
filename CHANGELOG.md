@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+- Claude Haiku 5.5 on OpenRouter (`anthropic/claude-haiku-5.5`, its `:batch` variant and `~anthropic/claude-haiku-latest`) gets `reasoning: { enabled: false }` by default. Haiku 5.5 thinks by default and spent the ratings strategy's four-token limit on reasoning, returning no digit. Callers can turn reasoning back on through `chat_provider_options`. See [the Haiku 5.5 benchmarks](benchmarks/haiku-5-5.md).
+
 ## 0.1.4 (2026-10-03)
 
 - `structured_output: true` sends a strict JSON Schema with one-call requests, requiring every question and option.

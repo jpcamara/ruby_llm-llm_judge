@@ -1,0 +1,286 @@
+{
+ "classification": [
+  {
+   "model": "anthropic/claude-haiku-4.5",
+   "config": "committed",
+   "reasoning": "off",
+   "passes": 3,
+   "ag_news": 56,
+   "ag_news_range": [
+    56,
+    56
+   ],
+   "sst2": 29,
+   "brier": 0.25,
+   "errors": 0,
+   "retried": 0,
+   "p50_ms": 945.7833333333333,
+   "p95_ms": 1657.8,
+   "output_tokens": 33.854166666666664,
+   "cost_per_1k": 0.4210520833333333
+  },
+  {
+   "model": "anthropic/claude-haiku-4.5",
+   "config": "committed+schema",
+   "reasoning": "off",
+   "passes": 3,
+   "ag_news": 55,
+   "ag_news_range": [
+    55,
+    55
+   ],
+   "sst2": 29,
+   "brier": 0.28125,
+   "errors": 0,
+   "retried": 0,
+   "p50_ms": 1321.8333333333333,
+   "p95_ms": 1991.6,
+   "output_tokens": 15.1875,
+   "cost_per_1k": 0.57171875
+  },
+  {
+   "model": "anthropic/claude-haiku-4.5",
+   "config": "ratings",
+   "reasoning": "off",
+   "passes": 3,
+   "ag_news": 58,
+   "ag_news_range": [
+    58,
+    58
+   ],
+   "sst2": 30,
+   "brier": 0.1796172020355865,
+   "errors": 0,
+   "retried": 0,
+   "p50_ms": 1121.3666666666668,
+   "p95_ms": 3396.133333333333,
+   "output_tokens": 29.166666666666668,
+   "cost_per_1k": 0.7978541666666666
+  },
+  {
+   "model": "anthropic/claude-haiku-4.5",
+   "config": "single_request",
+   "reasoning": "off",
+   "passes": 3,
+   "ag_news": 56,
+   "ag_news_range": [
+    56,
+    56
+   ],
+   "sst2": 29,
+   "brier": 0.2286393125,
+   "errors": 0,
+   "retried": 0,
+   "p50_ms": 1141.1166666666666,
+   "p95_ms": 2505.6,
+   "output_tokens": 81.25,
+   "cost_per_1k": 0.69303125
+  },
+  {
+   "model": "anthropic/claude-haiku-4.5",
+   "config": "single_request+schema",
+   "reasoning": "off",
+   "passes": 3,
+   "ag_news": 56,
+   "ag_news_range": [
+    56,
+    56
+   ],
+   "sst2": 28,
+   "brier": 0.20092231249999998,
+   "errors": 0,
+   "retried": 0,
+   "p50_ms": 1490.1166666666666,
+   "p95_ms": 1976.6000000000001,
+   "output_tokens": 41.666666666666664,
+   "cost_per_1k": 0.8481145833333333
+  },
+  {
+   "model": "anthropic/claude-haiku-5.5",
+   "config": "committed",
+   "reasoning": "off",
+   "passes": 3,
+   "ag_news": 55,
+   "ag_news_range": [
+    54,
+    56
+   ],
+   "sst2": 30,
+   "brier": 0.28125,
+   "errors": 0,
+   "retried": 0,
+   "p50_ms": 1177.9166666666667,
+   "p95_ms": 1442.8666666666668,
+   "output_tokens": 23.10763888888889,
+   "cost_per_1k": 0.048985069444444446
+  },
+  {
+   "model": "anthropic/claude-haiku-5.5",
+   "config": "committed+schema",
+   "reasoning": "low",
+   "passes": 1,
+   "ag_news": 59,
+   "ag_news_range": [
+    59,
+    59
+   ],
+   "sst2": 30,
+   "brier": 0.15625,
+   "errors": 0,
+   "retried": 0,
+   "p50_ms": 1406.3,
+   "p95_ms": 1921.5,
+   "output_tokens": 26.583333333333332,
+   "cost_per_1k": 0.08316041666666668
+  },
+  {
+   "model": "anthropic/claude-haiku-5.5",
+   "config": "committed+schema",
+   "reasoning": "off",
+   "passes": 3,
+   "ag_news": 55.666666666666664,
+   "ag_news_range": [
+    55,
+    56
+   ],
+   "sst2": 30,
+   "brier": 0.2604166666666667,
+   "errors": 0,
+   "retried": 0,
+   "p50_ms": 1151.6000000000001,
+   "p95_ms": 1405.4333333333334,
+   "output_tokens": 21.708333333333332,
+   "cost_per_1k": 0.07868541666666667
+  },
+  {
+   "model": "anthropic/claude-haiku-5.5",
+   "config": "ratings",
+   "reasoning": "off",
+   "passes": 3,
+   "ag_news": 57.666666666666664,
+   "ag_news_range": [
+    57,
+    58
+   ],
+   "sst2": 30,
+   "brier": 0.1336135522081025,
+   "errors": 0,
+   "retried": 0,
+   "p50_ms": 1304.8333333333335,
+   "p95_ms": 2603.233333333333,
+   "output_tokens": 17.79513888888889,
+   "cost_per_1k": 0.09941111111111112
+  },
+  {
+   "model": "anthropic/claude-haiku-5.5",
+   "config": "single_request",
+   "reasoning": "low",
+   "passes": 1,
+   "ag_news": 60,
+   "ag_news_range": [
+    60,
+    60
+   ],
+   "sst2": 30,
+   "brier": 0.1346497974537037,
+   "errors": 0,
+   "retried": 0,
+   "p50_ms": 1313.9,
+   "p95_ms": 3430.1,
+   "output_tokens": 75.90625,
+   "cost_per_1k": 0.09020416666666667
+  },
+  {
+   "model": "anthropic/claude-haiku-5.5",
+   "config": "single_request",
+   "reasoning": "off",
+   "passes": 3,
+   "ag_news": 56.666666666666664,
+   "ag_news_range": [
+    56,
+    57
+   ],
+   "sst2": 30,
+   "brier": 0.16468515689141022,
+   "errors": 0,
+   "retried": 1.3333333333333333,
+   "p50_ms": 1243.8666666666666,
+   "p95_ms": 1595.2666666666667,
+   "output_tokens": 57.17013888888889,
+   "cost_per_1k": 0.071378125
+  },
+  {
+   "model": "anthropic/claude-haiku-5.5",
+   "config": "single_request+schema",
+   "reasoning": "off",
+   "passes": 3,
+   "ag_news": 59.666666666666664,
+   "ag_news_range": [
+    59,
+    60
+   ],
+   "sst2": 30,
+   "brier": 0.13159954427083334,
+   "errors": 0,
+   "retried": 0,
+   "p50_ms": 1519.8666666666666,
+   "p95_ms": 1750.1333333333334,
+   "output_tokens": 54.638888888888886,
+   "cost_per_1k": 0.11141736111111111
+  }
+ ],
+ "stream_decision_bench": [
+  {
+   "setting": "anthropic_claude-haiku-5.5-low",
+   "passes": 1,
+   "untimed": 95.83333333333334,
+   "untimed_range": [
+    95.83333333333334,
+    95.83333333333334
+   ],
+   "invalid": 0,
+   "p50_ms": 5919.1,
+   "p95_ms": 10456.2,
+   "cost_per_1k_states": 0.8208083333333334
+  },
+  {
+   "setting": "anthropic_claude-haiku-5.5-off",
+   "passes": 2,
+   "untimed": 24.375,
+   "untimed_range": [
+    23.75,
+    25.0
+   ],
+   "invalid": 0,
+   "p50_ms": 1322.25,
+   "p95_ms": 1674.5,
+   "cost_per_1k_states": 0.5091979166666667
+  },
+  {
+   "setting": "llm_judge_anthropic_claude-haiku-5.5_committed+schema@low",
+   "passes": 1,
+   "untimed": 96.25,
+   "untimed_range": [
+    96.25,
+    96.25
+   ],
+   "invalid": 0,
+   "p50_ms": 5985.3,
+   "p95_ms": 10479.5,
+   "cost_per_1k_states": 1.119922291666667
+  },
+  {
+   "setting": "llm_judge_anthropic_claude-haiku-5.5_committed+schema@none",
+   "passes": 1,
+   "untimed": 12.708333333333332,
+   "untimed_range": [
+    12.708333333333332,
+    12.708333333333332
+   ],
+   "invalid": 0,
+   "p50_ms": 1451.05,
+   "p95_ms": 1954.7,
+   "cost_per_1k_states": 0.5151129166666667
+  }
+ ]
+}
