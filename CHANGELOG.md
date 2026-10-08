@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- Claude Haiku 5.5 on OpenRouter (`anthropic/claude-haiku-5.5`, its `:batch` variant and `~anthropic/claude-haiku-latest`) gets `reasoning: { enabled: false }` by default. Haiku 5.5 thinks by default and spent the ratings strategy's four-token limit on reasoning, returning no digit. Callers can turn reasoning back on through `chat_provider_options`. See [the Haiku 5.5 benchmarks](benchmarks/haiku-5-5.md).
 - Tested against the released RubyLLM 2.1.0, which plugs into the Judge API as RubyLLM main did. CI adds RubyLLM 2.0.0 and 2.1.0 on Ruby 3.2 through 4.0.
 - Fixed RubyLLM 2.0.0, which has the 2.x chat API but no Judge API. Every judgment failed there with `NoMethodError` (`with_params` and the 1.x token fields are gone in 2.0). The gem now uses 2.0's `with_max_output_tokens`, `with_provider_options` and `Tokens.aggregate`, with the Legacy answer types. On 2.0, `scoring_protocol` accepts any protocol the provider supports.
 

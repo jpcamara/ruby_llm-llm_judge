@@ -14,6 +14,12 @@ module RubyLLM
         openai: /\Agpt-(?:\d+(?:\.\d+)?-)?luna(?:-latest)?\z/,
         openrouter: %r{\A~?openai/gpt-(?:\d+(?:\.\d+)?-)?luna(?:-latest)?(?::\w+)?\z}
       }.freeze
+      # Claude Haiku 5.5 thinks by default: given the ratings strategy's four-token limit, it spends the
+      # limit on reasoning and returns no digit. These IDs get reasoning disabled (and nothing else).
+      # Only OpenRouter's IDs are matched; Anthropic's own API and Bedrock take a different parameter.
+      HAIKU_IDS = {
+        openrouter: %r{\A~?anthropic/claude-haiku-(?:5\.5|latest)(?::\w+)?\z}
+      }.freeze
       SYSTEM_INSTRUCTIONS = 'Return exactly one ASCII digit 0-9. 9 means very likely to be the correct answer; 0 means very unlikely. No explanation.'
       SINGLE_REQUEST_INSTRUCTIONS = 'Answer all questions using only a JSON object with an "answers" field. ' \
                                     'For each question, return an object mapping every supplied option ID to a ' \
@@ -46,6 +52,7 @@ module RubyLLM
         raise ArgumentError, 'A model is required' unless @scoring_model.is_a?(String) && !@scoring_model.empty?
 
         luna_defaults = LUNA_IDS.fetch(@scoring_provider, nil)&.match?(@scoring_model) || false
+        haiku_defaults = HAIKU_IDS.fetch(@scoring_provider, nil)&.match?(@scoring_model) || false
         @scoring_protocol = options.fetch(:scoring_protocol,
                                           luna_defaults && @scoring_provider == :openai ? :chat_completions : nil)
         # Before 2.0, RubyLLM chats use each provider's one chat API (Chat Completions for OpenAI).
@@ -59,7 +66,7 @@ module RubyLLM
         raise ArgumentError, 'chat_provider_options must be a Hash' unless chat_provider_options.is_a?(Hash)
 
         # Merged over the defaults, so tuning one option keeps the others (such as disabled reasoning).
-        @chat_provider_options = deep_merge(default_chat_options(luna_defaults), chat_provider_options)
+        @chat_provider_options = deep_merge(default_chat_options(luna_defaults, haiku_defaults), chat_provider_options)
         @max_arms = options[:max_arms]
         @max_input_bytes = options[:max_input_bytes]
         @malformed_retries = options.fetch(:malformed_retries, 1)
@@ -354,11 +361,11 @@ module RubyLLM
         end
       end
 
-      # Luna rates poorly with reasoning on: the output limit is spent before the answer.
-      def default_chat_options(luna_defaults)
+      # Luna and Haiku 5.5 rate poorly with reasoning on: the output limit is spent before the answer.
+      def default_chat_options(luna_defaults, haiku_defaults)
         case @scoring_provider
         when :openai then luna_defaults ? { store: false, reasoning_effort: 'none' } : { store: false }
-        when :openrouter then luna_defaults ? { reasoning: { enabled: false } } : {}
+        when :openrouter then luna_defaults || haiku_defaults ? { reasoning: { enabled: false } } : {}
         else {}
         end
       end

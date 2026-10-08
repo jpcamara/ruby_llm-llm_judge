@@ -90,6 +90,27 @@ The default Luna rating request uses Chat Completions, temperature zero, reasoni
 
 Luna defaults apply to each provider's own Luna model IDs: `gpt-6-luna`, `gpt-5.6-luna`, or `gpt-luna-latest` on `:openai`, which sends temperature zero, `reasoning_effort: 'none'`, and `store: false`; and `openai/gpt-6-luna` or `openai/gpt-5.6-luna` on `:openrouter`, which sends temperature zero and `reasoning: { enabled: false }`. Pro variants, other providers such as `:bedrock`, and prefixed IDs such as `us.openai.gpt-5.6-luna` sent through `:openai` to an OpenAI-compatible gateway get no Luna defaults, because their request format may differ; set `temperature:` and disable reasoning in that endpoint's format yourself. With reasoning left on, the ratings strategy's four-token output limit is spent on reasoning: on eight AG News cases, `gpt-6-luna` through OpenRouter returned no digit for all eight, and `gpt-5.6-luna` for four. RubyLLM 1.x sends temperature 1.0 for any OpenAI model whose ID starts with `gpt-5`, so `gpt-5.6-luna` on `:openai` runs at 1.0 there unless you pass `chat_provider_options: { temperature: 0 }`.
 
+### Claude Haiku 5.5
+
+Claude Haiku 5.5 (`anthropic/claude-haiku-5.5` through OpenRouter) costs a tenth of Haiku 4.5 per token, and on the benchmarks it was as accurate or better. It thinks by default, which would spend the ratings strategy's four-token limit, so the gem sends `reasoning: { enabled: false }` for `anthropic/claude-haiku-5.5`, its `:batch` variant and `~anthropic/claude-haiku-latest` on `:openrouter`. OpenRouter doesn't list `temperature` as a supported parameter for Haiku 5.5, so the gem leaves it unset.
+
+```ruby
+RubyLLM::LLMJudge.judge(
+  'Please refund the duplicate charge today.',
+  model: 'anthropic/claude-haiku-5.5',
+  questions: { team: { type: :choice, options: { billing: 'Payments', technical: 'Software' } } },
+  provider_options: { scoring_provider: :openrouter, strategy: :single_request, structured_output: true }
+)
+```
+
+| Question kind | Settings | Result |
+| --- | --- | --- |
+| Classification | `:single_request`, `structured_output: true`, reasoning off (default) | 59.7/64 AG News, 30/32 SST-2, 1.5 s, $0.11 per 1,000 |
+| Fastest label | `:committed`, reasoning off | 55/64, 30/32, 1.2 s, $0.05 per 1,000 |
+| Rule-following | `:committed`, `structured_output: true`, `chat_provider_options: { reasoning: { enabled: nil, effort: 'low' } }`, `max_output_tokens: 8192` | 96.3% of StreamDecisionBench states, 6 s, $1.12 per 1,000 |
+
+With reasoning off, Haiku 5.5 got only 13–24% of StreamDecisionBench's rule-following states right. Turn reasoning on for those questions. [Haiku 5.5 results](benchmarks/haiku-5-5.md).
+
 ## One-call typed decisions
 
 Set `strategy: :single_request` to send the state and every Judge question to the model in one request:
