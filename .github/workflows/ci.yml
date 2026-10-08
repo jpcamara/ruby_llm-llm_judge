@@ -11,7 +11,7 @@ jobs:
       fail-fast: false
       matrix:
         ruby: ['3.2', '3.3', '3.4', '4.0']
-        ruby_llm: ['1.13.2', '1.16.0']
+        ruby_llm: ['1.13.2', '1.16.0', '2.0.0', '2.1.0']
         include:
           - ruby: '3.4'
             ruby_llm: main
