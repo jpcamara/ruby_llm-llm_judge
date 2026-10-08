@@ -217,6 +217,43 @@ class HTTPTest < Minitest::Test
     end
   end
 
+  def test_haiku_5_5_on_openrouter_disables_reasoning_only
+    stub_chat(OPENROUTER) { '7' }
+    %w[anthropic/claude-haiku-5.5 anthropic/claude-haiku-5.5:batch ~anthropic/claude-haiku-latest].each do |model|
+      RubyLLM::LLMJudge.judge('x', model:, questions: { urgent: { type: :probability } },
+                                   provider_options: { scoring_provider: :openrouter })
+    end
+
+    bodies = requests
+    assert_equal %w[anthropic/claude-haiku-5.5 anthropic/claude-haiku-5.5:batch ~anthropic/claude-haiku-latest],
+                 bodies.map { |body| body['model'] }.uniq.sort
+    bodies.each do |body|
+      assert_equal({ 'enabled' => false }, body['reasoning'])
+      assert_equal 4, body['max_tokens']
+      refute body.key?('temperature')
+    end
+  end
+
+  def test_haiku_5_5_reasoning_can_be_turned_back_on
+    stub_chat(OPENROUTER) { '{"answers":{"urgent":{"true":0.8,"false":0.2}}}' }
+    RubyLLM::LLMJudge.judge('x', model: 'anthropic/claude-haiku-5.5', questions: { urgent: { type: :probability } },
+                                 provider_options: { scoring_provider: :openrouter, strategy: :single_request,
+                                                     chat_provider_options: { reasoning: { enabled: nil,
+                                                                                           effort: 'low' } } })
+
+    assert_equal({ 'effort' => 'low' }, requests.first['reasoning'])
+  end
+
+  def test_other_claude_models_get_no_haiku_defaults
+    stub_chat(OPENROUTER) { '7' }
+    %w[anthropic/claude-haiku-4.5 anthropic/claude-sonnet-5.5].each do |model|
+      RubyLLM::LLMJudge.judge('x', model:, questions: { urgent: { type: :probability } },
+                                   provider_options: { scoring_provider: :openrouter })
+    end
+
+    requests.each { |body| refute body.key?('reasoning') }
+  end
+
   def test_luna_pro_and_other_models_get_no_luna_defaults
     stub_chat(OPENROUTER) { '7' }
     %w[openai/gpt-6-luna-pro openai/gpt-6-sol].each do |model|
