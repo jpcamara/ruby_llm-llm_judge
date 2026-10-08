@@ -1,5 +1,10 @@
 # Changelog
 
+## Unreleased
+
+- Tested against the released RubyLLM 2.1.0, which plugs into the Judge API as RubyLLM main did. CI adds RubyLLM 2.0.0 and 2.1.0 on Ruby 3.2 through 4.0.
+- Fixed RubyLLM 2.0.0, which has the 2.x chat API but no Judge API. Every judgment failed there with `NoMethodError` (`with_params` and the 1.x token fields are gone in 2.0). The gem now uses 2.0's `with_max_output_tokens`, `with_provider_options` and `Tokens.aggregate`, with the Legacy answer types. On 2.0, `scoring_protocol` accepts any protocol the provider supports.
+
 ## 0.1.4 (2026-10-03)
 
 - `structured_output: true` sends a strict JSON Schema with one-call requests, requiring every question and option.

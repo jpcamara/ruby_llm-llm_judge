@@ -8,20 +8,20 @@ Use a RubyLLM chat model to answer [RubyLLM Judge](https://rubyllm.com/next/judg
 gem 'ruby_llm-llm_judge'
 ```
 
-The gem works with RubyLLM 1.13 and later. On RubyLLM 2.1 it plugs into the Judge API; on earlier versions see [RubyLLM 1.13 to 1.16](#rubyllm-113-to-116).
+The gem works with RubyLLM 1.13 and later, and is tested against 1.13.2, 1.16.0, 2.0.0, 2.1.0 and RubyLLM's main branch. On RubyLLM 2.1 it plugs into the Judge API; on earlier versions see [RubyLLM 1.13 to 2.0](#rubyllm-113-to-20).
 
 Configure your chat provider's credentials through RubyLLM. The default scoring model is `gpt-6-luna`; you can choose another RubyLLM chat model for each judgment.
 
-### RubyLLM 1.13 to 1.16
+### RubyLLM 1.13 to 2.0
 
-The gem also runs on RubyLLM 1.13 through 1.16, which predate the Judge API. There, `RubyLLM::LLMJudge.judge` runs the same scoring directly and accepts the same questions and `provider_options`. Answers have the same readers as RubyLLM's (`probability`, `choice`, `probabilities`, `confidence`, `score`, `levels`, and `model`, `tokens`, `raw`, `[]` and `fetch` on the judgment), so call sites keep working after you upgrade to 2.1.
+The gem also runs on RubyLLM 1.13 through 2.0, which predate the Judge API. There, `RubyLLM::LLMJudge.judge` runs the same scoring directly and accepts the same questions and `provider_options`. Answers have the same readers as RubyLLM's (`probability`, `choice`, `probabilities`, `confidence`, `score`, `levels`, and `model`, `tokens`, `raw`, `[]` and `fetch` on the judgment), so call sites keep working after you upgrade to 2.1.
 
 What differs before 2.1:
 
 - Results are `RubyLLM::LLMJudge::Legacy` objects, not `RubyLLM::Judgment`, `RubyLLM::Choice`, and so on. Avoid class checks until you upgrade.
 - There is no `RubyLLM.judge`, `RubyLLM::Judge` class DSL, `cost`, instrumentation, or `metadata:`. Passing `metadata:` raises. `context:` is accepted and supplies its configuration.
-- `scoring_protocol` accepts only `:chat_completions`, the API RubyLLM 1.x uses for OpenAI.
-- The output limit and `chat_provider_options` are sent with `with_params`, using the field each provider expects (`max_completion_tokens` for OpenAI and Azure, `generationConfig.maxOutputTokens` for Gemini and Vertex AI, `inferenceConfig.maxTokens` for Bedrock, and `max_tokens` otherwise).
+- On 1.x, `scoring_protocol` accepts only `:chat_completions`, the API RubyLLM 1.x uses for OpenAI. RubyLLM 2.0 accepts any protocol its provider supports.
+- On 1.x, the output limit and `chat_provider_options` are sent with `with_params`, using the field each provider expects (`max_completion_tokens` for OpenAI and Azure, `generationConfig.maxOutputTokens` for Gemini and Vertex AI, `inferenceConfig.maxTokens` for Bedrock, and `max_tokens` otherwise).
 
 ## Use
 
@@ -86,9 +86,9 @@ result = RubyLLM::LLMJudge.judge(
 
 Both strategies return valid judgments with this model. Its one-call answers arrive in a Markdown code fence, which the gem removes before parsing. On the benchmark cases it scored 56–57/64 on AG News and 29–30/32 on SST-2 at about 1.1 s median, a little below Luna. [Haiku results](benchmarks/haiku.md).
 
-The default Luna rating request uses Chat Completions, temperature zero, reasoning disabled, `store: false`, and a four-token output limit. Tune requests with `scoring_protocol`, `temperature`, `max_output_tokens`, and `chat_provider_options`. `chat_provider_options` is merged over those defaults, so setting one key, such as `service_tier: 'flex'`, keeps reasoning disabled; set a key explicitly to change a default. Set a key to `nil` to remove that field from the request, whether it is a default or, before RubyLLM 2.1, the output limit field. For example, an app that routes RubyLLM 1.x OpenAI chats through the Responses API can send `chat_provider_options: { max_completion_tokens: nil, max_output_tokens: 256 }`.
+The default Luna rating request uses Chat Completions, temperature zero, reasoning disabled, `store: false`, and a four-token output limit. Tune requests with `scoring_protocol`, `temperature`, `max_output_tokens`, and `chat_provider_options`. `chat_provider_options` is merged over those defaults, so setting one key, such as `service_tier: 'flex'`, keeps reasoning disabled; set a key explicitly to change a default. Set a key to `nil` to remove that field from the request, whether it is a default or, on RubyLLM 1.x, the output limit field. For example, an app that routes RubyLLM 1.x OpenAI chats through the Responses API can send `chat_provider_options: { max_completion_tokens: nil, max_output_tokens: 256 }`.
 
-Luna defaults apply to each provider's own Luna model IDs: `gpt-6-luna`, `gpt-5.6-luna`, or `gpt-luna-latest` on `:openai`, which sends temperature zero, `reasoning_effort: 'none'`, and `store: false`; and `openai/gpt-6-luna` or `openai/gpt-5.6-luna` on `:openrouter`, which sends temperature zero and `reasoning: { enabled: false }`. Pro variants, other providers such as `:bedrock`, and prefixed IDs such as `us.openai.gpt-5.6-luna` sent through `:openai` to an OpenAI-compatible gateway get no Luna defaults, because their request format may differ; set `temperature:` and disable reasoning in that endpoint's format yourself. With reasoning left on, the ratings strategy's four-token output limit is spent on reasoning: on eight AG News cases, `gpt-6-luna` through OpenRouter returned no digit for all eight, and `gpt-5.6-luna` for four. RubyLLM before 2.1 sends temperature 1.0 for any OpenAI model whose ID starts with `gpt-5`, so `gpt-5.6-luna` on `:openai` runs at 1.0 there unless you pass `chat_provider_options: { temperature: 0 }`.
+Luna defaults apply to each provider's own Luna model IDs: `gpt-6-luna`, `gpt-5.6-luna`, or `gpt-luna-latest` on `:openai`, which sends temperature zero, `reasoning_effort: 'none'`, and `store: false`; and `openai/gpt-6-luna` or `openai/gpt-5.6-luna` on `:openrouter`, which sends temperature zero and `reasoning: { enabled: false }`. Pro variants, other providers such as `:bedrock`, and prefixed IDs such as `us.openai.gpt-5.6-luna` sent through `:openai` to an OpenAI-compatible gateway get no Luna defaults, because their request format may differ; set `temperature:` and disable reasoning in that endpoint's format yourself. With reasoning left on, the ratings strategy's four-token output limit is spent on reasoning: on eight AG News cases, `gpt-6-luna` through OpenRouter returned no digit for all eight, and `gpt-5.6-luna` for four. RubyLLM 1.x sends temperature 1.0 for any OpenAI model whose ID starts with `gpt-5`, so `gpt-5.6-luna` on `:openai` runs at 1.0 there unless you pass `chat_provider_options: { temperature: 0 }`.
 
 ## One-call typed decisions
 
@@ -241,7 +241,7 @@ Latency sorting reduced median time by 20% on AG News and 28% on SST-2. It was f
 
 ## Development
 
-The gem uses RubyLLM's Judge API when it is present and the `Legacy` path otherwise. `test/llm_judge_test.rb` covers the Judge API and `test/legacy_test.rb` covers RubyLLM 1.13 through 1.16; each skips on the other side. `test/engine_test.rb` and `test/http_test.rb` run on every version; the HTTP tests send real RubyLLM requests to WebMock stubs and check their bodies.
+The gem uses RubyLLM's Judge API when it is present and the `Legacy` path otherwise. `test/llm_judge_test.rb` covers the Judge API and `test/legacy_test.rb` covers RubyLLM 1.13 through 2.0; each skips on the other side. `test/engine_test.rb` and `test/http_test.rb` run on every version; the HTTP tests send real RubyLLM requests to WebMock stubs and check their bodies.
 
 ```bash
 bundle exec rake test                              # the latest released RubyLLM
@@ -250,4 +250,4 @@ RUBY_LLM_VERSION=main bundle exec rake test        # RubyLLM's main branch, with
 RUBY_LLM_PATH=../ruby_llm bundle exec rake test    # a local checkout
 ```
 
-CI runs Ruby 3.2 through 4.0 against RubyLLM 1.13.2 and 1.16.0, and Ruby 3.4 against RubyLLM main.
+CI runs Ruby 3.2 through 4.0 against RubyLLM 1.13.2, 1.16.0, 2.0.0 and 2.1.0, and Ruby 3.4 against RubyLLM main.
